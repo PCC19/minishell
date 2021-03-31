@@ -1,0 +1,13 @@
+commandline ::= list
+          |  list ";"
+
+list     ::=	pipeline 
+          |		list ";" pipeline
+
+pipeline ::=  command
+          |   pipeline "|" command
+
+command  ::=  [word or redirection]
+
+redirection  ::=  redirectionop filename
+redirectionop  ::=  "<"  |  ">"  |  ">>"
