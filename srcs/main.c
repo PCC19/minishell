@@ -16,11 +16,11 @@ int main(int argc, char **argv, char **envp)
 
 // Declaracao de variaveis
 	int		i;
-	t_list	*lista_env;
-	t_list	*a;
+	t_dlist	*lista_env;
+//	t_list	*a;
 
 // Inicializa lista
-	lista_env = ft_lstnew(envp[0]);
+	lista_env = ft_dlst_create(envp[0]);
 
 // Le variaveis de ambiente
 
@@ -32,15 +32,24 @@ int main(int argc, char **argv, char **envp)
 	while(envp[i])
 	{
 		//printf("%s\n", envp[i]);
-		a = ft_lstnew(envp[i]);
-		ft_lstadd_back(&lista_env, a);
+		//a = ft_lstnew(envp[i]);
+		//ft_lstadd_back(&lista_env, a);
+		//ft_lstadd_back_p(&lista_env, envp[i]);
+		ft_dlst_add(&lista_env, envp[i]);
+
+		
 		i++;
 	}
 
 // Adiciona variavel
 // Printa lista
-	u_print_list(lista_env);
+	u_print_dlist(lista_env);
+//	ft_lstiter(lista_env, &prints);
 // Destroi list
-	u_free_list(lista_env);	
+	u_free_dlist(lista_env);	
 
 }
+// create
+// add
+// delete
+//

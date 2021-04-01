@@ -6,7 +6,7 @@
 /*   By: pcunha <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:27:14 by pcunha            #+#    #+#             */
-/*   Updated: 2021/01/31 22:54:23 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/01 18:32:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@
 # include <stddef.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct		s_list
 {
 	void			*content;
 	struct s_list	*next;
-}				t_list;
+}					t_list;
+
+typedef struct		s_dlist
+{
+	void			*content;
+	struct s_dlist	*next;
+	struct s_dlist	*prev;
+}					t_dlist;
 
 /*
 ** ======= LIBC ==============
@@ -97,5 +104,9 @@ void			ft_shift_right(int *arr, int n);
 int				ft_abs(int x);
 int				ft_get_bit(int x, int n);
 int				ft_isnum(const char *s);
+void			ft_lstadd_back_p(t_list **lst, char *a);
+t_dlist			*ft_dlst_create(void *content);
+void			ft_dlst_add(t_dlist **lst, void *a);
+t_dlist			*ft_dlst_last(t_dlist *lst);
 
 #endif

@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_dlst_add.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/01 18:39:32 by user42           ###   ########.fr       */
+/*   Created: 2021/04/01 18:19:17 by user42            #+#    #+#             */
+/*   Updated: 2021/04/01 18:31:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
+void	ft_dlst_add(t_dlist **lst, void *a)
+{
+	t_dlist	*ultimo;
+	t_dlist	*new;
 
-void	u_print_list(t_list *list);
-void	u_print_dlist(t_dlist *list);
-void	prints(void *s);
-void	u_free_list(t_list *list);
-void	u_free_dlist(t_dlist *list);
-void	prints(void *s);
+	new = ft_dlst_create(a);
 
-
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	ultimo = ft_dlst_last(*lst);
+	ultimo->next = new;
+	ultimo->prev = ultimo;
+}

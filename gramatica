@@ -9,5 +9,4 @@ pipeline ::=  command
 
 command  ::=  [word or redirection]
 
-redirection  ::=  redirectionop filename
-redirectionop  ::=  "<"  |  ">"  |  ">>"
+redirection  ::= ["<"  |  ">"  |  ">>"] filename

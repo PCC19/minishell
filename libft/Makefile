@@ -6,7 +6,7 @@
 #    By: pcunha <pcunha@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/28 13:39:04 by pcunha            #+#    #+#              #
-#    Updated: 2021/03/31 01:47:40 by user42           ###   ########.fr        #
+#    Updated: 2021/04/01 18:31:09 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS=ft_atoi.c ft_isalpha.c ft_isdigit.c ft_isdigit.c ft_isalnum.c \
 	 ft_append_str.c ft_is_in.c ft_max.c ft_min.c ft_shift_left.c\
 	 ft_shift_right.c ft_abs.c ft_get_bit.c ft_isnum.c\
 	 ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
-	 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+	 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c\
+	 ft_lstadd_back_p.c ft_dlst_create.c ft_dlst_add.c ft_dlst_last.c
 
 OBJECTS=ft_atoi.o ft_bzero.o ft_isalnum.o \
 		ft_isalpha.o ft_isascii.o ft_isdigit.o ft_tolower.o ft_isprint.o \
@@ -46,7 +47,8 @@ OBJECTS=ft_atoi.o ft_bzero.o ft_isalnum.o \
 		ft_print_bit.o ft_append_str.o ft_is_in.o ft_max.o ft_min.o\
 		ft_shift_left.o ft_shift_right.o ft_abs.o ft_get_bit.o ft_isnum.o\
 		ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o\
-		ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
+		ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o\
+		ft_lstadd_back_p.o ft_dlst_create.o ft_dlst_add.o ft_dlst_last.o
 
 CC = clang
 
