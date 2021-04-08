@@ -1,0 +1,71 @@
+INIT TERMINAL
+
+LOOP ENTRADA
+	UP
+		pega history
+		mostra na tela
+	DN
+		pega history
+		mostra na tela
+	BS
+		apaga char anterior
+	CHAR
+		mostra
+		adiciona a linha
+	retorna LINHA
+
+PARSE LINHA
+	separa por ;
+	PARSE PIPELINE
+		separa por |
+		PARSE COMMAND
+			trata ' " e $
+			pega comando+args
+				ou
+			pega redirects int
+			pega redirects out
+			EXECUTA
+				BUILT IN
+				PROGRAMA
+					procura bin no PATH
+					faz fork e executa
+		encadeia para o proximo do pipe
+LOOP INICIO
+
+
+----------------------------------------------------------------------
+Le  char: 
+se ‘ ou “ 
+    update estado 
+se char 
+    trata de acordo com estado 
+    NORMAL: copia 
+    ‘: copia 
+    “: copia 
+se $; 
+trata de acordo com estado 
+    NORMAL: expande 
+    ‘: copia 
+    “: expande 
+incrementa 
+
+----------------------------------------------------------------------
+
+estado = NORMAL
+loop ate chegar no fim da string linha
+	se ' ou " muda estado e incrementa
+	se char dif $
+		copia char
+		incr
+	se $ e estado == NORMAL ou estado = "
+		incr
+		EXPANDE
+		incrementa gde
+	else
+		copia char
+		incrementa
+
+
+
+
+
