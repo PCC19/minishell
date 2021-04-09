@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:33:13 by user42            #+#    #+#             */
-/*   Updated: 2021/04/09 18:19:19 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 22:51:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		parse_s(t_v *v, char *linha)
 	int						j;
 	t_estado_parse_s		estado;
 
-	v->expandido = (char*)ft_calloc(1000, sizeof(char));
+	v->expandido = (char*)ft_calloc(MIL, sizeof(char));
 	estado = NORMAL;
 	i = 0;
 	j = 0;

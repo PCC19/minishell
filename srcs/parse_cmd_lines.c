@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 00:41:53 by user42            #+#    #+#             */
-/*   Updated: 2021/04/08 04:15:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:48:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	parse_cmd_lines(t_v *v, char *linha)
 	{
 		s = ft_strdup(aux[i]);
 		v->cmd_lines[i] = ft_strtrim(s, " ");
+		printf("===============================\n");
 		printf("parsing pipelines ... \n");
+		printf("===============================\n");
 		parse_pipelines(v, v->cmd_lines[i]);
 		u_free_array_bi(v->pipelines);
 		free(s);

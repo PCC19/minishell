@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/09 18:40:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:58:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include <string.h>
+# include <fcntl.h>
+
+
+# define MIL 1000
 
 typedef enum	e_estado_parse_s
 {
@@ -22,13 +26,19 @@ typedef enum	e_estado_parse_s
 				DOUBLE_QUOTE
 }				t_estado_parse_s;
 
+typedef struct	s_cmd{
+	char *filename;
+	char **cmd_args; // filename eh o arg[0];
+	int	fd_in;
+	int	fd_out;
+}				t_cmd;
 
 typedef struct	s_v{
-	char **cmd_lines;
-	char **pipelines;
-	char **cmd;
-	char *expandido;
-	char **env;
+	char	**cmd_lines;
+	char	**pipelines;
+	char	*expandido;
+	char	**env;
+	t_cmd	cmd;
 }				t_v;
 
 
@@ -51,6 +61,4 @@ int		parse_s(t_v *v, char *linha);
 void	init_env(t_v *v, char **envp);
 void	expande(t_v *v, char *linha, int *i, int *j);
 void	parse_redirects(t_v *v);
-
-
-
+void	parse_cmd_args(t_v *v, int *k);

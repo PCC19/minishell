@@ -19,7 +19,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)parse_s.c\
 		$(SDIR)init_env.c\
 		$(SDIR)expande.c\
-		$(SDIR)parse_redirects.c
+		$(SDIR)parse_redirects.c\
+		$(SDIR)parse_cmd_args.c
 
 
 
