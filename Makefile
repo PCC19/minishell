@@ -16,7 +16,11 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)ft_conta_linhas.c\
 		$(SDIR)parse_pipelines.c\
 		$(SDIR)u_print_array_bi.c\
-		$(SDIR)parse_s.c
+		$(SDIR)parse_s.c\
+		$(SDIR)init_env.c\
+		$(SDIR)expande.c
+
+
 
 		
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		

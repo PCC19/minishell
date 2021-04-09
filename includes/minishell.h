@@ -6,21 +6,21 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/08 22:40:19 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 03:24:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stdio.h>
 # include "libft.h"
 # include "get_next_line.h"
+# include <string.h>
 
-
-enum	e_estado_parse_s
+typedef enum	e_estado_parse_s
 {
-	NORMAL,
-	SINGLE_QUOTE,
-	DOUBLE_QUOTE
-};
+				NORMAL,
+				SINGLE_QUOTE,
+				DOUBLE_QUOTE
+}				t_estado_parse_s;
 
 
 typedef struct	s_v{
@@ -28,6 +28,7 @@ typedef struct	s_v{
 	char **pipelines;
 	char **cmd;
 	char *expandido;
+	char **env;
 }				t_v;
 
 
@@ -47,4 +48,8 @@ void	u_free_array_bi(char **s);
 int		parse_pipelines(t_v *v, char *linha);
 void	u_print_array_bi(char **s);
 int		parse_s(t_v *v, char *linha);
+void	init_env(t_v *v, char **envp);
+void	expande(t_v *v, char *linha, int *i, int *j);
+
+
 

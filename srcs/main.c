@@ -197,9 +197,14 @@ int	main(void)
 	aa = DOUBLE_QUOTE;
 	printf("%d\n",aa);
 
-	char *a = "0\"\'123\'\" \'\"4567\"\' 890 abc def";
-	parse_s(&v,a);
+	init_env(&v, __environ);
+	u_print_array_bi(v.env);
+//	char *a = "0\"\'1$DISPLAY 3\'\" \'\"4$DISPLAY 67\"\' 8$PAGER0 abc def";
+	char *a = "$PAGER \'$PAGER\' \"$PAGER\" \'\"$PAGER\"\' \"\'$PAGER\'\"";
 
+	parse_s(&v,a);
+	free(v.expandido);
+	u_free_array_bi(v.env);
 
 	u_free_array_bi(v.cmd_lines);
 	return (0);
