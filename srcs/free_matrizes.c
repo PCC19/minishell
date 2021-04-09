@@ -6,11 +6,11 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 01:32:49 by user42            #+#    #+#             */
-/*   Updated: 2021/04/08 03:21:54 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 17:49:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	free_matrizes(char **s)
 {
@@ -19,7 +19,7 @@ int	free_matrizes(char **s)
 
 	i = 0;
 	n = ft_conta_linhas(s);
-	while(i < n)
+	while (i < n)
 	{
 		free(s[i]);
 		i++;

@@ -180,29 +180,25 @@ int	main(void)
 //	v->cmd_lines[0] = ft_strdup("a");
 //	v->cmd_lines[1] = ft_strdup("b");
 
+	init_env(&v, __environ);
+	u_print_array_bi(v.env);
 
-	char *str = "a >a1 <a2 > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
+	char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
 
 	printf("%s\n",str);
 	parse_cmd_lines(&v, str);
-
 	u_print_array_bi(v.cmd_lines);
 
-	printf("---------------\n");
-	int aa;
-	aa = NORMAL;
-	printf("%d\n",aa);
-	aa = SINGLE_QUOTE;
-	printf("%d\n",aa);
-	aa = DOUBLE_QUOTE;
-	printf("%d\n",aa);
 
-	init_env(&v, __environ);
-	u_print_array_bi(v.env);
-//	char *a = "0\"\'1$DISPLAY 3\'\" \'\"4$DISPLAY 67\"\' 8$PAGER0 abc def";
-	char *a = "$PAGER \'$PAGER\' \"$PAGER\" \'\"$PAGER\"\' \"\'$PAGER\'\"";
-
+	char *a = "0\"\'1$DISPLAY 3\'\" \'\"4$DISPLAY 67\"\' 8$PAGER>0 abc def";
+	//char *a = "$PAGER \'$PAGER\' \"$PAGER\" \'\"$PAGER\"\' \"\'$PAGER\'\"";
+	//char *a = "1224    56899 $PAGER> eita";
 	parse_s(&v,a);
+	printf("\n");
+	printf("expandido: %s\n", v.expandido);
+	
+	
+	
 	free(v.expandido);
 	u_free_array_bi(v.env);
 

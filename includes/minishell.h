@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/09 03:24:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 18:40:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	u_print_array_bi(char **s);
 int		parse_s(t_v *v, char *linha);
 void	init_env(t_v *v, char **envp);
 void	expande(t_v *v, char *linha, int *i, int *j);
+void	parse_redirects(t_v *v);
 
 
 

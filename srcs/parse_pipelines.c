@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/04/08 04:14:24 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 18:43:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int	parse_pipelines(t_v *v, char *linha)
 	{
 		s = ft_strdup(aux[i]);
 		v->pipelines[i] = ft_strtrim(s, " ");
-		printf("pipeline: |%s|\n", v->pipelines[i]);
-			// parse cmd
+		printf("pipeline : |%s|\n", v->pipelines[i]);
+		parse_s(v, v->pipelines[i]);
+		parse_redirects(v);
 			// faz pipe para proximo se houver
+		free(v->expandido);
 		free(s);
 		i++;
 	}

@@ -18,7 +18,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)u_print_array_bi.c\
 		$(SDIR)parse_s.c\
 		$(SDIR)init_env.c\
-		$(SDIR)expande.c
+		$(SDIR)expande.c\
+		$(SDIR)parse_redirects.c
 
 
 

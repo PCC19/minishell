@@ -6,13 +6,13 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:33:13 by user42            #+#    #+#             */
-/*   Updated: 2021/04/09 03:37:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/09 18:19:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-void parse_sq(char c, int *i, t_estado_parse_s *estado)
+void	parse_sq(char c, int *i, t_estado_parse_s *estado)
 {
 	if (ft_is_in(c, "\'"))
 	{
@@ -26,7 +26,7 @@ void parse_sq(char c, int *i, t_estado_parse_s *estado)
 	}
 }
 
-void parse_dq(char c, int *i, t_estado_parse_s *estado)
+void	parse_dq(char c, int *i, t_estado_parse_s *estado)
 {
 	if (ft_is_in(c, "\""))
 	{
@@ -40,14 +40,12 @@ void parse_dq(char c, int *i, t_estado_parse_s *estado)
 	}
 }
 
-int	parse_s(t_v *v, char *linha)
+int		parse_s(t_v *v, char *linha)
 {
 	int						i;
 	int						j;
 	t_estado_parse_s		estado;
 
-	//v->expandido = (char*)malloc(1000);
-	//ft_bzero(v->expandido,1000);
 	v->expandido = (char*)ft_calloc(1000, sizeof(char));
 	estado = NORMAL;
 	i = 0;
@@ -56,41 +54,16 @@ int	parse_s(t_v *v, char *linha)
 	{
 		parse_sq(linha[i], &i, &estado);
 		parse_dq(linha[i], &i, &estado);
-		if (ft_is_in(linha[i],"$") && 
+		if (ft_is_in(linha[i], "$") &&
 			(estado == NORMAL || estado == DOUBLE_QUOTE))
-		{
-				//EXPANDE
-				expande(v, &linha[i], &i, &j);
-				//expande(v, "$DISPLAY", &i, &j);
-				//ft_memcpy(&v->expandido[j], "xxx" ,3);
-				//j+=3;
-		}
+			expande(v, &linha[i], &i, &j);
 		else
 		{
-			ft_memcpy(&v->expandido[j], &linha[i],2);
+			ft_memcpy(&v->expandido[j], &linha[i], 2);
 			j++;
 		}
 		i++;
 	}
-	printf("\n");
-	printf("expandido: %s\n", v->expandido);
+	printf("expandido: |%s|\n", v->expandido);
 	return (0);
 }
-
-
-
-/*
-estado = NORMAL
-loop ate chegar no fim da string linha
-	se ' ou " muda estado e incrementa
-	se char dif $
-		copia char
-		incr
-	se $ e estado == NORMAL ou estado = "
-		incr
-		EXPANDE
-		incrementa gde
-	else
-		copia char
-		incrementa
-*/
