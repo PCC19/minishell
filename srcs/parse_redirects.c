@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 18:08:52 by user42            #+#    #+#             */
-/*   Updated: 2021/04/10 21:18:03 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/10 22:04:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,43 @@ void	parse_redirects(t_v *v)
 	}
 	//printf("     fd: in->%d out->%d\n", v->cmd.fd_in, v->cmd.fd_out);
 	u_print_struct_cmd(v);
-	// TESTE DOS REDIRECTS (PODE APAGAR)
-	/*char teste_str[MIL] = "teste\n";
-	int n = 5;
-	read(v->cmd.fd_in, teste_str, n);
-	teste_str[n] = 0;
-	write(v->cmd.fd_out, teste_str, n + 1);
-	if (v->cmd.fd_in > 1)
-		close(v->cmd.fd_in);
-	if(v->cmd.fd_out > 1)
-		close(v->cmd.fd_out);
-	*/
+	// EXECUCAO DO COMANDO
+	
+		// TESTE DOS REDIRECTS (PODE APAGAR)
+		char teste_str[MIL] = "teste\n";
+		/*
+		int n = 5;
+		//read(v->cmd.fd_in, teste_str, n);
+		//teste_str[n] = 0;
+		write(v->cmd.fd_out, teste_str, n + 1);
+		debug("teste");
+		*/
+	
+
+		// salva stds
+		int save_in = dup(STDIN_FILENO);
+		int save_out = dup(STDOUT_FILENO);
+
+		// duplica
+		dup2(v->cmd.fd_in, 0);
+		dup2(v->cmd.fd_out, 1);
+
+		// io
+		scanf("%s", teste_str);
+		printf("%s\n", teste_str);
+
+		// restaura
+		dup2(save_in, 0);
+		dup2(save_out,1);
+
+		if (v->cmd.fd_in > 1)
+		{
+			debug("closing fd %d",v->cmd.fd_in);
+			close(v->cmd.fd_in);
+		}		
+		if(v->cmd.fd_out > 1)
+		{
+			debug("closing fd %d",v->cmd.fd_out);
+			close(v->cmd.fd_out);
+		}
 }
