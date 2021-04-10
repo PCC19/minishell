@@ -20,9 +20,12 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)init_env.c\
 		$(SDIR)expande.c\
 		$(SDIR)parse_redirects.c\
-		$(SDIR)parse_cmd_args.c
-
-
+		$(SDIR)parse_cmd_args.c\
+		$(SDIR)copy_until.c\
+		$(SDIR)parse_in_red.c\
+		$(SDIR)parse_out_red.c\
+		$(SDIR)u_print_struct_cmd.c\
+		$(SDIR)init_struct_cmd.c
 
 		
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		
