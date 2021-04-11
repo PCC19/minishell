@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/10 20:37:56 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/11 18:17:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 
 # define MIL 1000
+# define SPC ' '
 
 typedef enum	e_estado_parse_s
 {
@@ -70,3 +71,5 @@ void	parse_in_red(t_v *v, int *k);
 void	parse_out_red(t_v *v, int *k);
 void	u_print_struct_cmd(t_v *v);
 void	init_struct_cmd(t_v *v);
+void	ff(char *str, int *k);
+

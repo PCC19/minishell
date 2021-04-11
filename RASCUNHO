@@ -64,8 +64,21 @@ loop ate chegar no fim da string linha
 	else
 		copia char
 		incrementa
+----------------------------------------------------------------------
 
-
-
+loop por caracter
+	se tem < 
+		avanca ignorando ' '
+		pega proxima substr ate ' ' e faz redirect
+	se tem >
+		avanca 1
+		se tem > de novo
+			muda flag
+			avanca ignorando ' '
+			pega proxima substr ate ' ' e faz redirect
+	se tem ' '
+		avanca ingnorando ' '
+		pega substr ate '<>0' e seta filename
+			se ja houver filename: erro !
 
 

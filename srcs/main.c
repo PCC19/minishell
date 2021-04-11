@@ -173,6 +173,16 @@ int	main(void)
 	char *s;
 	(void) s;
 
+/*
+	printf("aaaaaaaaa\n");
+	int fd = open("teste", O_CREAT | O_RDWR | O_TRUNC);
+	printf("%d\n",fd);
+	dup2(fd, 1);
+	printf("bbbbbbb\n");
+	close(fd);
+	exit(0);
+*/
+
 	//v->s = ft_strdup("a");
 	//printf("%s\n", v->s);
 

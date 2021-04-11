@@ -25,7 +25,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)parse_in_red.c\
 		$(SDIR)parse_out_red.c\
 		$(SDIR)u_print_struct_cmd.c\
-		$(SDIR)init_struct_cmd.c
+		$(SDIR)init_struct_cmd.c\
+		$(SDIR)ff.c
 
 		
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		
@@ -36,7 +37,7 @@ C_FLAGS = -Wall -Werror -Wextra -g
 C_SANIT = -fsanitize=address
 L_FLAGS = -L ./libft -lft -lncurses
 
-$(NAME):	$(OBJS) $(LIBFT) $(MLX)
+$(NAME):	$(OBJS) $(LIBFT)
 	$(CC) $(OBJS) $(C_FLAGS) $(C_SANIT) $(HEADERS) $(L_FLAGS) -o $(NAME)
 	#$(CC) $(OBJS) $(C_FLAGS) $(HEADERS) $(L_FLAGS) -o $(NAME)
 	echo CONCLUIDO
