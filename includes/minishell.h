@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/13 03:07:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:57:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct	s_cmd{
 	int	fd_out_red;
 	int	pipe_ant[2];
 	int	pipe_pos[2];
+	int	save_in;
+	int	save_out;
 	int	ret_status;
 }				t_cmd;
 

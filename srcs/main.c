@@ -174,7 +174,7 @@ int	main(void)
 	(void) s;
 	(void) v;
 
-	printf("aaaaaaaaa\n");
+	/*printf("aaaaaaaaa\n");
 	int fd = open("teste", O_CREAT | O_RDWR | O_APPEND);
 	printf("fd arq %d\n",fd);
 	
@@ -214,9 +214,9 @@ int	main(void)
 
 	close(fd);
 	exit(0);
-}
+}*/
 
-/*	init_env(&v, __environ);
+	init_env(&v, __environ);
 	u_print_array_bi(v.env);
 
 	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
@@ -243,7 +243,7 @@ int	main(void)
 	u_free_array_bi(v.cmd_lines);
 	return (0);
 }
-*/
+
 
 
 // GRAMATICA
