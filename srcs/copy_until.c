@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 00:13:47 by user42            #+#    #+#             */
-/*   Updated: 2021/04/10 01:17:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/12 03:01:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@ void	copy_until(char *dest, char *source, char *delimiters, int *k)
 {
 	int i;
 
-	//printf("source: |%s|\n", source);
-	//printf("k in: %d\n", *k);
 	i = 0;
-	while (!(ft_is_in(source[i], delimiters)) && (i) < (int)ft_strlen(source))
+	while ((*k + i) < (int)ft_strlen(source) && !ft_is_in(source[*k + i], delimiters))
 		i++;
-	//printf("     i: %d\n", i);
-	ft_memcpy(dest, &source[0], i);
-	//printf("dest  : |%s|\n", dest);
-	*k+=i;
-	//printf("k out: %d\n", *k);
+	ft_memcpy(dest, &source[*k], i);
+	*k += i;
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 01:57:38 by user42            #+#    #+#             */
-/*   Updated: 2021/04/10 19:10:39 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/13 02:17:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,18 @@ void	parse_out_red(t_v *v, int *k)
 	char	file_redir[MIL];
 	int		flags;
 
-	//printf("outred:\n");
+	//printf("out_red in  k: %d\t|%s|\n", *k, &v->expandido[*k]);
+	flags = O_RDWR | O_CREAT | O_TRUNC;
+	ft_bzero(file_redir, MIL);
+	ff(v->expandido, k);
+	//printf("out_red in  k: %d\t|%s|\n", *k, &v->expandido[*k]);
 	if (v->expandido[*k] == '>')
 	{
-		flags = O_RDWR | O_CREAT | O_TRUNC;
-		printf("flags1: %d\n", flags);
-		ft_bzero(file_redir, MIL);
-		(*k)++;
-		if (v->expandido[*k] == '>')
-		{
-			(*k)++;
-			flags = O_RDWR | O_CREAT | O_APPEND;
-			printf("flags2: %d\n", flags);
-		}
-		while (v->expandido[*k] == ' ' && v->expandido[*k] != 0)
-			(*k)++;
-		copy_until(file_redir, &v->expandido[*k], " <>", k);
-		//printf("file_o_redir: %s\n", file_redir);
-		//close(v->cmd.fd_out);
-		v->cmd.fd_out = open(file_redir, flags);
-	}	
+		ff(v->expandido, k);
+		flags = O_RDWR | O_CREAT | O_APPEND;
+	}
+	copy_until(file_redir, v->expandido, " <>", k);
+	//printf("file_redir |%s|\n", file_redir);
+	v->cmd.fd_out_red = open(file_redir, flags);
+	//printf("out_red out k: %d\t|%s|\n", *k, &v->expandido[*k]);
 }

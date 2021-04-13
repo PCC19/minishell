@@ -172,29 +172,56 @@ int	main(void)
 	t_v v;
 	char *s;
 	(void) s;
+	(void) v;
 
-/*
 	printf("aaaaaaaaa\n");
-	int fd = open("teste", O_CREAT | O_RDWR | O_TRUNC);
-	printf("%d\n",fd);
-	dup2(fd, 1);
-	printf("bbbbbbb\n");
+	int fd = open("teste", O_CREAT | O_RDWR | O_APPEND);
+	printf("fd arq %d\n",fd);
+	
+	
+	char lido[4];
+	int pp[2];
+	pipe(pp);
+
+		ft_bzero(lido,4);
+	
+		// salva stds
+		int save_in = dup(STDIN_FILENO);
+		int save_out = dup(STDOUT_FILENO);
+
+		write(STDOUT_FILENO, "aaa\n", 4);
+
+		write(pp[IN], "bbb", 4);		// escreve na entrada do pipe
+		read(pp[OUT], &lido, 4);		// le da saida do pipe
+		printf("lido: |%s|\n", lido);	// escreve na tela
+		
+		dup2(pp[IN], STDOUT_FILENO);	// JOGA STDOUT PARA ENTRADA DO PIPE
+		dup2(pp[OUT], STDIN_FILENO);	// FAZ STDIN LER DA SAIDA DO PIPE
+
+		// As proximas linhas fazer o papel 
+		// do comando que sera executado
+		// que le de um lugar e esreve em outro
+		write(STDOUT_FILENO, "ccc", 4);		// escreve remapeado para pipe
+		read(STDIN_FILENO, &lido, 4);		// le remapeado do pipe
+		printf("lido1: |%s|\n", lido);		// vai para pipe (nao pra tela !)
+
+		// restaura
+		dup2(save_in, STDIN_FILENO);
+		dup2(save_out, STDOUT_FILENO);
+
+		printf("lido2: |%s|\n", lido);	// IMPRIME NORMAL NA TELA
+
+
 	close(fd);
 	exit(0);
-*/
+}
 
-	//v->s = ft_strdup("a");
-	//printf("%s\n", v->s);
-
-
-//	v->cmd_lines[0] = ft_strdup("a");
-//	v->cmd_lines[1] = ft_strdup("b");
-
-	init_env(&v, __environ);
+/*	init_env(&v, __environ);
 	u_print_array_bi(v.env);
 
-	//char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
-	char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
+	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
+	char *str = " >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 ;z";
+	//char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
 
 	printf("%s\n",str);
 	parse_cmd_lines(&v, str);
@@ -216,6 +243,9 @@ int	main(void)
 	u_free_array_bi(v.cmd_lines);
 	return (0);
 }
+*/
+
+
 // GRAMATICA
 // aaaaaaaa ; bbbbbbbb
 // aaa | aaa | aaa  ; bbb | bbb | bbb

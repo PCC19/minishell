@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/11 18:17:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/13 03:07:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 # include <string.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <sys/types.h>
 # include "dbg.h"
 
 
 # define MIL 1000
 # define SPC ' '
+# define IN 1
+# define OUT 0
 
 typedef enum	e_estado_parse_s
 {
@@ -32,8 +35,10 @@ typedef enum	e_estado_parse_s
 typedef struct	s_cmd{
 	char *filename;
 	char **cmd_args; // filename eh o arg[0];
-	int	fd_in;
-	int	fd_out;
+	int	fd_in_red;
+	int	fd_out_red;
+	int	pipe_ant[2];
+	int	pipe_pos[2];
 	int	ret_status;
 }				t_cmd;
 
@@ -44,9 +49,6 @@ typedef struct	s_v{
 	char	**env;
 	t_cmd	cmd;
 }				t_v;
-
-
-
 
 
 void	u_print_list(t_list *list);

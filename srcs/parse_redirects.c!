@@ -1,0 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_redirects2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/11 18:23:04 by user42            #+#    #+#             */
+/*   Updated: 2021/04/11 18:27:12 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+void	parse_redirects(t_v *v)
+{
+	int	k;
+
+	while (v->expandido[k] != 0)
+	{
+		if (v->expandido[k] == SPC)
+			parse_cmd_args2(v, &k);
+		else if (v->expandido[k] == '<')
+			parse_in_red2(v, &k);
+		else if (v->expandido[k] == '>')
+			parse_out_red2(v, &k);
+	}
+	//printf("     fd: in->%d out->%d\n", v->cmd.fd_in, v->cmd.fd_out);
+	u_print_struct_cmd(v);
+	// EXECUCAO DO COMANDO
+	
+		// TESTE DOS REDIRECTS (PODE APAGAR)
+		char teste_str[MIL] = "teste\n";
+		/*
+		int n = 5;
+		//read(v->cmd.fd_in, teste_str, n);
+		//teste_str[n] = 0;
+		write(v->cmd.fd_out, teste_str, n + 1);
+		debug("teste");
+		*/
+	
+
+		// salva stds
+		int save_in = dup(STDIN_FILENO);
+		int save_out = dup(STDOUT_FILENO);
+
+		// duplica
+		dup2(v->cmd.fd_in, 0);
+		dup2(v->cmd.fd_out, 1);
+
+		// io
+		scanf("%s", teste_str);
+		printf("%s\n", teste_str);
+
+		// restaura
+		dup2(save_in, 0);
+		dup2(save_out,1);
+
+		if (v->cmd.fd_in > 1)
+		{
+			debug("closing fd %d",v->cmd.fd_in);
+			close(v->cmd.fd_in);
+		}		
+		if(v->cmd.fd_out > 1)
+		{
+			debug("closing fd %d",v->cmd.fd_out);
+			close(v->cmd.fd_out);
+		}
+	// FIM EXECUCAO DO COMANDO
+}
