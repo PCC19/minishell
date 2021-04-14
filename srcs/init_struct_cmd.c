@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 18:10:38 by user42            #+#    #+#             */
-/*   Updated: 2021/04/13 17:36:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/14 01:31:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void	init_struct_cmd(t_v *v)
 	//v->cmd.fd_out_red = STDOUT_FILENO;
 	v->cmd.fd_in_red = -1;
 	v->cmd.fd_out_red = -1;
+	//v->cmd.pipe_ant[IN] = -1;
+	//v->cmd.pipe_ant[OUT] = -1;
+	//v->cmd.pipe_pos[IN] = -1;
+	//v->cmd.pipe_pos[OUT] = -1;
+	v->cmd.fd_in = -1;
+	v->cmd.fd_out = -1;
 	v->cmd.ret_status = 0;
-	v->cmd.pipe_ant[IN] = -1;
-	v->cmd.pipe_ant[OUT] = -1;
-	v->cmd.pipe_pos[IN] = -1;
-	v->cmd.pipe_pos[OUT] = -1;
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 18:27:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/13 02:27:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/14 00:13:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	parse_redirects(t_v *v)
 		else
 			parse_cmd_args(v, &k);
 	}
-	u_print_struct_cmd(v);
+	//u_print_struct_cmd(v);
 }

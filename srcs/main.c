@@ -11,6 +11,7 @@ int my_termprint(int c){
 	return write(1, &c, 1);
 }
 
+	t_v v;
 //int main(int argc, char **argv, char **envp)
 int	main(void)
 {
@@ -169,7 +170,6 @@ int	main(void)
 	return (0);
 */
 // ===============================================================
-	t_v v;
 	char *s;
 	(void) s;
 	(void) v;
@@ -220,7 +220,8 @@ int	main(void)
 	u_print_array_bi(v.env);
 
 	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
-	char *str = " >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 ;z";
+//	char *str = " >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 ;z";
+	char *str = " abc | aa arg1 arg2 ;z";
 	//char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
 
 	printf("%s\n",str);
@@ -228,16 +229,16 @@ int	main(void)
 	u_print_array_bi(v.cmd_lines);
 
 
-	char *a = "0\"\'1$DISPLAY 3\'\" \'\"4$DISPLAY 67\"\' 8$PAGER>0 abc def";
-	//char *a = "$PAGER \'$PAGER\' \"$PAGER\" \'\"$PAGER\"\' \"\'$PAGER\'\"";
-	//char *a = "1224    56899 $PAGER> eita";
-	parse_s(&v,a);
-	printf("\n");
-	printf("expandido: %s\n", v.expandido);
+	//char *a = "0\"\'1$DISPLAY 3\'\" \'\"4$DISPLAY 67\"\' 8$PAGER>0 abc def";
+	////char *a = "$PAGER \'$PAGER\' \"$PAGER\" \'\"$PAGER\"\' \"\'$PAGER\'\"";
+	////char *a = "1224    56899 $PAGER> eita";
+	//parse_s(&v,a);
+	//printf("\n");
+	//printf("expandido: %s\n", v.expandido);
 	
 	
 	
-	free(v.expandido);
+	//free(v.expandido);
 	u_free_array_bi(v.env);
 
 	u_free_array_bi(v.cmd_lines);

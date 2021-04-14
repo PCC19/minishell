@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/13 15:57:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/13 18:51:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ typedef enum	e_estado_parse_s
 typedef struct	s_cmd{
 	char *filename;
 	char **cmd_args; // filename eh o arg[0];
+	int	ret_status;
 	int	fd_in_red;
 	int	fd_out_red;
 	int	pipe_ant[2];
 	int	pipe_pos[2];
 	int	save_in;
 	int	save_out;
-	int	ret_status;
+	int	fd_in;
+	int fd_out;
 }				t_cmd;
 
 typedef struct	s_v{
