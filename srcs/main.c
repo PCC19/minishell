@@ -221,7 +221,7 @@ int	main(void)
 
 	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
 //	char *str = " >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 ;z";
-	char *str = " abc | aa arg1 arg2 ;z";
+	char *str = " abc > a1| aa arg1 arg2 ;z";
 	//char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
 
 	printf("%s\n",str);

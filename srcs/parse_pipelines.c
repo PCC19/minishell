@@ -6,11 +6,56 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/04/14 02:09:09 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/14 19:07:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "minishell.h"
+
+void	executa_comando_1(t_v *v)
+{
+	char teste_str[10];
+	// io
+	ft_bzero(teste_str,10);
+	
+	read(v->cmd.fd_in, &teste_str, 5);
+	write(v->cmd.fd_out, &teste_str, 5);
+	
+	//close(v->cmd.fd_in);
+	//close(v->cmd.fd_out);
+
+}
+
+void	executa_comando_2(t_v *v)
+{
+	char teste_str[10];
+	// io
+	ft_bzero(teste_str,10);
+	
+	//// SALVA STDS
+	v->cmd.save_in = dup(STDIN_FILENO);
+	v->cmd.save_out = dup(STDOUT_FILENO);
+	printf("save_in: %d\t\t save_out: %d\n", v->cmd.save_in, v->cmd.save_out);
+
+	// REDIRECIONA FDS
+	dup2(v->cmd.fd_out, STDOUT_FILENO);	// JOGA STDOUT PARA ENTRADA DO PIPE
+	dup2(v->cmd.fd_in, STDIN_FILENO);	// FAZ STDIN LER DA SAIDA DO PIPE
+	
+	// Excuta o comando
+	scanf("%s", teste_str);
+	printf("%s\n", teste_str);
+
+	close (v->cmd.fd_out);
+	close (v->cmd.fd_in);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+
+	// restaura fds	
+	dup2(v->cmd.save_in, STDIN_FILENO);
+	dup2(v->cmd.save_out, STDOUT_FILENO);
+
+}
+
 
 int	parse_pipelines(t_v *v, char *linha)
 {
@@ -18,7 +63,6 @@ int	parse_pipelines(t_v *v, char *linha)
 	char	*s;
 	int		n;
 	int		i;
-	char teste_str[10];
 
 	aux = ft_split(linha, '|');
 	n = ft_conta_linhas(aux);
@@ -32,6 +76,10 @@ int	parse_pipelines(t_v *v, char *linha)
 	int aaa = 10;
 	pipe(v->cmd.pipe_ant);
 	pipe(v->cmd.pipe_pos);
+	fcntl(v->cmd.pipe_ant[IN], F_SETFL, O_NONBLOCK);
+	fcntl(v->cmd.pipe_ant[OUT], F_SETFL, O_NONBLOCK);
+	fcntl(v->cmd.pipe_pos[IN], F_SETFL, O_NONBLOCK);
+	fcntl(v->cmd.pipe_pos[OUT], F_SETFL, O_NONBLOCK);
 
 	dprintf(1,"pipe_ant[in]:%d\t\tpipe_ant[out]:%d\n", v->cmd.pipe_ant[IN], v->cmd.pipe_ant[OUT]); 
 	dprintf(1,"pipe_pos[in]:%d\t\tpipe_pos[out]:%d\n", v->cmd.pipe_pos[IN], v->cmd.pipe_pos[OUT]); 
@@ -110,11 +158,7 @@ int	parse_pipelines(t_v *v, char *linha)
 		}
 		u_print_struct_cmd(v);
 		// EXECUTA COMANDO
-			// io
-			ft_bzero(teste_str,10);
-			read(v->cmd.fd_in, &teste_str, 5);
-			write(v->cmd.fd_out, &teste_str, 5);
-			//printf("%s\n", teste_str);
+		executa_comando_2(v);
 		//// RESTAURA STDS
 		//dup2(v->cmd.save_in, STDIN_FILENO);
 		//dup2(v->cmd.save_out, STDOUT_FILENO);
