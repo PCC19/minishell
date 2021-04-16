@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/04/14 19:07:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/14 22:41:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	executa_comando_2(t_v *v)
 	//// SALVA STDS
 	v->cmd.save_in = dup(STDIN_FILENO);
 	v->cmd.save_out = dup(STDOUT_FILENO);
-	printf("save_in: %d\t\t save_out: %d\n", v->cmd.save_in, v->cmd.save_out);
+	//printf("save_in: %d\t\t save_out: %d\n", v->cmd.save_in, v->cmd.save_out);
 
 	// REDIRECIONA FDS
 	dup2(v->cmd.fd_out, STDOUT_FILENO);	// JOGA STDOUT PARA ENTRADA DO PIPE
@@ -73,7 +73,6 @@ int	parse_pipelines(t_v *v, char *linha)
 	//printf("save_in: %d\t\t save_out: %d\n", v->cmd.save_in, v->cmd.save_out);
 
 	// Cria Pipes (mesmo que nao sejam usados)
-	int aaa = 10;
 	pipe(v->cmd.pipe_ant);
 	pipe(v->cmd.pipe_pos);
 	fcntl(v->cmd.pipe_ant[IN], F_SETFL, O_NONBLOCK);
@@ -81,9 +80,8 @@ int	parse_pipelines(t_v *v, char *linha)
 	fcntl(v->cmd.pipe_pos[IN], F_SETFL, O_NONBLOCK);
 	fcntl(v->cmd.pipe_pos[OUT], F_SETFL, O_NONBLOCK);
 
-	dprintf(1,"pipe_ant[in]:%d\t\tpipe_ant[out]:%d\n", v->cmd.pipe_ant[IN], v->cmd.pipe_ant[OUT]); 
-	dprintf(1,"pipe_pos[in]:%d\t\tpipe_pos[out]:%d\n", v->cmd.pipe_pos[IN], v->cmd.pipe_pos[OUT]); 
-	dprintf(1, "aaa %d\n", aaa);
+	//dprintf(1,"pipe_ant[in]:%d\t\tpipe_ant[out]:%d\n", v->cmd.pipe_ant[IN], v->cmd.pipe_ant[OUT]); 
+	//dprintf(1,"pipe_pos[in]:%d\t\tpipe_pos[out]:%d\n", v->cmd.pipe_pos[IN], v->cmd.pipe_pos[OUT]); 
 
 	i = 0;
 	while(aux[i])
@@ -97,10 +95,9 @@ int	parse_pipelines(t_v *v, char *linha)
 		// se eh primeiro
 		if (i == 0)
 		{
-			printf("PRIMEIRO\n");
-			dprintf(1,"pipe_ant[in]:%d\t\tpipe_ant[out]:%d\n", v->cmd.pipe_ant[IN], v->cmd.pipe_ant[OUT]); 
-			dprintf(1,"pipe_pos[in]:%d\t\tpipe_pos[out]:%d\n", v->cmd.pipe_pos[IN], v->cmd.pipe_pos[OUT]); 
-			dprintf(1, "aaa %d\n", aaa);
+			//printf("PRIMEIRO\n");
+			//dprintf(1,"pipe_ant[in]:%d\t\tpipe_ant[out]:%d\n", v->cmd.pipe_ant[IN], v->cmd.pipe_ant[OUT]); 
+			//dprintf(1,"pipe_pos[in]:%d\t\tpipe_pos[out]:%d\n", v->cmd.pipe_pos[IN], v->cmd.pipe_pos[OUT]); 
 			// STDIN = STDIN ou redirect se houver
 			if (v->cmd.fd_in_red == -1)
 				v->cmd.fd_in = STDIN_FILENO;
@@ -113,14 +110,14 @@ int	parse_pipelines(t_v *v, char *linha)
 				v->cmd.fd_out = v->cmd.fd_out_red;
 			if (i == n - 1)
 				v->cmd.fd_out = STDOUT_FILENO;
-			dprintf(1, "1o fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
+			//dprintf(1, "1o fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
 		}
 		else
 		{
 		// se eh meio
 			if (i > 0)
 			{
-				printf("MEIO\n");
+				//printf("MEIO\n");
 				// pipe_ant = pipe_pos
 				v->cmd.pipe_ant[IN] = v->cmd.pipe_pos[IN];
 				v->cmd.pipe_ant[OUT] = v->cmd.pipe_pos[OUT];
@@ -134,12 +131,12 @@ int	parse_pipelines(t_v *v, char *linha)
 					v->cmd.fd_out = v->cmd.pipe_pos[IN];
 				else
 					v->cmd.fd_out = v->cmd.fd_out_red;
-				dprintf(v->cmd.save_out,"me fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
+				//dprintf(v->cmd.save_out,"me fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
 			}
 			// se eh ultimo
 			if (i == n - 1)
 			{
-				printf("ULTIMO\n");
+				//printf("ULTIMO\n");
 				// pipe_ant = pipe_pos
 				v->cmd.pipe_ant[IN] = v->cmd.pipe_pos[IN];
 				v->cmd.pipe_ant[OUT] = v->cmd.pipe_pos[OUT];
@@ -153,7 +150,7 @@ int	parse_pipelines(t_v *v, char *linha)
 					v->cmd.fd_out = STDOUT_FILENO;
 				else
 					v->cmd.fd_out = v->cmd.fd_out_red;
-				dprintf(v->cmd.save_out,"ul  fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
+				//dprintf(v->cmd.save_out,"ul  fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
 			}
 		}
 		u_print_struct_cmd(v);
