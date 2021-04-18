@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/04/14 22:41:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/18 22:33:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ void	executa_comando_2(t_v *v)
 
 	close (v->cmd.fd_out);
 	close (v->cmd.fd_in);
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
+	//close(STDIN_FILENO);
+	//close(STDOUT_FILENO);
 
 	// restaura fds	
 	dup2(v->cmd.save_in, STDIN_FILENO);
 	dup2(v->cmd.save_out, STDOUT_FILENO);
+
 
 }
 
@@ -64,7 +65,10 @@ int	parse_pipelines(t_v *v, char *linha)
 	int		n;
 	int		i;
 
-	aux = ft_split(linha, '|');
+	aux = ft_split2(linha, '|');
+	printf("linha: %s\n",linha);
+	printf("aux: \n");
+	u_print_array_bi(aux);
 	n = ft_conta_linhas(aux);
 	v->pipelines = (char **)malloc(sizeof(char *) * (n + 1));
 	//// SALVA STDS
@@ -75,10 +79,10 @@ int	parse_pipelines(t_v *v, char *linha)
 	// Cria Pipes (mesmo que nao sejam usados)
 	pipe(v->cmd.pipe_ant);
 	pipe(v->cmd.pipe_pos);
-	fcntl(v->cmd.pipe_ant[IN], F_SETFL, O_NONBLOCK);
-	fcntl(v->cmd.pipe_ant[OUT], F_SETFL, O_NONBLOCK);
-	fcntl(v->cmd.pipe_pos[IN], F_SETFL, O_NONBLOCK);
-	fcntl(v->cmd.pipe_pos[OUT], F_SETFL, O_NONBLOCK);
+	//fcntl(v->cmd.pipe_ant[IN], F_SETFL, O_NONBLOCK);
+	//fcntl(v->cmd.pipe_ant[OUT], F_SETFL, O_NONBLOCK);
+	//fcntl(v->cmd.pipe_pos[IN], F_SETFL, O_NONBLOCK);
+	//fcntl(v->cmd.pipe_pos[OUT], F_SETFL, O_NONBLOCK);
 
 	//dprintf(1,"pipe_ant[in]:%d\t\tpipe_ant[out]:%d\n", v->cmd.pipe_ant[IN], v->cmd.pipe_ant[OUT]); 
 	//dprintf(1,"pipe_pos[in]:%d\t\tpipe_pos[out]:%d\n", v->cmd.pipe_pos[IN], v->cmd.pipe_pos[OUT]); 
@@ -91,6 +95,36 @@ int	parse_pipelines(t_v *v, char *linha)
 		printf("\n\n\npipeline : |%s|\n", v->pipelines[i]);
 		parse_s(v, v->pipelines[i]);
 		parse_redirects(v);
+/*	status = 0;
+	in_fd = STDIN_FILENO;
+	while (process->next)
+	{
+		if (pipe(fd) < 0)
+			return (ERRSYS);
+		out_fd = fd[1];
+		status = execute_process(process, session, in_fd, out_fd);
+		close(out_fd);
+		if (in_fd != 0)
+			close(in_fd);
+		in_fd = fd[0];
+		process = process->next;
+	}
+	status = execute_process(process, session, in_fd, STDOUT_FILENO);
+	return (status);
+
+// primeiro faz o fd de entrada ser o stdin
+// while
+	cria pipe (vai fazer o papel de pipe posterior
+	out_fd = pipe (fd[1])
+	executa comando (enivar pra dentro fds do pipe)
+		aqui se houver fd para arquivos, faz dup para in / out, onde in e out sao as bocas do pipe passadas pra dentro da funcao
+	close (pipe) (out_fd)
+	se input diferente de 0 fechar in_fd
+	in_fd = fd[0] (aqui esta dizendo que o proximo in e a saida do pipe atual
+
+dentro do 
+*/
+// INI DO CODIGO A EXTIRPAR ========================================
 		// MAPEIA STDS
 		// se eh primeiro
 		if (i == 0)
@@ -153,9 +187,14 @@ int	parse_pipelines(t_v *v, char *linha)
 				//dprintf(v->cmd.save_out,"ul  fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
 			}
 		}
+
+// FIM DO CODIGO A EXTIRPAR ========================================
+
+
 		u_print_struct_cmd(v);
 		// EXECUTA COMANDO
 		executa_comando_2(v);
+
 		//// RESTAURA STDS
 		//dup2(v->cmd.save_in, STDIN_FILENO);
 		//dup2(v->cmd.save_out, STDOUT_FILENO);

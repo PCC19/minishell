@@ -221,8 +221,17 @@ int	main(void)
 
 	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
 //	char *str = " >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 ;z";
-	char *str = " abc > a1| aa arg1 arg2 ;z";
+	//char *str = " abc > a1| aa arg1 arg2 ;z";
+	char *str = "echo \" teste | ola\" > arq | echo | lixo";
 	//char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
+
+	//char **ss;
+
+	//printf("%s\n",str);
+	//ss = ft_split2(str,'|');
+	//u_print_array_bi(ss);
+	//exit(0);
+	
 
 	printf("%s\n",str);
 	parse_cmd_lines(&v, str);

@@ -6,39 +6,11 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:33:13 by user42            #+#    #+#             */
-/*   Updated: 2021/04/09 22:51:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/19 00:39:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	parse_sq(char c, int *i, t_estado_parse_s *estado)
-{
-	if (ft_is_in(c, "\'"))
-	{
-		if (*estado == NORMAL)
-			*estado = SINGLE_QUOTE;
-		else if (*estado == SINGLE_QUOTE)
-			*estado = NORMAL;
-		(*i)++;
-		if (*estado == DOUBLE_QUOTE)
-			(*i)--;
-	}
-}
-
-void	parse_dq(char c, int *i, t_estado_parse_s *estado)
-{
-	if (ft_is_in(c, "\""))
-	{
-		if (*estado == NORMAL)
-			*estado = DOUBLE_QUOTE;
-		else if (*estado == DOUBLE_QUOTE)
-			*estado = NORMAL;
-		(*i)++;
-		if (*estado == SINGLE_QUOTE)
-			(*i)--;
-	}
-}
 
 int		parse_s(t_v *v, char *linha)
 {

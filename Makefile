@@ -26,7 +26,11 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)parse_out_red.c\
 		$(SDIR)u_print_struct_cmd.c\
 		$(SDIR)init_struct_cmd.c\
-		$(SDIR)ff.c
+		$(SDIR)ff.c\
+		$(SDIR)ft_split2.c\
+		$(SDIR)parse_sq.c\
+		$(SDIR)parse_dq.c
+
 
 		
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		
@@ -41,7 +45,7 @@ $(NAME):	$(OBJS) $(LIBFT)
 	$(CC) $(OBJS) $(C_FLAGS) $(C_SANIT) $(HEADERS) $(L_FLAGS) -o $(NAME)
 	#$(CC) $(OBJS) $(C_FLAGS) $(HEADERS) $(L_FLAGS) -o $(NAME)
 	echo CONCLUIDO
-	./minishell
+	#./minishell
 
 $(ODIR)%.o: $(SDIR)%.c
 		mkdir -p $(ODIR)

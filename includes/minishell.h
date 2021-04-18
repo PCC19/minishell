@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/14 19:01:23 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/19 00:38:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,10 @@ void	parse_out_red(t_v *v, int *k);
 void	u_print_struct_cmd(t_v *v);
 void	init_struct_cmd(t_v *v);
 void	ff(char *str, int *k);
+char	**ft_split2(char const *s, char c);
+void	parse_sq(char c, int *i, t_estado_parse_s *estado);
+void	parse_dq(char c, int *i, t_estado_parse_s *estado);
+
+
+
 
