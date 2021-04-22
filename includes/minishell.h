@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/19 00:38:32 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/22 01:57:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 # define MIL 1000
 # define SPC ' '
-# define IN 1
-# define OUT 0
+# define PIPE_IN 1
+# define PIPE_OUT 0
 
 typedef enum	e_estado_parse_s
 {
@@ -38,8 +38,7 @@ typedef struct	s_cmd{
 	int	ret_status;
 	int	fd_in_red;
 	int	fd_out_red;
-	int	pipe_ant[2];
-	int	pipe_pos[2];
+	int	pipe[2];
 	int	save_in;
 	int	save_out;
 	int	fd_in;
@@ -70,18 +69,15 @@ void	u_print_array_bi(char **s);
 int		parse_s(t_v *v, char *linha);
 void	init_env(t_v *v, char **envp);
 void	expande(t_v *v, char *linha, int *i, int *j);
-void	parse_redirects(t_v *v);
 void	parse_cmd_args(t_v *v, int *k);
 void	copy_until(char *dest, char *source, char *delimiters, int *k);
-void	parse_in_red(t_v *v, int *k);
-void	parse_out_red(t_v *v, int *k);
+void	parse_in_red(t_v *v, int *k, int in);
+void	parse_out_red(t_v *v, int *k,int out);
 void	u_print_struct_cmd(t_v *v);
 void	init_struct_cmd(t_v *v);
 void	ff(char *str, int *k);
 char	**ft_split2(char const *s, char c);
 void	parse_sq(char c, int *i, t_estado_parse_s *estado);
 void	parse_dq(char c, int *i, t_estado_parse_s *estado);
-
-
-
-
+int		fd_handler(int fd_in, int fd_out);
+void	redirect_handler(t_v *v, int in, int out);

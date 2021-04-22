@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_redirects.c                                  :+:      :+:    :+:   */
+/*   fd_handler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/11 18:27:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/21 23:28:57 by user42           ###   ########.fr       */
+/*   Created: 2021/04/21 23:34:16 by user42            #+#    #+#             */
+/*   Updated: 2021/04/22 01:52:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parse_redirects(t_v *v)
+int	fd_handler(int fd_in, int fd_out)
 {
-	int	k;
-
-	k = 0;
-	while (v->expandido[k] != 0)
+	if (fd_in != STDIN_FILENO)
 	{
-		if (v->expandido[k] == '<')
-			parse_in_red(v, &k);
-		else if (v->expandido[k] == '>')
-			parse_out_red(v, &k);
-		else if (v->expandido[k] == SPC)
-			ff(v->expandido, &k);
-		else
-			parse_cmd_args(v, &k);
+		dup2(fd_in, STDIN_FILENO);
+		close(fd_in);
 	}
-	//u_print_struct_cmd(v);
+	if (fd_out != STDOUT_FILENO)
+	{
+		dup2(fd_out, STDOUT_FILENO);
+		close(fd_out);
+	}
+	return (0);
 }

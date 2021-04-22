@@ -19,7 +19,6 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)parse_s.c\
 		$(SDIR)init_env.c\
 		$(SDIR)expande.c\
-		$(SDIR)parse_redirects.c\
 		$(SDIR)parse_cmd_args.c\
 		$(SDIR)copy_until.c\
 		$(SDIR)parse_in_red.c\
@@ -29,7 +28,9 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)ff.c\
 		$(SDIR)ft_split2.c\
 		$(SDIR)parse_sq.c\
-		$(SDIR)parse_dq.c
+		$(SDIR)parse_dq.c\
+		$(SDIR)fd_handler.c\
+		$(SDIR)redirect_handler.c
 
 
 		
