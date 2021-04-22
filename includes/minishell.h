@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/22 01:57:44 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/22 21:20:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,5 @@ char	**ft_split2(char const *s, char c);
 void	parse_sq(char c, int *i, t_estado_parse_s *estado);
 void	parse_dq(char c, int *i, t_estado_parse_s *estado);
 int		fd_handler(int fd_in, int fd_out);
-void	redirect_handler(t_v *v, int in, int out);
+void	redirect_handler(t_v *v, int i, int n);
+void	u_print_fd(void);

@@ -30,7 +30,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)parse_sq.c\
 		$(SDIR)parse_dq.c\
 		$(SDIR)fd_handler.c\
-		$(SDIR)redirect_handler.c
+		$(SDIR)redirect_handler.c\
+		$(SDIR)u_print_fd.c
 
 
 		

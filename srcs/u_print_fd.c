@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd_handler.c                                       :+:      :+:    :+:   */
+/*   u_print_fd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 23:34:16 by user42            #+#    #+#             */
-/*   Updated: 2021/04/22 17:34:41 by user42           ###   ########.fr       */
+/*   Created: 2021/04/22 18:56:23 by user42            #+#    #+#             */
+/*   Updated: 2021/04/22 19:39:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fd_handler(int fd_in, int fd_out)
+void	u_print_fd(void)
 {
-	if (fd_in != 0)
+	char *args[4];
+	//int ret = fork();
+	//if (ret == 0)
+	if (1)
 	{
-		dup2(fd_in, 0);
-		close(fd_in);
+		args[0] = "ls";
+		args[1] = "-la";
+		args[2] = "/proc/self/fd";
+		args[3] = NULL;
+		execvp(args[0], args);
+		//exit(1);
 	}
-	if (fd_out != 1)
-	{
-		dup2(fd_out, 1);
-		close(fd_out);
-	}
-	return (0);
 }
