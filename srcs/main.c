@@ -25,9 +25,9 @@ int	main(void)
 //	char *str = " >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 ;z";
 	//char *str = " abc > a1| aa arg1 arg2 ;z";
 	//char *str = "echo \" teste | ola\" > arq | echo | lixo";
-	//char *str = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
-	char *str = "echo \" teste | ola\" | alfa $TERM ; aa | bb | cc ; xx | yy";
-	//char *str = "alfa 1 2 | beta a b  ; gamma x y | delta q q q q";
+	//char str[] = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
+	//char str[] = "echo \" teste | ola\" | alfa $TERM ; aa | bb | cc ; xx | yy";
+	char str[] = "alfa 1 2 | beta a b  ; gamma x y | delta q q q q";
 
 
 
