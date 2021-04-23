@@ -1,0 +1,92 @@
+./srcs/expande.c:	*substr = ft_strchr(v->env[q], '=');
+./srcs/expande.c:	while (v->env[++q] != 0)
+./srcs/expande.c:		if (!ft_strncmp(linha, v->env[q], k))
+./srcs/expande.c:	ft_memcpy(&v->expandido[(*j)], substr, ft_strlen(substr));
+./srcs/init_env.c:	v->env = (char **)malloc((len_arr + 1) * sizeof(char *));
+./srcs/init_env.c:		v->env[i] = ft_strdup(envp[i]);
+./srcs/init_env.c:	v->env[i] = 0;
+./srcs/init_struct_cmd.c:	v->cmd.filename = 0;
+./srcs/init_struct_cmd.c:	v->cmd.cmd_args = 0;
+./srcs/init_struct_cmd.c:	v->cmd.fd_in_red = -1;
+./srcs/init_struct_cmd.c:	v->cmd.fd_out_red = -1;
+./srcs/init_struct_cmd.c:	v->cmd.fd_in = -1;
+./srcs/init_struct_cmd.c:	v->cmd.fd_out = -1;
+./srcs/init_struct_cmd.c:	v->cmd.ret_status = 0;
+./srcs/parse_cmd_args.c:	copy_until(aux, v->expandido, "<>", k);
+./srcs/parse_cmd_args.c:	v->cmd.cmd_args = ft_split2(cmdeargs, ' ');
+./srcs/parse_cmd_args.c:	v->cmd.filename = ft_strdup(v->cmd.cmd_args[0]);
+./srcs/parse_cmd_lines.c:	v->cmd = (t_cmd){0};
+./srcs/parse_cmd_lines.c:	v->cmd_lines = (char **)malloc(sizeof(char *) * (n + 1));
+./srcs/parse_cmd_lines.c:		v->cmd_lines[i] = ft_strtrim(s, " ");
+./srcs/parse_cmd_lines.c:		parse_pipelines(v, v->cmd_lines[i]);
+./srcs/parse_cmd_lines.c:		u_free_array_bi(v->pipelines);
+./srcs/parse_cmd_lines.c:	v->cmd_lines[i] = 0;
+./srcs/parse_in_red.c:	ff(v->expandido, k);
+./srcs/parse_in_red.c:	copy_until(file_redir, v->expandido, " <>", k);
+./srcs/parse_in_red.c:	v->cmd.fd_in_red = open(file_redir, O_RDONLY | O_CREAT);
+./srcs/parse_in_red.c:	dup2(v->cmd.fd_in_red, in);
+./srcs/parse_in_red.c:	close(v->cmd.fd_in_red);
+./srcs/parse_out_red.c:	ff(v->expandido, k);
+./srcs/parse_out_red.c:	if (v->expandido[*k] == '>')
+./srcs/parse_out_red.c:		ff(v->expandido, k);
+./srcs/parse_out_red.c:	copy_until(file_redir, v->expandido, " <>", k);
+./srcs/parse_out_red.c:	v->cmd.fd_out_red = open(file_redir, flags);
+./srcs/parse_out_red.c:	dup2(v->cmd.fd_out_red, out);
+./srcs/parse_out_red.c:	close(v->cmd.fd_out_red);
+./srcs/parse_pipelines.c:	v->pipelines = (char **)malloc(sizeof(char *) * (n + 1));
+./srcs/parse_pipelines.c:	v->cmd.save_in = dup(STDIN_FILENO);
+./srcs/parse_pipelines.c:	v->cmd.save_out = dup(STDOUT_FILENO);
+./srcs/parse_pipelines.c:	v->cmd.fd_in = STDIN_FILENO;
+./srcs/parse_pipelines.c:		v->pipelines[i] = ft_strtrim(s, " "); // PRECISA DESTA LINHA ???
+./srcs/parse_pipelines.c:		printf("\n\n\npipeline : |%s|\n", v->pipelines[i]);
+./srcs/parse_pipelines.c:		parse_s(v, v->pipelines[i]);
+./srcs/parse_pipelines.c:		pipe(v->cmd.pipe);
+./srcs/parse_pipelines.c:			printf("pipe[0]: %d\tpipe[1]: %d\n", v->cmd.pipe[0], v->cmd.pipe[1]);
+./srcs/parse_pipelines.c:		v->cmd.fd_out = v->cmd.pipe[PIPE_IN];
+./srcs/parse_pipelines.c:		fd_handler(v->cmd.fd_in, v->cmd.fd_out);
+./srcs/parse_pipelines.c:		dprintf(v->cmd.save_out, "\nExecutando comando ... \n\n");
+./srcs/parse_pipelines.c:		close(v->cmd.fd_out);
+./srcs/parse_pipelines.c:		if (v->cmd.fd_in != 0)
+./srcs/parse_pipelines.c:			close(v->cmd.fd_in);
+./srcs/parse_pipelines.c:		v->cmd.fd_in = v->cmd.pipe[PIPE_OUT];
+./srcs/parse_pipelines.c:		dup2(v->cmd.save_in, STDIN_FILENO);
+./srcs/parse_pipelines.c:		dup2(v->cmd.save_out, STDOUT_FILENO);
+./srcs/parse_pipelines.c:		free(v->cmd.filename);
+./srcs/parse_pipelines.c:		v->cmd.filename = NULL;
+./srcs/parse_pipelines.c:		free(v->expandido);
+./srcs/parse_pipelines.c:		v->expandido = NULL;
+./srcs/parse_pipelines.c:		u_free_array_bi(v->cmd.cmd_args);
+./srcs/parse_pipelines.c:		close(v->cmd.save_in);
+./srcs/parse_pipelines.c:		close(v->cmd.save_out);
+./srcs/parse_pipelines.c:		close(v->cmd.pipe[0]);
+./srcs/parse_pipelines.c:		close(v->cmd.pipe[1]);
+./srcs/parse_pipelines.c:	v->pipelines[i] = 0;
+./srcs/parse_redirects.c:	while (v->expandido[k] != 0)
+./srcs/parse_redirects.c:		if (v->expandido[k] == '<')
+./srcs/parse_redirects.c:		else if (v->expandido[k] == '>')
+./srcs/parse_redirects.c:		else if (v->expandido[k] == SPC)
+./srcs/parse_redirects.c:			ff(v->expandido, &k);
+./srcs/parse_s.c:	v->expandido = (char*)ft_calloc(MIL, sizeof(char));
+./srcs/parse_s.c:			ft_memcpy(&v->expandido[j], &linha[i], 2);
+./srcs/parse_s.c:	printf("expandido: |%s|\n", v->expandido);
+./srcs/redirect_handler.c:	while (v->expandido[k] != 0)
+./srcs/redirect_handler.c:		if (v->expandido[k] == '<')
+./srcs/redirect_handler.c:			parse_in_red(v, &k, v->cmd.fd_in);
+./srcs/redirect_handler.c:		else if (v->expandido[k] == '>')
+./srcs/redirect_handler.c:			parse_out_red(v, &k, v->cmd.fd_out);
+./srcs/redirect_handler.c:		else if (v->expandido[k] == SPC)
+./srcs/redirect_handler.c:			ff(v->expandido, &k);
+./srcs/redirect_handler.c:	if (i == 0 && v->cmd.fd_in_red == -1)
+./srcs/redirect_handler.c:		v->cmd.fd_in = STDIN_FILENO;
+./srcs/redirect_handler.c:	if (i == (n - 1) && v->cmd.fd_out_red == -1)
+./srcs/redirect_handler.c:		v->cmd.fd_out = STDOUT_FILENO;
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"__________________________________________\n");
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"   STRUCT CMD    \n");
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"filename:\t\t|%s|\n", v->cmd.filename);
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"cmd_args;\n");
+./srcs/u_print_struct_cmd.c:	u_print_array_bi(v->cmd.cmd_args);
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"fd_in_red: %d\t\t fd_out_red: %d\n", v->cmd.fd_in_red, v->cmd.fd_out_red);
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"pipe[in]: %d\t\t pipe[out]: %d\n", v->cmd.pipe[PIPE_IN], v->cmd.pipe[PIPE_OUT]);
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"fd_in: %d\t\t fd_out: %d\n", v->cmd.fd_in, v->cmd.fd_out);
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"ret_status:\t\t %d\n",v->cmd.ret_status);
+./srcs/u_print_struct_cmd.c:	dprintf(v->cmd.save_out,"__________________________________________\n");

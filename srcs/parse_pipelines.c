@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/04/22 21:50:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/23 01:12:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	parse_pipelines(t_v *v, char *linha)
 	//char	*x = NULL;
 
 	aux = ft_split2(linha, '|');
+		u_print_array_bi(v, aux);
 	n = ft_conta_linhas(aux);
 	v->pipelines = (char **)malloc(sizeof(char *) * (n + 1));
 	init_struct_cmd(v);
@@ -92,13 +93,20 @@ int	parse_pipelines(t_v *v, char *linha)
 		// FIM LOOP
 		// frees	
 		free(v->cmd.filename);
+		v->cmd.filename = NULL;
 		free(v->expandido);
+		v->expandido = NULL;
 		free(s);
+		s = NULL;
+		u_free_array_bi(v->cmd.cmd_args);
 		i++;
 	}
 
 		close(v->cmd.save_in);
 		close(v->cmd.save_out);
+		close(v->cmd.pipe[0]);
+		close(v->cmd.pipe[1]);
+
 	v->pipelines[i] = 0;
 	u_free_array_bi(aux);
 	return (0);

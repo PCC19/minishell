@@ -6,22 +6,24 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:11:16 by user42            #+#    #+#             */
-/*   Updated: 2021/04/19 00:07:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/23 01:19:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	u_print_array_bi(char **s)
+void	u_print_array_bi(t_v *v, char **s)
 {
 	int i;
+	(void) v;
 
 	if (s!= NULL)
 	{
 		i = 0;
 		while (s[i] != 0)
 		{
-			printf("|%s|\n", (s[i]));
+			dprintf(v->cmd.save_out,"|%s|\n", (s[i]));
+			//dprintf(1,"|%s|\n", (s[i]));
 			i++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:11:47 by user42            #+#    #+#             */
-/*   Updated: 2021/04/22 19:10:10 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/23 02:34:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,26 @@ char	*malloc_palavra2(char const *s, char c)
 	return (palavra);
 }
 
+int		ft_count_words(char const *s, char c)
+{
+	int i;
+	int	count;
+	t_estado_parse_s		estado;
+
+	count = 1;
+	estado = NORMAL;
+	i = 0;
+	while (s[i] != 0)
+	{
+		if (s[i] == c && estado == NORMAL)
+			count++;
+		i++;
+		parse_sq(s[i], &i, &estado);
+		parse_dq(s[i], &i, &estado);
+	}
+	return (count);
+}
+
 char	**init_array(char const *s, char c)
 {
 	char	**out;
@@ -63,7 +83,9 @@ char	**init_array(char const *s, char c)
 	if (out == NULL)
 		return (NULL);
 	i = 0;
-	while (i < ft_conta_palavras2(s, c))
+	printf("count_words: %d\n", ft_count_words(s, c));
+	while (i < ft_count_words(s, c))
+	//while (i < ft_conta_palavras2(s, c))
 	{
 		out[i] = (char*)malloc(MIL);
 		ft_bzero(out[i], MIL);
@@ -108,8 +130,31 @@ char	**ft_split2(char const *s, char c)
 	}
 	j++;
 	out[j] = NULL;
+	dprintf(1, "j: %d\n", j);
 	//printf("debug :\nj: %d\n", j);
 	//u_print_array_bi(out);
 	//printf("---------\n");
 	return (out);
 }
+
+
+// abcd|xyz|123456|0
+/* comeca do 0
+	se pipe coloca \0
+	incrementa i
+	salva i no array[j]
+	incrementa j
+loop array[j]
+	out[j] = strdup(string + j)
+
+	i e j = 0
+	incrementa i ate final da str
+	se pipe
+		coloca 0
+		strdup  out[k] = string[j]
+		k++
+		i++
+		j = i
+	else
+		i++;
+*/

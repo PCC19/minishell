@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/22 21:20:48 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/22 23:34:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		free_matrizes(char **s);
 int		ft_conta_linhas(char **s);
 void	u_free_array_bi(char **s);
 int		parse_pipelines(t_v *v, char *linha);
-void	u_print_array_bi(char **s);
+void	u_print_array_bi(t_v *v, char **s);
 int		parse_s(t_v *v, char *linha);
 void	init_env(t_v *v, char **envp);
 void	expande(t_v *v, char *linha, int *i, int *j);
