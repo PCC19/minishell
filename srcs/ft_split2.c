@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:11:47 by user42            #+#    #+#             */
-/*   Updated: 2021/04/23 02:34:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/23 17:03:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,25 +136,3 @@ char	**ft_split2(char const *s, char c)
 	//printf("---------\n");
 	return (out);
 }
-
-
-// abcd|xyz|123456|0
-/* comeca do 0
-	se pipe coloca \0
-	incrementa i
-	salva i no array[j]
-	incrementa j
-loop array[j]
-	out[j] = strdup(string + j)
-
-	i e j = 0
-	incrementa i ate final da str
-	se pipe
-		coloca 0
-		strdup  out[k] = string[j]
-		k++
-		i++
-		j = i
-	else
-		i++;
-*/

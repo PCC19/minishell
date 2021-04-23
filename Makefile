@@ -31,7 +31,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)parse_dq.c\
 		$(SDIR)fd_handler.c\
 		$(SDIR)redirect_handler.c\
-		$(SDIR)u_print_fd.c
+		$(SDIR)u_print_fd.c\
+		$(SDIR)ft_split3.c
 
 
 		
@@ -48,6 +49,8 @@ $(NAME):	$(OBJS) $(LIBFT)
 	#$(CC) $(OBJS) $(C_FLAGS) $(HEADERS) $(L_FLAGS) -o $(NAME)
 	echo CONCLUIDO
 	#./minishell
+	#valgrind --leak-check=full --track-origins=yes ,/minishell
+
 
 $(ODIR)%.o: $(SDIR)%.c
 		mkdir -p $(ODIR)
@@ -71,3 +74,9 @@ re: fclean all
 
 run:
 	./minishell
+
+val:	$(OBJS) $(LIBFT)
+	$(CC) $(OBJS) $(C_FLAGS) $(HEADERS) $(L_FLAGS) -o $(NAME)
+	echo CONCLUIDO
+	#./minishell
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./minishell

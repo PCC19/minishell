@@ -29,6 +29,17 @@ int	main(void)
 	char *str = "echo \" teste | ola\" | alfa $TERM ; aa | bb | cc ; xx | yy";
 	//char *str = "alfa 1 2 | beta a b  ; gamma x y | delta q q q q";
 
+
+
+	/*char **aux = ft_split3(str, '|');
+	printf("aux[0]: %s\n", aux[0]);
+	u_print_array_bi(&v, aux);
+	u_free_array_bi(aux);
+	u_free_array_bi(v.env);
+	exit (0);
+*/
+
+
 	printf("%s\n",str);
 	parse_cmd_lines(&v, str);
 	//u_print_array_bi(v.cmd_lines);
