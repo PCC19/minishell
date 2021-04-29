@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/30 00:59:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/30 01:19:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct	s_v{
 	char	*expandido;
 	char	**env;
 	t_cmd	cmd;
+	char	*prompt;
 }				t_v;
 
 
@@ -90,7 +91,4 @@ void	executa_comando(t_v *v);
 void	get_cd (t_v *v);
 void	update_env_var(t_v *v, char *var);
 char	*loc_var (char *var, t_v *v);
-
-
-
-
+void	create_prompt(t_v *v);

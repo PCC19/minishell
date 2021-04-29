@@ -37,7 +37,9 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)get_pwd.c\
 		$(SDIR)get_cd.c\
 		$(SDIR)update_env_var.c\
-		$(SDIR)loc_var.c
+		$(SDIR)loc_var.c\
+		$(SDIR)create_prompt.c\
+
 
 
 		
