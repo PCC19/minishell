@@ -32,7 +32,12 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)fd_handler.c\
 		$(SDIR)redirect_handler.c\
 		$(SDIR)u_print_fd.c\
-		$(SDIR)ft_split3.c
+		$(SDIR)ft_split3.c\
+		$(SDIR)executa_comando.c\
+		$(SDIR)get_pwd.c\
+		$(SDIR)get_cd.c\
+		$(SDIR)update_env_var.c\
+		$(SDIR)loc_var.c
 
 
 		

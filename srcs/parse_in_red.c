@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 23:58:59 by user42            #+#    #+#             */
-/*   Updated: 2021/04/28 01:03:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/30 00:05:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ void	parse_in_red(t_v *v, int *k, int in)
 {
 	char file_redir[MIL];
 
-	printf("parse_in_red:\n");
 	ft_bzero(file_redir, MIL);
 	ff(v->expandido, k);
 	copy_until(file_redir, v->expandido, " <>", k);
-	printf("file_redir: %s\n", file_redir);
 	v->cmd.fd_in_red = open(file_redir, O_RDONLY | O_CREAT);
-		dprintf(v->cmd.save_out, "%s %s\n", file_redir, strerror(errno));
-		errno = 0;
+		//dprintf(v->cmd.save_out, "%s %s\n", file_redir, strerror(errno));
+		//errno = 0;
 	dup2(v->cmd.fd_in_red, in);
 	close(v->cmd.fd_in_red);
 

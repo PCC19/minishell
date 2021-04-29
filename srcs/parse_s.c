@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:33:13 by user42            #+#    #+#             */
-/*   Updated: 2021/04/19 00:39:23 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/30 00:06:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int		parse_s(t_v *v, char *linha)
 		}
 		i++;
 	}
-	printf("expandido: |%s|\n", v->expandido);
+	//printf("expandido: |%s|\n", v->expandido);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/04/23 18:26:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/30 00:04:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	executa_comando_2(t_v *v)
 	printf("%s\n", teste_str);
 }
 
+
 int	parse_pipelines(t_v *v, char *linha)
 {
 	char	**aux;
@@ -41,7 +42,7 @@ int	parse_pipelines(t_v *v, char *linha)
 	//char	*x = NULL;
 
 	aux = ft_split3(linha, '|');
-		u_print_array_bi(v, aux);
+		//u_print_array_bi(v, aux);
 	n = ft_conta_linhas(aux);
 	v->pipelines = (char **)malloc(sizeof(char *) * (n + 1));
 	init_struct_cmd(v);
@@ -57,16 +58,16 @@ int	parse_pipelines(t_v *v, char *linha)
 	{
 		s = ft_strdup(aux[i]);
 		v->pipelines[i] = ft_strtrim(s, " "); // PRECISA DESTA LINHA ???
-		printf("\n\n\npipeline : |%s|\n", v->pipelines[i]);
+		//printf("\n\n\npipeline : |%s|\n", v->pipelines[i]);
 		parse_s(v, v->pipelines[i]);
 
 		// cria pipe
 		pipe(v->cmd.pipe);
-			printf("pipe[0]: %d\tpipe[1]: %d\n", v->cmd.pipe[0], v->cmd.pipe[1]);
+			//printf("pipe[0]: %d\tpipe[1]: %d\n", v->cmd.pipe[0], v->cmd.pipe[1]);
 		// Mapeia stdout para entrada do pipe
 		v->cmd.fd_out = v->cmd.pipe[PIPE_IN];
 
-		printf("Antes redirect handler\n");
+		//printf("Antes redirect handler\n");
 			//u_print_fd();
 
 		redirect_handler(v, i, n);
@@ -78,7 +79,7 @@ int	parse_pipelines(t_v *v, char *linha)
 
 		// EXECUTA
 		dprintf(v->cmd.save_out, "\nExecutando comando ... \n\n");
-		executa_comando_2(v);
+		executa_comando(v);
 
 		// Close stdout e fds e remapeia entrada do proximo !
 		close(v->cmd.fd_out);
