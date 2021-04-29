@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 01:52:30 by user42            #+#    #+#             */
-/*   Updated: 2021/04/22 22:15:22 by user42           ###   ########.fr       */
+/*   Updated: 2021/04/30 01:38:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ void	redirect_handler(t_v *v, int i, int n)
 			parse_cmd_args(v, &k);
 	}
 	if (i == 0 && v->cmd.fd_in_red == -1)
-	{
 		v->cmd.fd_in = STDIN_FILENO;
-	}
 	if (i == (n - 1) && v->cmd.fd_out_red == -1)
-	{
 		v->cmd.fd_out = STDOUT_FILENO;
-	}
 }
