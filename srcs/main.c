@@ -31,7 +31,7 @@ int	main(void)
 	//char str[] = "xx yy |  >a1 <a2 abc  >a3 < a4 | aa arg1 arg2; z > a5";
 	//char str[] = "pwd ; pwd a";
 	//char str[] = "cd srcs | pwd >> arq";
-	char str[] = "echo \'asd\' \"djfjdkf\" $PWD \"$PWD\" \'$PWD\'";
+	char str[] = "echo \'asd\'     \"djfjdkf\" $PWD \"$PWD\" \'$PWD\'";
 
 	
 	//char *str = " abc > a1| aa arg1 arg2 ;z";
