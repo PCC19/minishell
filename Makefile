@@ -39,7 +39,12 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)update_env_var.c\
 		$(SDIR)loc_var.c\
 		$(SDIR)create_prompt.c\
-		$(SDIR)get_echo.c
+		$(SDIR)get_echo.c\
+		$(SDIR)export_var.c\
+		$(SDIR)get_var.c\
+		$(SDIR)exc_var.c\
+		$(SDIR)get_env.c\
+		$(SDIR)exit_msh.c
 
 
 

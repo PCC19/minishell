@@ -31,7 +31,12 @@ int	main(void)
 	//char str[] = "xx yy |  >a1 <a2 abc  >a3 < a4 | aa arg1 arg2; z > a5";
 	//char str[] = "pwd ; pwd a";
 	//char str[] = "cd srcs | pwd >> arq";
-	char str[] = "echo \'asd\'     \"djfjdkf\" $PWD \"$PWD\" \'$PWD\'";
+	//char str[] = "echo \'asd\'     \"djfjdkf\" $PWD \"$PWD\" \'$PWD\'";
+	//char str[] = "echo \'asd\'  $PWD \"$PWD\" \'$PWD\'; lixo a b c";
+	//char str[] = "export a=234; export b=567";
+	//char str[] = "export a=234; export b=567; unset a";
+	//char str[] = "env; export a=234; export b=567; unset a; env";
+	char str[] = "env; export a=234; export b=567; unset a; exit; env";
 
 	
 	//char *str = " abc > a1| aa arg1 arg2 ;z";
@@ -59,9 +64,9 @@ int	main(void)
 
 		//printf("DEPOIS\n");
 		//u_print_array_bi(&v, v.env);
-	u_free_array_bi(v.env);
-	u_free_array_bi(v.cmd_lines);
-	free(v.prompt);
+	u_free_array_bi(v->env);
+	u_free_array_bi(v->cmd_lines);
+	free(v->prompt);
 	return (0);
 }
 //expandido
