@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executa_comando.c                                  :+:      :+:    :+:   */
+/*   get_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/29 23:22:10 by user42            #+#    #+#             */
-/*   Updated: 2021/05/01 20:24:53 by user42           ###   ########.fr       */
+/*   Created: 2021/05/01 20:19:00 by user42            #+#    #+#             */
+/*   Updated: 2021/05/01 20:43:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	executa_comando(t_v *v)
+void	get_echo(t_v *v)
 {
-	if (ft_strncmp(v->cmd.filename, "pwd",3) == 0)
-		get_pwd(v);
-	else if (ft_strncmp(v->cmd.filename, "cd",2) == 0)
-		get_cd(v);
-	else if (ft_strncmp(v->cmd.filename, "echo",4) == 0)
-		get_echo(v);
+	int	i;
+	int	k;
+
+	if (v->cmd.cmd_args[1] != NULL)
+	{
+		i = 1;
+		while (v->cmd.cmd_args[i] != 0)
+		{
+			k = 0;
+			if (i > 1)
+				ft_putchar(' ');
+			while (v->cmd.cmd_args[i][k] != 0)
+			{
+				if (v->cmd.cmd_args[i][k] != '"' &&
+					v->cmd.cmd_args[i][k] != '\'')
+					ft_putchar(v->cmd.cmd_args[i][k]);
+				k++;
+			}
+			i++;
+		}
+	}
 }

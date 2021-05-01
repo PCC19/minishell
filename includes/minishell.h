@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/04/30 01:19:12 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/01 20:26:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,3 +92,5 @@ void	get_cd (t_v *v);
 void	update_env_var(t_v *v, char *var);
 char	*loc_var (char *var, t_v *v);
 void	create_prompt(t_v *v);
+void	get_echo(t_v *v);
+

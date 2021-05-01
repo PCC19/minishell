@@ -30,7 +30,10 @@ int	main(void)
 	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
 	//char str[] = "xx yy |  >a1 <a2 abc  >a3 < a4 | aa arg1 arg2; z > a5";
 	//char str[] = "pwd ; pwd a";
-	char str[] = "cd srcs | pwd >> arq";
+	//char str[] = "cd srcs | pwd >> arq";
+	char str[] = "echo \'asd\' \"djfjdkf\" $PWD \"$PWD\" \'$PWD\'";
+
+	
 	//char *str = " abc > a1| aa arg1 arg2 ;z";
 	//char *str = "echo \" teste | ola\" > arq | echo | lixo";
 	//char str[] = "0\"\'1$TERM 3\'\"; a>a1 <a2 > a3 < a4 | a ; b >b1 <b2 >>b3 <b4 | z";
@@ -49,6 +52,7 @@ int	main(void)
 
 
 	printf("%s\n",str);
+	create_prompt(&v);
 	parse_cmd_lines(&v, str);
 	//u_print_array_bi(v.cmd_lines);
 
