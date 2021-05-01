@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/04/30 00:04:09 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/02 00:58:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	parse_pipelines(t_v *v, char *linha)
 	v->cmd.fd_in = STDIN_FILENO;
 
 	i = 0;
-	while(aux[i])
+	while(aux[i] && v->flag_exit == 0)
 	{
 		s = ft_strdup(aux[i]);
 		v->pipelines[i] = ft_strtrim(s, " "); // PRECISA DESTA LINHA ???

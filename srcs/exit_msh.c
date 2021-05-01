@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 22:58:41 by user42            #+#    #+#             */
-/*   Updated: 2021/05/01 23:03:14 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/02 00:59:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 void	exit_msh(t_v *v)
 {
-	u_free_array_bi(v->env);
-	u_free_array_bi(v->cmd_lines);
-	free(v->prompt);
-	exit (0);
+	v->flag_exit = 1;
 }

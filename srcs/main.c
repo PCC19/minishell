@@ -57,6 +57,7 @@ int	main(void)
 
 
 	printf("%s\n",str);
+	v.flag_exit = 0;
 	create_prompt(&v);
 	parse_cmd_lines(&v, str);
 	//u_print_array_bi(v.cmd_lines);
@@ -64,9 +65,9 @@ int	main(void)
 
 		//printf("DEPOIS\n");
 		//u_print_array_bi(&v, v.env);
-	u_free_array_bi(v->env);
-	u_free_array_bi(v->cmd_lines);
-	free(v->prompt);
+	u_free_array_bi(v.env);
+	u_free_array_bi(v.cmd_lines);
+	free(v.prompt);
 	return (0);
 }
 //expandido
