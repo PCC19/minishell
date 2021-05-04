@@ -44,9 +44,10 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)get_var.c\
 		$(SDIR)exc_var.c\
 		$(SDIR)get_env.c\
-		$(SDIR)exit_msh.c
-
-
+		$(SDIR)exit_msh.c\
+		$(SDIR)fork_process.c\
+		$(SDIR)init_path.c\
+		$(SDIR)exec_com.c
 
 		
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		

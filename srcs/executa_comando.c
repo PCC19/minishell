@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 23:22:10 by user42            #+#    #+#             */
-/*   Updated: 2021/05/01 23:04:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/05 01:04:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	executa_comando(t_v *v)
 {
-	if (ft_strncmp(v->cmd.filename, "pwd",3) == 0)
+	if (ft_strncmp(v->cmd.filename, "pwd", 3) == 0)
 		get_pwd(v);
-	else if (ft_strncmp(v->cmd.filename, "cd",2) == 0)
+	else if (ft_strncmp(v->cmd.filename, "cd", 2) == 0)
 		get_cd(v);
-	else if (ft_strncmp(v->cmd.filename, "echo",4) == 0)
+	else if (ft_strncmp(v->cmd.filename, "echo", 4) == 0)
 		get_echo(v);
-	else if (ft_strncmp(v->cmd.filename, "export",6) == 0)
+	else if (ft_strncmp(v->cmd.filename, "export", 6) == 0)
 		export_var(v);
-	else if (ft_strncmp(v->cmd.filename, "unset",5) == 0)
+	else if (ft_strncmp(v->cmd.filename, "unset", 5) == 0)
 		exc_var(v);
-	else if (ft_strncmp(v->cmd.filename, "env",3) == 0)
+	else if (ft_strncmp(v->cmd.filename, "env", 3) == 0)
 		get_env(v);
-	else if (ft_strncmp(v->cmd.filename, "exit",4) == 0)
+	else if (ft_strncmp(v->cmd.filename, "exit", 4) == 0)
 		exit_msh(v);
 	else
-		u_print_array_bi(v, v->cmd.cmd_args);
+		fork_process(v);
 }

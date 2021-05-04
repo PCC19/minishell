@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/02 00:57:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/05 00:26:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <sys/types.h>
 # include "dbg.h"
 # include <errno.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+
 
 
 
@@ -55,6 +58,7 @@ typedef struct	s_v{
 	t_cmd	cmd;
 	char	*prompt;
 	int		flag_exit;
+	char	**path;
 }				t_v;
 
 
@@ -99,3 +103,6 @@ char	*get_var(t_v *v);
 void	exc_var(t_v *v);
 void	get_env(t_v *v);
 void	exit_msh(t_v *v);
+int		fork_process(t_v *v);
+void	init_path(t_v *v);
+int		exec_com(t_v *v);

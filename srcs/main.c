@@ -21,6 +21,8 @@ int	main(void)
 	init_env(&v, __environ);
 		//printf("Antes\n");
 		//u_print_array_bi(&v, v.env);
+	init_path(&v);	
+
 	char *lixo;
 	char *var = "PATH";
 	lixo = loc_var(var,&v);
@@ -36,7 +38,7 @@ int	main(void)
 	//char str[] = "export a=234; export b=567";
 	//char str[] = "export a=234; export b=567; unset a";
 	//char str[] = "env; export a=234; export b=567; unset a; env";
-	char str[] = "env; export a=234; export b=567; unset a; exit; env";
+	char str[] = "env; export a=234; export b=567; unset a; ls -la | grep mini";
 
 	
 	//char *str = " abc > a1| aa arg1 arg2 ;z";
@@ -67,6 +69,7 @@ int	main(void)
 		//u_print_array_bi(&v, v.env);
 	u_free_array_bi(v.env);
 	u_free_array_bi(v.cmd_lines);
+	u_free_array_bi(v.path);
 	free(v.prompt);
 	return (0);
 }
@@ -82,3 +85,13 @@ int	main(void)
 // aaaaaaaa ; bbbbbbbb
 // aaa | aaa | aaa  ; bbb | bbb | bbb
 // a >a1 <a2 > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b
+
+
+
+// pegar path
+// montar matriz bi com paths
+// ciclar pelos paths
+	// montar path + nome do arquivo
+	// se existir, executa
+	// se nao existir: msg erro
+
