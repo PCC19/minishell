@@ -38,7 +38,9 @@ int	main(void)
 	//char str[] = "export a=234; export b=567";
 	//char str[] = "export a=234; export b=567; unset a";
 	//char str[] = "env; export a=234; export b=567; unset a; env";
-	char str[] = "env; export a=234; export b=567; unset a; ls -la | grep mini";
+	//char str[] = "env; export a=234; export b=567; unset a; ls -la | grep mini";
+	//char str[] = "echo \"ls -la";
+	char str[] = "ls -la | grep a | grep k";
 
 	
 	//char *str = " abc > a1| aa arg1 arg2 ;z";
