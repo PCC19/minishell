@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 00:10:08 by user42            #+#    #+#             */
-/*   Updated: 2021/05/06 00:13:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/06 02:21:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	set_return_status(t_v *v, int status)
 	}
 	else
 	{
-		v->cmd.ret_status = EXIT_FAILURE;
-		return (EXIT_FAILURE);
+		v->cmd.ret_status = status;
+		return (status);
 	}
 }

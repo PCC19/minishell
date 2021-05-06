@@ -21,6 +21,7 @@ int	main(void)
 		//printf("Antes\n");
 		//u_print_array_bi(&v, v.env);
 	init_path(&v);	
+	v.cmd.ret_status = EXIT_SUCCESS;
 
 	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
 	//char str[] = "xx yy |  >a1 <a2 abc  >a3 < a4 | aa arg1 arg2; z > a5";
