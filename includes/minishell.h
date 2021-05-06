@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/05 00:26:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/06 00:13:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,5 @@ void	exit_msh(t_v *v);
 int		fork_process(t_v *v);
 void	init_path(t_v *v);
 int		exec_com(t_v *v);
+int		set_return_status(t_v *v, int status);
+

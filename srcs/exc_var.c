@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 21:30:57 by user42            #+#    #+#             */
-/*   Updated: 2021/05/01 22:51:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/06 00:32:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	exc_var(t_v *v)
 		v->env = new;
 		u_free_array_bi(aux);
 		free(var);
+		set_return_status(v, EXIT_SUCCESS); // Failure se variavel readonly
 	}
 }

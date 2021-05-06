@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 21:06:58 by user42            #+#    #+#             */
-/*   Updated: 2021/05/01 22:07:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/06 00:29:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	export_var(t_v *v)
 		u_free_array_bi(aux);
 	}
 	u_print_array_bi(v, v->env);
+	set_return_status(v, EXIT_SUCCESS); // checar se nome da variavel eh valido !
 }

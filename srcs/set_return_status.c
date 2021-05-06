@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_msh.c                                         :+:      :+:    :+:   */
+/*   set_return_status.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/01 22:58:41 by user42            #+#    #+#             */
-/*   Updated: 2021/05/06 00:34:22 by user42           ###   ########.fr       */
+/*   Created: 2021/05/06 00:10:08 by user42            #+#    #+#             */
+/*   Updated: 2021/05/06 00:13:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include "minishell.h"
 
-void	exit_msh(t_v *v)
+int	set_return_status(t_v *v, int status)
 {
-	v->flag_exit = 1;
-	set_return_status(v, EXIT_SUCCESS);
+	if (status == 0)
+	{
+		v->cmd.ret_status = EXIT_SUCCESS;
+		return (EXIT_SUCCESS);
+	}
+	else
+	{
+		v->cmd.ret_status = EXIT_FAILURE;
+		return (EXIT_FAILURE);
+	}
 }

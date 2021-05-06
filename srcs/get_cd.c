@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 23:15:36 by user42            #+#    #+#             */
-/*   Updated: 2021/04/30 01:25:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/06 00:23:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	get_cd (t_v *v)
 	printf("%s\n", ptr);
 	update_env_var(v, "PWD");
 	create_prompt(v);
-		//printf("prompt: %s\n", v->prompt);
-		//printf("pwd; %s\n", loc_var("PWD",v));
 	free(ptr);
+	set_return_status(v, resp);
 }

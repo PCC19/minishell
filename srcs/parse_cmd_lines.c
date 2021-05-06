@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 00:41:53 by user42            #+#    #+#             */
-/*   Updated: 2021/05/02 00:55:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/06 02:16:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	parse_cmd_lines(t_v *v, char *linha)
 
 	v->cmd = (t_cmd){0};
 	aux = ft_split3(linha, ';');
-		//u_print_array_bi(v, aux);
 	n = ft_conta_linhas(aux);
 	v->cmd_lines = (char **)malloc(sizeof(char *) * (n + 1));
 	int i = 0;
