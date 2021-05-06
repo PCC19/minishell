@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/05/02 00:58:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/07 00:54:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	parse_pipelines(t_v *v, char *linha)
 
 	aux = ft_split3(linha, '|');
 		//u_print_array_bi(v, aux);
-	n = ft_conta_linhas(aux);
+	n = ft_count_lines(aux);
 	v->pipelines = (char **)malloc(sizeof(char *) * (n + 1));
 	init_struct_cmd(v);
 
@@ -79,7 +79,7 @@ int	parse_pipelines(t_v *v, char *linha)
 
 		// EXECUTA
 		dprintf(v->cmd.save_out, "\nExecutando comando ... \n\n");
-		executa_comando(v);
+		execute_command(v);
 
 		// Close stdout e fds e remapeia entrada do proximo !
 		close(v->cmd.fd_out);
@@ -95,8 +95,8 @@ int	parse_pipelines(t_v *v, char *linha)
 		// frees	
 		free(v->cmd.filename);
 		v->cmd.filename = NULL;
-		free(v->expandido);
-		v->expandido = NULL;
+		free(v->expanded);
+		v->expanded = NULL;
 		free(s);
 		s = NULL;
 		u_free_array_bi(v->cmd.cmd_args);

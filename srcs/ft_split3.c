@@ -41,9 +41,9 @@ char	**ft_split3(char s[], char c)
 	int i;
 	int	j;
 	char **out;
-	t_estado_parse_s		estado;
+	t_state_parse_s		state;
 
-	estado = NORMAL;
+	state = NORMAL;
 	i = 0;
 	j = 0;
 	while (s[i] != 0)
@@ -54,8 +54,8 @@ char	**ft_split3(char s[], char c)
 			j++;
 		}
 		i++;
-		parse_sq(s[i], &i, &estado);
-		parse_dq(s[i], &i, &estado);
+		parse_sq(s[i], &i, &state);
+		parse_dq(s[i], &i, &state);
 	}
 	out = perform_splits(i, j, s);
 	j++;

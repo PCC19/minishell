@@ -20,7 +20,7 @@ int	parse_cmd_lines(t_v *v, char *linha)
 
 	v->cmd = (t_cmd){0};
 	aux = ft_split3(linha, ';');
-	n = ft_conta_linhas(aux);
+	n = ft_count_lines(aux);
 	v->cmd_lines = (char **)malloc(sizeof(char *) * (n + 1));
 	int i = 0;
 	while(aux[i] && v->flag_exit == 0)

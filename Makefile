@@ -11,14 +11,13 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)u_print_list.c\
 		$(SDIR)u_free_list.c\
 		$(SDIR)parse_cmd_lines.c\
-		$(SDIR)free_matrizes.c\
 		$(SDIR)u_free_array_bi.c\
-		$(SDIR)ft_conta_linhas.c\
+		$(SDIR)ft_count_lines.c\
 		$(SDIR)parse_pipelines.c\
 		$(SDIR)u_print_array_bi.c\
 		$(SDIR)parse_s.c\
 		$(SDIR)init_env.c\
-		$(SDIR)expande.c\
+		$(SDIR)expand.c\
 		$(SDIR)parse_cmd_args.c\
 		$(SDIR)copy_until.c\
 		$(SDIR)parse_in_red.c\
@@ -26,14 +25,12 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)u_print_struct_cmd.c\
 		$(SDIR)init_struct_cmd.c\
 		$(SDIR)ff.c\
-		$(SDIR)ft_split2.c\
+		$(SDIR)ft_split3.c\
 		$(SDIR)parse_sq.c\
 		$(SDIR)parse_dq.c\
 		$(SDIR)fd_handler.c\
 		$(SDIR)redirect_handler.c\
-		$(SDIR)u_print_fd.c\
-		$(SDIR)ft_split3.c\
-		$(SDIR)executa_comando.c\
+		$(SDIR)execute_command.c\
 		$(SDIR)get_pwd.c\
 		$(SDIR)get_cd.c\
 		$(SDIR)update_env_var.c\
@@ -78,8 +75,9 @@ all: minishell
 
 clean:
 	make clean -C ./libft
-	rm -f $(OBJS)
-	rmdir $(ODIR)
+	rm -rf $(ODIR)
+	#rm -f $(OBJS)
+	#rmdir $(ODIR)
 
 fclean: clean
 	make fclean -C ./libft

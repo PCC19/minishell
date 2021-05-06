@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expande.c                                          :+:      :+:    :+:   */
+/*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 00:42:52 by user42            #+#    #+#             */
-/*   Updated: 2021/05/06 02:08:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/07 01:12:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,29 @@ int	handle_interrogation(int r, char c, char **substr, int *k)
 		return (0);
 }
 
-void	expande(t_v *v, char *linha, int *i, int *j)
+void	expand(t_v *v, char *line, int *i, int *j)
 {
 	int		k;
 	int		q;
 	char	*substr;
 	int		aux;
 
-	linha++;
+	line++;
 	substr = 0;
 	k = 0;
-	aux = handle_interrogation(v->cmd.ret_status, linha[k], &substr, &k);
+	aux = handle_interrogation(v->cmd.ret_status, line[k], &substr, &k);
 	if (aux == 0)
 	{
-		while (!(ft_is_in(linha[k], " \'\"><")) && k < (int)ft_strlen(linha))
+		while (!(ft_is_in(line[k], " \'\"><")) && k < (int)ft_strlen(line))
 			k++;
 		q = -1;
 		while (v->env[++q] != 0)
 		{
-			if (!ft_strncmp(linha, v->env[q], k))
+			if (!ft_strncmp(line, v->env[q], k))
 				get_var_content(v, &substr, q);
 		}
 	}
-	ft_memcpy(&v->expandido[(*j)], substr, ft_strlen(substr));
+	ft_memcpy(&v->expanded[(*j)], substr, ft_strlen(substr));
 	(*j) = (*j) + ft_strlen(substr);
 	(*i) = (*i) + k;
 	if (aux == 1)
