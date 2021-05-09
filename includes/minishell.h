@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/07 01:14:22 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/09 06:31:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # include <errno.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+
+# include <signal.h>
+# include <termcap.h>
+# include <curses.h>
+# include <term.h>
 
 
 
@@ -59,6 +64,20 @@ typedef struct	s_v{
 	char	*prompt;
 	int		flag_exit;
 	char	**path;
+
+	struct	termios	term;
+	struct	termios	old;
+	char	*hist[50];
+	int		qtd_hist;
+	int		posic_hist;
+	char	*ret2;
+	char	ret[2048];
+	char	*name_user;
+	char	*prompt1;
+	int		savein;
+	int		saveout;
+	int		in_fd;
+	int		r_command;
 }				t_v;
 
 
@@ -69,13 +88,14 @@ void	u_free_list(t_list *list);
 void	u_free_dlist(t_dlist *list);
 void	prints(void *s);
 int		parse_cmd_lines(t_v *v, char *linha);
+int		free_matrizes(char **s);
 int		ft_count_lines(char **s);
 void	u_free_array_bi(char **s);
 int		parse_pipelines(t_v *v, char *linha);
 void	u_print_array_bi(t_v *v, char **s);
 int		parse_s(t_v *v, char *linha);
 void	init_env(t_v *v, char **envp);
-void	expand(t_v *v, char *line, int *i, int *j);
+void	expand(t_v *v, char *linha, int *i, int *j);
 void	parse_cmd_args(t_v *v, int *k);
 void	copy_until(char *dest, char *source, char *delimiters, int *k);
 void	parse_in_red(t_v *v, int *k, int in);
@@ -84,8 +104,8 @@ void	u_print_struct_cmd(t_v *v);
 void	init_struct_cmd(t_v *v);
 void	ff(char *str, int *k);
 char	**ft_split2(char const *s, char c);
-void	parse_sq(char c, int *i, t_state_parse_s *state);
 void	parse_dq(char c, int *i, t_state_parse_s *state);
+void	parse_sq(char c, int *i, t_state_parse_s *state);
 int		fd_handler(int fd_in, int fd_out);
 void	redirect_handler(t_v *v, int i, int n);
 void	u_print_fd(void);
@@ -107,3 +127,8 @@ void	init_path(t_v *v);
 int		exec_com(t_v *v);
 int		set_return_status(t_v *v, int status);
 
+void	reseta_flags(t_v *all);
+void 	config_term(t_v *all);
+int		my_termprint(int c);
+void	add_hist(t_v *all, char *ret);
+int		verify_term(t_v *all, char *ret);
