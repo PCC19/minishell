@@ -53,9 +53,14 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)verify_term.c\
 		$(SDIR)my_termprint.c\
 		$(SDIR)sighandler.c\
-		$(SDIR)config_term.c
+		$(SDIR)config_term.c\
+		$(SDIR)k_up.c\
+		$(SDIR)k_dn.c\
+		$(SDIR)k_right.c\
+		$(SDIR)k_left.c\
+		$(SDIR)k_bspace.c\
+		$(SDIR)k_ctrl_c.c
 
-		
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		
 
 CC = clang
