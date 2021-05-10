@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rmvspc.c                                        :+:      :+:    :+:   */
+/*   add_hist.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/31 18:23:43 by user42            #+#    #+#             */
-/*   Updated: 2021/05/10 18:19:39 by user42           ###   ########.fr       */
+/*   Created: 2021/05/10 17:13:36 by user42            #+#    #+#             */
+/*   Updated: 2021/05/10 17:39:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_rmvspc(char **s)
+void	add_hist(t_v *all, char *ret)
 {
-	int	i;
-	int	j;
-	int	size;
-
-	size = ft_strlen(*s);
-	i = 0;
-	while (i < size)
-	{	
-		if ((*s)[i] == ' ')
-		{
-			j = i;
-			while (j < size)
-			{
-				(*s)[j] = (*s)[j + 1];
-				j++;
-			}
-		}
-		if ((*s)[i] != ' ')
-			i++;
-	}
+	all->hist[all->qtd_hist] = malloc((2048 + 1) * sizeof(char *));
+	ft_memcpy(all->hist[all->qtd_hist], ret, ft_strlen(ret));
+	all->hist[all->qtd_hist][ft_strlen (ret)] = '\0';
+	all->posic_hist = all->qtd_hist;
+	all->qtd_hist++;
 }

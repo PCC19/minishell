@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rmvspc.c                                        :+:      :+:    :+:   */
+/*   config_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/31 18:23:43 by user42            #+#    #+#             */
-/*   Updated: 2021/05/10 18:19:39 by user42           ###   ########.fr       */
+/*   Created: 2021/05/10 17:23:26 by user42            #+#    #+#             */
+/*   Updated: 2021/05/10 17:34:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_rmvspc(char **s)
+void	config_term(t_v *v)
 {
-	int	i;
-	int	j;
-	int	size;
+	char	ret[2048];
 
-	size = ft_strlen(*s);
-	i = 0;
-	while (i < size)
-	{	
-		if ((*s)[i] == ' ')
-		{
-			j = i;
-			while (j < size)
-			{
-				(*s)[j] = (*s)[j + 1];
-				j++;
-			}
-		}
-		if ((*s)[i] != ' ')
-			i++;
-	}
+	tgetent(ret, getenv("TERM"));
+	tcgetattr(0, &v->old);
+	tcgetattr(0, &v->term);
+	signal(SIGINT, sighandler);
+	v->term.c_lflag &= ~(ECHO);
+	v->term.c_lflag &= ~(ICANON);
+	v->term.c_lflag &= ~(ISIG);
+	v->term.c_cc[VMIN] = 1;
+	v->term.c_cc[VTIME] = 0;
+	tcsetattr(0, TCSANOW, &v->term);
 }

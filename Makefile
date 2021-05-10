@@ -46,8 +46,14 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)init_path.c\
 		$(SDIR)exec_com.c\
 		$(SDIR)set_return_status.c\
-		$(SDIR)setup.c\
-		$(SDIR)term_caps.c
+		$(SDIR)count_split.c\
+		$(SDIR)reset_flags.c\
+		$(SDIR)update_folder.c\
+		$(SDIR)add_hist.c\
+		$(SDIR)verify_term.c\
+		$(SDIR)my_termprint.c\
+		$(SDIR)sighandler.c\
+		$(SDIR)config_term.c
 
 		
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		

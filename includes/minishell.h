@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/09 06:31:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:26:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,3 +132,17 @@ void 	config_term(t_v *all);
 int		my_termprint(int c);
 void	add_hist(t_v *all, char *ret);
 int		verify_term(t_v *all, char *ret);
+void	add_hist(t_v *all, char *ret);
+void	reset_flags(t_v *all);
+void	update_folder(t_v *all);
+int		count_split(char	**ret);
+
+int		verify_term(t_v *v, char *ret);
+int		my_termprint(int c);
+void	sighandler(int signum);
+void	config_term(t_v *v);
+
+
+
+
+

@@ -22,7 +22,7 @@ int	main(void)
 		//u_print_array_bi(&v, v.env);
 	init_path(&v);
 
-	reseta_flags(&v);
+	reset_flags(&v);
 	config_term(&v);
 
 	v.cmd.ret_status = EXIT_SUCCESS;

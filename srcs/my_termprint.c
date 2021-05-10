@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   my_termprint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcunha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 16:28:10 by pcunha            #+#    #+#             */
-/*   Updated: 2021/05/10 18:13:01 by user42           ###   ########.fr       */
+/*   Created: 2021/05/10 17:24:02 by user42            #+#    #+#             */
+/*   Updated: 2021/05/10 17:32:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	my_termprint(int c)
 {
-	t_list	*temp;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		(*lst) = temp;
-	}
+	return (write(1, &c, 1));
 }

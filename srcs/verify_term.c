@@ -1,53 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_caps.c                                        :+:      :+:    :+:   */
+/*   verify_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 15:20:26 by cpereira          #+#    #+#             */
-/*   Updated: 2021/05/09 06:32:37 by user42           ###   ########.fr       */
+/*   Created: 2021/05/10 17:25:26 by user42            #+#    #+#             */
+/*   Updated: 2021/05/10 17:25:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void sighandler(int signum)
-{
-	if (signum == 18)
-		printf("Ctrl = C\n");
-
-	if (signum == 2)
-		exit (0);
-	if (signum == 3)
-	{
-		printf("Ctrl = a\n");
-		exit (0);
-	}
-	//printf("signal %d\n",signum);
-	printf("Caught signal %d, coming out...\n", signum);
-}
-
-void config_term(t_v *v)
-{
-	char ret[2048];
-	tgetent(ret, getenv("TERM"));
-	tcgetattr(0,&v->old);
-	tcgetattr(0,&v->term);
-	signal( SIGINT, sighandler );
-	v->term.c_lflag &= ~(ECHO);
-	v->term.c_lflag &= ~(ICANON);
-	v->term.c_lflag &= ~(ISIG);
-	v->term.c_cc[VMIN] = 1;
-    v->term.c_cc[VTIME] = 0;
-	tcsetattr(0,TCSANOW,&v->term);
-}
-
-int my_termprint(int c)
-{
-	return write(1, &c, 1);
-}
-
 
 int verify_term(t_v *v, char *ret)
 {
