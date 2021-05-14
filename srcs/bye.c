@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_msh.c                                         :+:      :+:    :+:   */
+/*   bye.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/01 22:58:41 by user42            #+#    #+#             */
-/*   Updated: 2021/05/14 03:29:28 by user42           ###   ########.fr       */
+/*   Created: 2021/05/14 03:31:30 by user42            #+#    #+#             */
+/*   Updated: 2021/05/14 03:37:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exit_msh(t_v *v)
+void	bye(t_v *v)
 {
-	v->flag_exit = 1;
-	set_return_status(v, EXIT_SUCCESS);
+	printf("Logouts\n");
+	tcsetattr(0, TCSANOW, &v->old);
+	u_free_array_bi(v->env);
+	u_free_array_bi(v->cmd_lines);
+	u_free_array_bi(v->path);
+	//free(v->prompt);
+	exit(0);
 }

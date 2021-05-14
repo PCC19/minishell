@@ -43,7 +43,7 @@ int	main(void)
 	char str[] = "ls";
 
 	add_hist(&v, "echo cezar | sed \"s/cezar/angelica/\"");
-	add_hist(&v, "echo cezar | sed \"s/cezar/angelica/\" | sed \"s/angelica/42/\"");
+	add_hist(&v, "echo cezar | sed \'s/cezar/angelica/\' | sed \'s/angelica/42/\"'");
 	add_hist(&v, "echo daniel | sed \"s/cezar/angelica/\"");
 
 
@@ -76,6 +76,8 @@ int	main(void)
 				// CODIGO PRINCIPAL ========
 				ft_putstr_fd("\n",1);
 				parse_cmd_lines(&v, v.ret2);
+				if (v.flag_exit == 1)
+					bye(&v);
 				// =========================
 
 				//printf(" -- ret = %d \n",v.cmd.ret_status);
@@ -100,14 +102,8 @@ int	main(void)
 			}
 			if (v.r_command == 3)
 			{
-				printf("Logouts\n");
-				tcsetattr(0,TCSANOW,&v.old);
 				u_free_array_bi(&v.ret2);
-				u_free_array_bi(v.env);
-				u_free_array_bi(v.cmd_lines);
-				u_free_array_bi(v.path);
-				free(v.prompt);
-				exit(0);
+				bye(&v);
 			}
 		}
 	}
