@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 18:43:27 by user42            #+#    #+#             */
-/*   Updated: 2021/05/10 19:37:48 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/10 19:58:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	k_left(t_v *v)
 {
 	(void) v;
 	tputs(restore_cursor,1,my_termprint);
-	tputs(tigetstr("le"),5,my_termprint); // ed
+	tputs(tigetstr("le"),1,my_termprint); // ed
 }
