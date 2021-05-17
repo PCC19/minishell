@@ -60,7 +60,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)k_left.c\
 		$(SDIR)k_bspace.c\
 		$(SDIR)k_ctrl_c.c\
-		$(SDIR)bye.c
+		$(SDIR)bye.c\
+		$(SDIR)safe_malloc.c
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		
 

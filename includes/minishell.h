@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/14 03:32:51 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/18 00:25:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ void	k_left(t_v *v);
 void	k_bspace(t_v *v);
 void	k_ctrl_c(t_v *v);
 void	bye(t_v *v);
+void	*safe_malloc(size_t size);
+
 
 
 

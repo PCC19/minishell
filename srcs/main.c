@@ -50,7 +50,7 @@ int	main(void)
 
 	ft_putstr_fd("Bem vindo ao MINISHELL CPEREIRA & PCUNHA\n",1);
 	v.prompt1 = ft_strdup("cezar-paulo >");
-	ft_putstr_fd(v.prompt,1);
+	ft_putstr_fd(v.prompt1,1);
 	tputs(tigetstr("ce"),1,my_termprint); // ed
 	tputs(save_cursor,1,my_termprint);
 
