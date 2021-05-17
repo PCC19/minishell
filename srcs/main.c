@@ -16,16 +16,19 @@ int	main(void)
 	char *s = NULL;
 	(void) s;
 	(void) v;
+	char *aux;
 
 	init_env(&v, __environ);
 		//printf("Antes\n");
 		//u_print_array_bi(&v, v.env);
 	init_path(&v);
+	init_hist(&v, "teste");
 
 	reset_flags(&v);
 	config_term(&v);
 
 	v.cmd.ret_status = EXIT_SUCCESS;
+	v.r_command = 0;
 
 	//char *str = "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z";
 	//char str[] = "xx yy |  >a1 <a2 abc  >a3 < a4 | aa arg1 arg2; z > a5";
@@ -42,15 +45,15 @@ int	main(void)
 	//char str[] = "echo $?; ls -la | grep a | grep k; echo $?";
 	char str[] = "ls";
 
-	add_hist(&v, "echo cezar | sed \"s/cezar/angelica/\"");
-	add_hist(&v, "echo cezar | sed \'s/cezar/angelica/\' | sed \'s/angelica/42/\"'");
-	add_hist(&v, "echo cezar | sed s/cezar/angelica/ | sed s/angelica/42/");
-	add_hist(&v, "echo daniel | sed \"s/cezar/angelica/\"");
+	add_hist2(&v, "echo cezar | sed \"s/cezar/angelica/\"");
+	add_hist2(&v, "echo cezar | sed \'s/cezar/angelica/\' | sed \'s/angelica/42/\"'");
+	add_hist2(&v, "echo cezar | sed s/cezar/angelica/ | sed s/angelica/42/");
+	add_hist2(&v, "echo daniel | sed \"s/cezar/angelica/\"");
 
 
 	ft_putstr_fd("Bem vindo ao MINISHELL CPEREIRA & PCUNHA\n",1);
-	v.prompt1 = ft_strdup("cezar-paulo >");
-	ft_putstr_fd(v.prompt1,1);
+	v.prompt = ft_strdup("cezar-paulo >");
+	ft_putstr_fd(v.prompt,1);
 	tputs(tigetstr("ce"),1,my_termprint); // ed
 	tputs(save_cursor,1,my_termprint);
 
@@ -70,7 +73,7 @@ int	main(void)
 			{
 				v.posic_hist = v.qtd_hist;
 
-				add_hist(&v,v.ret2);
+				add_hist2(&v,v.ret2);
 
 				v.flag_exit = 0;
 				//create_prompt(&v);
@@ -93,12 +96,16 @@ int	main(void)
 				ft_bzero(v.ret2,2048);
 				ft_bzero(v.ret,2048);
 
-				ft_putstr_fd(v.prompt1,1);
+				ft_putstr_fd(v.prompt,1);
 				tputs(save_cursor,1,my_termprint);
 			}
 			else
 			{
-				v.ret2 = ft_strjoin(v.ret2,ret);
+				aux = ft_strjoin(v.ret2,ret);
+				free(v.ret2);
+				v.ret2 = aux;
+			//	ft_strjoin(v.ret2,ret);
+				//free(v.ret2);
 				ft_putstr_fd(ret,1);
 			}
 			if (v.r_command == 3)

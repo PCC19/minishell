@@ -16,7 +16,7 @@
 {
 	int i;
 
-	all->buf = (char *)malloc((size_t)all->size);
+	all->buf = (char *)safe_malloc((size_t)all->size);
 	all->local = getcwd(all->buf, (size_t)all->size);
 	all->auxiliar_vet = ft_split(all->local,'/');
 	i = count_split(all->auxiliar_vet) - 1;

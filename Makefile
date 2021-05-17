@@ -61,7 +61,10 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)k_bspace.c\
 		$(SDIR)k_ctrl_c.c\
 		$(SDIR)bye.c\
-		$(SDIR)safe_malloc.c
+		$(SDIR)safe_malloc.c\
+		$(SDIR)add_hist2.c\
+		$(SDIR)init_hist.c
+
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))		
 

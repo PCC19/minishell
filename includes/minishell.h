@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/18 00:25:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:10:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ typedef struct	s_v{
 
 	struct	termios	term;
 	struct	termios	old;
-	char	*hist[50];
+	//char	*hist[50];
+	char	**hist;
 	int		qtd_hist;
 	int		posic_hist;
 	char	*ret2;
@@ -132,7 +133,6 @@ void 	config_term(t_v *all);
 int		my_termprint(int c);
 void	add_hist(t_v *all, char *ret);
 int		verify_term(t_v *all, char *ret);
-void	add_hist(t_v *all, char *ret);
 void	reset_flags(t_v *all);
 void	update_folder(t_v *all);
 int		count_split(char	**ret);
@@ -150,6 +150,9 @@ void	k_bspace(t_v *v);
 void	k_ctrl_c(t_v *v);
 void	bye(t_v *v);
 void	*safe_malloc(size_t size);
+
+void	add_hist2(t_v *v, char *ret);
+void	init_hist(t_v *v, char *envp);
 
 
 

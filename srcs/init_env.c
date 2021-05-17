@@ -20,7 +20,7 @@ void		init_env(t_v *v, char **envp)
 	len_arr = 0;
 	while (envp[len_arr])
 		len_arr++;
-	v->env = (char **)malloc((len_arr + 1) * sizeof(char *));
+	v->env = (char **)safe_malloc((len_arr + 1) * sizeof(char *));
 	i = 0;
 	while (i < len_arr)
 	{

@@ -51,7 +51,7 @@ int	parse_pipelines(t_v *v, char *linha)
 	}
 		//u_print_array_bi(v, aux);
 	n = ft_count_lines(aux);
-	v->pipelines = (char **)malloc(sizeof(char *) * (n + 1));
+	v->pipelines = (char **)safe_malloc(sizeof(char *) * (n + 1));
 	init_struct_cmd(v);
 
 	//// SALVA STDS

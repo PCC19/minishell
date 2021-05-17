@@ -20,7 +20,7 @@ char **perform_splits(int n, int j, char s[])
 	int i;
 	char **out;
 
-	out = (char **)malloc(sizeof(char*) * (j + 2));
+	out = (char **)safe_malloc(sizeof(char*) * (j + 2));
 	out[0] = ft_strdup(&s[0]);
 	i = 0;
 	j = 0;
