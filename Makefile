@@ -68,7 +68,7 @@ CC = clang
 HEADERS = -I./includes -I./libft
 C_FLAGS = -Wall -Werror -Wextra -g
 C_SANIT = -fsanitize=address
-L_FLAGS = -L ./libft -lft -lncurses
+L_FLAGS = -L ./libft -lft -lncurses -ltermcap
 
 $(NAME):	$(OBJS) $(LIBFT)
 	$(CC) $(OBJS) $(C_FLAGS) $(C_SANIT) $(HEADERS) $(L_FLAGS) -o $(NAME)

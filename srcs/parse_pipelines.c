@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/05/07 00:54:04 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/18 00:08:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ int	parse_pipelines(t_v *v, char *linha)
 	//char	*x = NULL;
 
 	aux = ft_split3(linha, '|');
+	i = 1;
+	while(aux[i] != NULL)
+	{
+		ft_rmvchar(&aux[i],'\"');
+		ft_rmvchar(&aux[i],'\'');
+		i++;
+	}
 		//u_print_array_bi(v, aux);
 	n = ft_count_lines(aux);
 	v->pipelines = (char **)malloc(sizeof(char *) * (n + 1));

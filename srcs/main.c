@@ -44,6 +44,7 @@ int	main(void)
 
 	add_hist(&v, "echo cezar | sed \"s/cezar/angelica/\"");
 	add_hist(&v, "echo cezar | sed \'s/cezar/angelica/\' | sed \'s/angelica/42/\"'");
+	add_hist(&v, "echo cezar | sed s/cezar/angelica/ | sed s/angelica/42/");
 	add_hist(&v, "echo daniel | sed \"s/cezar/angelica/\"");
 
 
