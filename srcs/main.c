@@ -17,6 +17,7 @@ int	main(void)
 	(void) s;
 	(void) v;
 	char *aux;
+	(void) aux;
 
 	init_env(&v, __environ);
 		//printf("Antes\n");
@@ -59,6 +60,7 @@ int	main(void)
 
 	char ret[2048];
 	v.ret2 = ft_strdup("");
+	v.posic_string = 0;
 
 	while (1)
 	{
@@ -72,6 +74,7 @@ int	main(void)
 			if (!ft_strncmp("\n",ret,1))
 			{
 				v.posic_hist = v.qtd_hist;
+				v.posic_string = 0;
 
 				add_hist2(&v,v.ret2);
 
@@ -79,6 +82,7 @@ int	main(void)
 				//create_prompt(&v);
 				// CODIGO PRINCIPAL ========
 				ft_putstr_fd("\n",1);
+					printf("ret2: |%s\\n", v.ret2);
 				parse_cmd_lines(&v, v.ret2);
 				if (v.flag_exit == 1)
 					bye(&v);
@@ -101,11 +105,11 @@ int	main(void)
 			}
 			else
 			{
-				aux = ft_strjoin(v.ret2,ret);
-				free(v.ret2);
-				v.ret2 = aux;
-			//	ft_strjoin(v.ret2,ret);
-				//free(v.ret2);
+				if (v.posic_string == (int)ft_strlen(v.ret2))
+					v.ret2 = ft_strjoin(v.ret2,ret);
+				else
+					v.ret2[v.posic_string] = ret[0];
+				v.posic_string++;	
 				ft_putstr_fd(ret,1);
 			}
 			if (v.r_command == 3)

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 01:00:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/18 01:05:21 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:50:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ void	add_hist2(t_v *v, char *ret)
 	aux = v->hist;
 	v->hist = new;
 	u_free_array_bi(aux);
-	u_print_array_bi(v, v->hist);
 	set_return_status(v, EXIT_SUCCESS); // checar se nome da variavel eh valido !
 }
