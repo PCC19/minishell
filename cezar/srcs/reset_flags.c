@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_env_var.c                                   :+:      :+:    :+:   */
+/*   reset_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/30 00:35:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/19 19:05:19 by cpereira         ###   ########.fr       */
+/*   Created: 2021/05/10 17:14:09 by user42            #+#    #+#             */
+/*   Updated: 2021/05/23 15:27:47 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	update_env_var(t_v *v, char *var)
+void	reset_flags(t_v *v)
 {
-	int		i;
-	char	*buf;
-	char	*aux;
-	int		n;
-
-	n = ft_strlen(var);
-	buf = NULL;
-	buf = getcwd(buf, MIL);
-	i = 0;
-	while (v->env[i] != NULL && ft_strncmp(v->env[i], var, n))
-		i++;
-	if (v->env[i] != NULL)
-	{
-		free(v->env[i]);
-		aux = ft_strjoin(var, "=");
-		v->env[i] = ft_strjoin(aux, buf);
-		free(aux);
-	}
-	free(buf);
+	v->curr_comand = ft_strdup("");
+	v->qtd_hist = 0;
+	v->savein = dup(STDIN_FILENO);
+	v->saveout = dup(STDOUT_FILENO);
+	v->in_fd = STDIN_FILENO;
+	v->cmd.ret_status = EXIT_SUCCESS;
+	v->r_command = 0;
+	v->ret2 = ft_strdup("");
+	v->prompt = ft_strdup("");
+	v->posic_string = 0;
+	v->pid = getpid();
+	ft_putstr_fd("\033[1;33mBem vindo ao MINISHELL CPEREIRA & PCUNHA \033[0;37m\n",1);
+	config_term(v);
 }

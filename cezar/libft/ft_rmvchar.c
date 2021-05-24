@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_rmvchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcunha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 16:28:10 by pcunha            #+#    #+#             */
-/*   Updated: 2021/05/10 18:13:01 by user42           ###   ########.fr       */
+/*   Created: 2021/05/18 00:03:27 by user42            #+#    #+#             */
+/*   Updated: 2021/05/18 00:08:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_rmvchar(char **s, char c)
 {
-	t_list	*temp;
+	int	i;
+	int	j;
+	int	size;
 
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		(*lst) = temp;
+	size = ft_strlen(*s);
+	i = 0;
+	while (i < size)
+	{	
+		if ((*s)[i] == c)
+		{
+			j = i;
+			while (j < size)
+			{
+				(*s)[j] = (*s)[j + 1];
+				j++;
+			}
+		}
+		if ((*s)[i] != c)
+			i++;
 	}
 }

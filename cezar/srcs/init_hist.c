@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_var.c                                          :+:      :+:    :+:   */
+/*   init_hist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/01 21:56:36 by user42            #+#    #+#             */
-/*   Updated: 2021/05/01 22:02:03 by user42           ###   ########.fr       */
+/*   Created: 2021/05/18 01:08:00 by user42            #+#    #+#             */
+/*   Updated: 2021/05/22 13:05:23 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_var(t_v *v)
+void		init_hist(t_v *v, char *envp)
 {
-	char	*var;
+	int		len_arr;
 	int		i;
 
-	if (v->cmd.cmd_args[1] != 0)
+	len_arr = 0;
+	//v->hist = (char **)safe_malloc((len_arr + 1) * sizeof(char *));
+	i = 0;
+	while (i < len_arr)
 	{
-		var = ft_strdup(v->cmd.cmd_args[1]);
-		i = 0;
-		while (var[i] != 0 && var[i] != '=')
-			i++;
-		var[i] = 0;
+		v->hist[i] = ft_strdup(envp);
+		i++;
 	}
-	else
-		var = ft_strdup("");
-	return (var);
+	v->hist[i] = 0;
 }

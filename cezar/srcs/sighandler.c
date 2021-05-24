@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_com.c                                         :+:      :+:    :+:   */
+/*   sighandler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 00:12:59 by user42            #+#    #+#             */
-/*   Updated: 2021/05/05 01:07:13 by user42           ###   ########.fr       */
+/*   Created: 2021/05/10 17:22:52 by user42            #+#    #+#             */
+/*   Updated: 2021/05/10 17:35:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exec_com(t_v *v)
+void	sighandler(int signum)
 {
-	int		i;
-	char	*comando;
-	char	*aux;
-	int		r;
-
-	r = -1;
-	i = 0;
-	while (v->path[i] != NULL)
+	if (signum == 18)
+		printf("Ctrl = C\n");
+	if (signum == 2)
+		exit (0);
+	if (signum == 3)
 	{
-		aux = ft_strdup(v->path[i]);
-		comando = ft_strjoin(aux, "/");
-		free(aux);
-		aux = comando;
-		comando = ft_strjoin(aux, v->cmd.cmd_args[0]);
-		r = execve(comando, &v->cmd.cmd_args[0], v->env);
-		free(aux);
-		free(comando);
-		i++;
+		printf("Ctrl = a\n");
+		exit (0);
 	}
-	return (r);
+	printf("Caught signal %d, coming out...\n", signum);
 }

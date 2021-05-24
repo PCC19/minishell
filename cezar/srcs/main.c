@@ -1,107 +1,96 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <curses.h>
-#include <term.h>
-#include <termcap.h>
+# include <term.h>
+# include <termcap.h>
 # include "minishell.h"
-# include "libft.h"
-# include "get_next_line.h"
+# include "../libft/libft.h"
+# include "../includes/get_next_line.h"
+
+void write_error(t_v *v)
+{
+	ft_putstr_fd("bash : ",1);
+	ft_putstr_fd(v->curr_comand,1);
+	ft_putstr_fd(" : command not found\n",1);
+}
+
+void write_return(t_v *v)
+{
+	ft_putstr_fd("zsh : command not found : ",1);
+	ft_putnbr_fd(v->r_command,1);
+	ft_putstr_fd("\n",1);
+	v->ret_last = 1;
+}
+
+void write_prompt(t_v *v)
+{
+	ft_putstr_fd("\033[1;34m",1);
+	ft_putstr_fd(v->prompt,1);
+	ft_putstr_fd("\033[0;37m",1);
+	tputs(tigetstr("ce"),1,my_termprint); // ed
+	tputs(save_cursor,1,my_termprint);
+}
 
 int	main(void)
 {
 	t_v v;
-	pid_t pid = getpid();
-	printf("pid: %d\n", pid);
-
-	char *s = NULL;
-	char ret[2048];
-	(void) s;
-	(void) v;
 
 	init_env(&v, __environ);
-		//printf("Antes\n");
-		//u_print_array_bi(&v, v.env);
 	init_path(&v);
+	reset_flags(&v);
+	if(v.qtd_hist == 0)
+		add_samples(&v);
+	create_prompt(&v);
+	write_prompt(&v);
 
-	reseta_flags(&v);
-	config_term(&v);
-
-	v.cmd.ret_status = EXIT_SUCCESS;
-
-	add_hist(&v, "0\"\'1$TERM 3\'\"; >a1 <a2 abc  > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b ; x; y   ; z");
-	add_hist(&v, "pwd ; pwd a");
-	add_hist(&v, "xx yy |  >a1 <a2 abc  >a3 < a4 | aa arg1 arg2; z > a5'");
-	add_hist(&v, "echo \'asd\'     \"djfjdkf\" $PWD \"$PWD\" \'$PWD\'");
-	add_hist(&v, "cd srcs | pwd >> arq");
-	add_hist(&v, "echo \'asd\'  $PWD \"$PWD\" \'$PWD\'; lixo a b c");
-	add_hist(&v, "export a=234; export b=567");
-	add_hist(&v, "export a=234; export b=567; unset a");
-	add_hist(&v, "env; export a=234; export b=567; unset a; ls -la | grep mini");
-	add_hist(&v, "echo \"ls -la");
-	add_hist(&v, "ls");
-	add_hist(&v, "ls -la | grep a | grep k");
-	add_hist(&v, "echo $?; ls -la | grep a | grep k; echo $?");
-	add_hist(&v, "echo cezar | sed \"s/cezar/angelica/\"");
-	add_hist(&v, "echo cezar | sed \"s/cezar/angelica/\" | sed \"s/angelica/42/\"");
-	add_hist(&v, "echo daniel | sed \"s/cezar/angelica/\"");
-
-	ft_putstr_fd("Bem vindo ao MINISHELL CPEREIRA & PCUNHA\n",1);
-	v.cabecalho = ft_strdup("cezar-paulo >");
-	ft_putstr_fd(v.cabecalho,1);
-	tputs(tigetstr("ce"),1,my_termprint); // ed
-	tputs(save_cursor,1,my_termprint);
-
-	v.ret2 = ft_strdup("");
-	v.posic_string = 0;
 	while (1)
 	{
-		ft_bzero(ret,2048);
-		read (0,ret,100);
-		if (!verify_term(&v,ret))
+		ft_bzero(v.ret,2048);
+		read (0,v.ret,100);
+		if (!verify_term(&v,v.ret))
 		{
-			if (!ft_strncmp("\n",ret,1))
+			if (!ft_strncmp("\n",v.ret,1))
 			{
+				v.ret_last = 0;
+				v.ret2[v.posic_string] = '\0';
+				v.posic_hist = v.qtd_hist;
 				v.posic_string = 0;
 				add_hist(&v,v.ret2);
+				v.flag_exit = 0;
 				ft_putstr_fd("\n",1);
-				parse_cmd_lines(&v, v.ret2);
-				if (v.cmd.ret_status == -1)
+				if (ft_strlen(v.ret2) > 1)
+					parse_cmd_lines(&v, v.ret2);
+				if (v.flag_exit == 1)
+					bye(&v);
+				/*if (v.cmd.ret_status == -1)
 				{
-					ft_putstr_fd("bash : ",1);
-					ft_putstr_fd(v.ret2,1);
-					ft_putstr_fd(" : command not found\n",1);
-				}
-				ft_bzero(v.ret2,2048);
+					write_error(&v);
+					pidf = getpid();
+					kill(pidf, SIGKILL);
+				}*/
+				write_prompt(&v);
 				ft_bzero(v.ret,2048);
-				ft_putstr_fd(v.cabecalho,1);
-				tputs(save_cursor,1,my_termprint);
+				ft_bzero(v.ret2,ft_strlen(v.ret2 + 1));
+				//free(v.ret2);
+				//v.ret2 = ft_strdup("");
+
 			}
 			else
 			{
-				if (v.posic_string == (int)ft_strlen(v.ret2))
-					v.ret2 = ft_strjoin(v.ret2,ret);
+				if (v.posic_string == (int)ft_strlen(v.aux))
+					v.ret2 = ft_strjoin(v.ret2,v.ret);
 				else
-					v.ret2[v.posic_string] = ret[0];
+					v.ret2[v.posic_string] = v.ret[0]; // alteração de posição
 				v.posic_string++;
-				ft_putstr_fd(ret,1);
+				ft_putstr_fd(v.ret,1);
 			}
-			if (v.r_comando == 3)
+			if (v.r_command == 3)
 			{
-				printf("Logouts\n");
-				tcsetattr(0,TCSANOW,&v.old);
 				u_free_array_bi(&v.ret2);
-				u_free_array_bi(v.env);
-				u_free_array_bi(v.cmd_lines);
-				u_free_array_bi(v.path);
-				free(v.prompt);
-				exit(0);
+				bye(&v);
 			}
 		}
 	}
 	return (0);
 }
 
-// GRAMATICA
-// aaaaaaaa ; bbbbbbbb
-// aaa | aaa | aaa  ; bbb | bbb | bbb
-// a >a1 <a2 > a3 < a4 | aa arg1 arg2 | a ; b >b1 <b2 >b3 <b4 | bb arg1 arg2 | b

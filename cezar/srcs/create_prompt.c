@@ -3,30 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   create_prompt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 01:12:31 by user42            #+#    #+#             */
-/*   Updated: 2021/04/30 01:19:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/22 18:40:12 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static char *get_last_path(char *ret)
+{
+	int i;
+
+	i = ft_strlen(ret);
+	while (i > 0)
+	{
+		if (ret[i] != '/')
+			i--;
+		else
+			break;
+	}
+	return(&ret[i]);
+}
+
 void	create_prompt(t_v *v)
 {
-	//atualiza_prompt
-	char *aux1;
-	char *aux2;
+	char *aux;
 	char *logname;
 	char *pwd;
 
 	logname = loc_var("LOGNAME", v);
 	pwd = loc_var("PWD", v);
-	aux1 = ft_strjoin(logname, " ");
-	aux2 = ft_strjoin(aux1, pwd);
-	free(aux1);
-	aux1 = ft_strjoin(aux2, "$");
-	free(aux2);
-	v->prompt = ft_strdup(aux1);
-	free(aux1);
+	free(v->prompt);
+	aux = get_last_path(pwd);
+	aux = ft_strjoin(aux, "> ");
+	v->prompt = ft_strdup(aux);
+	free (aux);
 }

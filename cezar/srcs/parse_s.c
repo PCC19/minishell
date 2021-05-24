@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_s.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:33:13 by user42            #+#    #+#             */
-/*   Updated: 2021/04/30 00:06:41 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:03:43 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,25 @@ int		parse_s(t_v *v, char *linha)
 {
 	int						i;
 	int						j;
-	t_estado_parse_s		estado;
+	t_state_parse_s		state;
 
-	v->expandido = (char*)ft_calloc(MIL, sizeof(char));
-	estado = NORMAL;
+	v->expanded = (char*)ft_calloc(MIL, sizeof(char));
+	state = NORMAL;
 	i = 0;
 	j = 0;
 	while (linha[i] != 0)
 	{
-		parse_sq(linha[i], &i, &estado);
-		parse_dq(linha[i], &i, &estado);
+		parse_sq(linha[i], &i, &state);
+		parse_dq(linha[i], &i, &state);
 		if (ft_is_in(linha[i], "$") &&
-			(estado == NORMAL || estado == DOUBLE_QUOTE))
-			expande(v, &linha[i], &i, &j);
+			(state == NORMAL || state == DOUBLE_QUOTE))
+			expand(v, &linha[i], &i, &j);
 		else
 		{
-			ft_memcpy(&v->expandido[j], &linha[i], 2);
+			ft_memcpy(&v->expanded[j], &linha[i], 2);
 			j++;
 		}
 		i++;
 	}
-	//printf("expandido: |%s|\n", v->expandido);
 	return (0);
 }
