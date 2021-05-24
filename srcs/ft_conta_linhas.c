@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_hist.c                                        :+:      :+:    :+:   */
+/*   ft_conta_linhas.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 01:08:00 by user42            #+#    #+#             */
-/*   Updated: 2021/05/22 13:05:23 by cpereira         ###   ########.fr       */
+/*   Created: 2021/04/08 03:44:48 by user42            #+#    #+#             */
+/*   Updated: 2021/04/09 17:49:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		init_hist(t_v *v, char *envp)
+int	ft_conta_linhas(char **s)
 {
-	int		len_arr;
-	int		i;
+	int i;
 
-	len_arr = 0;
-	//v->hist = (char **)safe_malloc((len_arr + 1) * sizeof(char *));
 	i = 0;
-	while (i < len_arr)
-	{
-		v->hist[i] = ft_strdup(envp);
+	while (s[i])
 		i++;
-	}
-	v->hist[i] = 0;
+	return (i);
 }

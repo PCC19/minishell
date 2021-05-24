@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_hist.c                                        :+:      :+:    :+:   */
+/*   free_matrizes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 01:08:00 by user42            #+#    #+#             */
-/*   Updated: 2021/05/22 13:05:23 by cpereira         ###   ########.fr       */
+/*   Created: 2021/04/08 01:32:49 by user42            #+#    #+#             */
+/*   Updated: 2021/04/09 17:49:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		init_hist(t_v *v, char *envp)
+int	free_matrizes(char **s)
 {
-	int		len_arr;
-	int		i;
+	int i;
+	int n;
 
-	len_arr = 0;
-	//v->hist = (char **)safe_malloc((len_arr + 1) * sizeof(char *));
 	i = 0;
-	while (i < len_arr)
+	n = ft_conta_linhas(s);
+	while (i < n)
 	{
-		v->hist[i] = ft_strdup(envp);
+		free(s[i]);
 		i++;
 	}
-	v->hist[i] = 0;
+	free(s);
+	return (0);
 }

@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_env_var.c                                   :+:      :+:    :+:   */
+/*   utilits.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/30 00:35:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/19 19:05:19 by cpereira         ###   ########.fr       */
+/*   Created: 2021/05/22 18:14:43 by cpereira          #+#    #+#             */
+/*   Updated: 2021/05/23 08:41:49 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	update_env_var(t_v *v, char *var)
+int	ft_count_lines(char **s)
 {
-	int		i;
-	char	*buf;
-	char	*aux;
-	int		n;
+	int i;
 
-	n = ft_strlen(var);
-	buf = NULL;
-	buf = getcwd(buf, MIL);
 	i = 0;
-	while (v->env[i] != NULL && ft_strncmp(v->env[i], var, n))
+	while (s[i])
 		i++;
-	if (v->env[i] != NULL)
-	{
-		free(v->env[i]);
-		aux = ft_strjoin(var, "=");
-		v->env[i] = ft_strjoin(aux, buf);
-		free(aux);
-	}
-	free(buf);
+	return (i);
+}
+
+void	copy_until(char *dest, char *source, char *delimiters, int *k)
+{
+	int i;
+
+	i = 0;
+	while ((*k + i) < (int)ft_strlen(source) && !ft_is_in(source[*k + i], delimiters))
+		i++;
+	ft_memcpy(dest, &source[*k], i);
+	*k += i;
+}
+
+int	count_split(char	**ret)
+{
+	int	i;
+
+	i = 0;
+	while (ret[i] != NULL)
+		i++;
+	return (i);
 }

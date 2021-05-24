@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 00:29:58 by user42            #+#    #+#             */
-/*   Updated: 2021/04/09 17:50:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/18 18:46:24 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void		init_env(t_v *v, char **envp)
 {
