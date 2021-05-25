@@ -6,29 +6,32 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/18 02:50:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:24:40 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MINISHELL_H
+# define MINISHELL_H
+# include <stdlib.h>
+# include <fcntl.h>
+# include <string.h>
+# include <dirent.h>
+# include <sys/stat.h>
+# include <signal.h>
+# include <termcap.h>
 # include <stdio.h>
+# include <curses.h>
+# include <term.h>
+
 # include "libft.h"
 # include "get_next_line.h"
 # include <string.h>
-# include <fcntl.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include "dbg.h"
 # include <errno.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-
-# include <signal.h>
-# include <termcap.h>
-# include <curses.h>
-# include <term.h>
-
-
-
 
 # define MIL 1000
 # define SPC ' '
@@ -67,8 +70,8 @@ typedef struct	s_v{
 
 	struct	termios	term;
 	struct	termios	old;
-	//char	*hist[50];
-	char	**hist;
+	char	*hist[50];
+	//char	**hist;
 	int		qtd_hist;
 	int		posic_hist;
 	char	*ret2;
@@ -80,6 +83,11 @@ typedef struct	s_v{
 	int		in_fd;
 	int		r_command;
 	int		posic_string;
+	char	*aux;
+	char	*path_cur;
+	pid_t	pid;
+	char	*curr_comand;
+	int		ret_last;
 }				t_v;
 
 
@@ -137,24 +145,23 @@ int		verify_term(t_v *all, char *ret);
 void	reset_flags(t_v *all);
 void	update_folder(t_v *all);
 int		count_split(char	**ret);
+void	free_array(void **array);
+void	check_n_free(void *ptr);
 
 int		verify_term(t_v *v, char *ret);
 int		my_termprint(int c);
 void	sighandler(int signum);
 void	config_term(t_v *v);
+void	add_samples(t_v *v);
+void	write_error(t_v *v);
+void	write_prompt(t_v *v);
+void	write_return(t_v *v);
 
-void	k_up(t_v *v);
-void	k_dn(t_v *v);
-void	k_right(t_v *v);
-void	k_left(t_v *v);
-void	k_bspace(t_v *v);
-void	k_ctrl_c(t_v *v);
+
 void	bye(t_v *v);
 void	*safe_malloc(size_t size);
 
 void	add_hist2(t_v *v, char *ret);
 void	init_hist(t_v *v, char *envp);
 
-
-
-
+#endif

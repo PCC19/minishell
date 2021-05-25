@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:20:26 by cpereira          #+#    #+#             */
-/*   Updated: 2021/05/23 15:45:47 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/25 01:38:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 void sighandler(int signum)
 {
-	if (signum == 18)
+	if (signum == SIGINT)
 		printf("Ctrl = C\n");
 
-	if (signum == 2)
+	if (signum == SIGQUIT)
+	{
+		printf("SIGQUIT\n");
 		exit (0);
+	}
 	if (signum == 3)
 	{
 		printf("Ctrl = a\n");
-		exit (0);
 	}
 	//printf("signal %d\n",signum);
 	printf("Caught signal %d, coming out...\n", signum);
+	exit(0);
 }
 
 void config_term(t_v *all)
@@ -35,9 +38,10 @@ void config_term(t_v *all)
 	tcgetattr(0,&all->old);
 	tcgetattr(0,&all->term);
 	signal( SIGINT, sighandler );
+	signal( SIGQUIT, sighandler );
 	all->term.c_lflag &= ~(ECHO);
 	all->term.c_lflag &= ~(ICANON);
-	all->term.c_lflag &= ~(ISIG);
+	//all->term.c_lflag &= ~(ISIG);
 	all->term.c_cc[VMIN] = 1;
     all->term.c_cc[VTIME] = 0;
 	tcsetattr(0,TCSANOW,&all->term);
