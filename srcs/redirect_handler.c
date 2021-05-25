@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 01:52:30 by user42            #+#    #+#             */
-/*   Updated: 2021/04/30 01:38:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/25 02:23:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	redirect_handler(t_v *v, int i, int n)
 	k = 0;
 	while (v->expanded[k] != 0)
 	{
+		// dado um k, olhar para tras no string e saber em que estado esta
+			// fazer um loop e ir usando logicas de parse_dq e parse_sq
+			// para calcular estado e retorna-lo
 		if (v->expanded[k] == '<')
 			parse_in_red(v, &k, v->cmd.fd_in);
 		else if (v->expanded[k] == '>')

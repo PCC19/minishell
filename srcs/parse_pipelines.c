@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/05/23 16:19:49 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/25 02:09:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	parse_pipelines(t_v *v, char *linha)
 		dup2(v->cmd.save_in, STDIN_FILENO);
 		dup2(v->cmd.save_out, STDOUT_FILENO);
 		//printf("Apos restaura fds\n");
-		//u_print_struct_cmd(v);
+		u_print_struct_cmd(v);
 		// FIM LOOP
 		// frees
 		free(v->cmd.filename);
