@@ -1,0 +1,371 @@
+diff --git a/.Makefile.swm b/.Makefile.swm
+new file mode 100644
+index 0000000..324d097
+Binary files /dev/null and b/.Makefile.swm differ
+diff --git a/Makefile b/Makefile
+index c62256a..12dc0a0 100644
+--- a/Makefile
++++ b/Makefile
+@@ -47,7 +47,11 @@ SRCS =	$(SDIR)main.c\
+ 		$(SDIR)setup.c\
+ 		$(SDIR)term_caps.c\
+ 		$(SDIR)utilits.c\
+-		$(SDIR)set_return_status.c
++		$(SDIR)set_return_status.c\
++		$(SDIR)parse_quote_state.c\
++		$(SDIR)add_line_to_cmd_args.c\
++		$(SDIR)parse_quote_in_redirect.c\
++		$(SDIR)init_cmd_args.c
+ 
+ 
+ OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))
+diff --git "a/b\"" "b/b\""
+new file mode 100644
+index 0000000..b48a012
+--- /dev/null
++++ "b/b\""
+@@ -0,0 +1 @@
++ a
+diff --git a/includes/minishell.h b/includes/minishell.h
+index d9dd052..8f9e822 100644
+--- a/includes/minishell.h
++++ b/includes/minishell.h
+@@ -6,7 +6,7 @@
+ /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+ /*                                                +#+#+#+#+#+   +#+           */
+ /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
+-/*   Updated: 2021/05/23 16:24:40 by cpereira         ###   ########.fr       */
++/*   Updated: 2021/05/26 01:38:37 by user42           ###   ########.fr       */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -163,5 +163,10 @@ void	*safe_malloc(size_t size);
+ 
+ void	add_hist2(t_v *v, char *ret);
+ void	init_hist(t_v *v, char *envp);
++t_state_parse_s	parse_quote_state(char *s, int k);
++void	add_line_to_cmd_args(t_v *v, char *src);
++void	parse_quote_in_redirect(t_v *v, int *k, char *c);
++void	init_cmd_args(t_v *v);
++
+ 
+ #endif
+diff --git a/minishell b/minishell
+index 00732a5..5a293b0 100644
+Binary files a/minishell and b/minishell differ
+diff --git a/srcs/add_line_to_cmd_args.c b/srcs/add_line_to_cmd_args.c
+new file mode 100644
+index 0000000..5e73a78
+--- /dev/null
++++ b/srcs/add_line_to_cmd_args.c
+@@ -0,0 +1,37 @@
++/* ************************************************************************** */
++/*                                                                            */
++/*                                                        :::      ::::::::   */
++/*   add_line_to_cmd_args.c                             :+:      :+:    :+:   */
++/*                                                    +:+ +:+         +:+     */
++/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
++/*                                                +#+#+#+#+#+   +#+           */
++/*   Created: 2021/05/26 00:15:06 by user42            #+#    #+#             */
++/*   Updated: 2021/05/26 01:47:59 by user42           ###   ########.fr       */
++/*                                                                            */
++/* ************************************************************************** */
++
++#include "minishell.h"
++
++void	add_line_to_cmd_args(t_v *v, char *src)
++{
++	int		len_arr;
++	int		i;
++	char	**new;
++	char	**aux;
++
++		len_arr = 0;
++		while (v->cmd.cmd_args[len_arr])
++			len_arr++;
++		new = (char **)safe_malloc((len_arr + 2) * sizeof(char *));
++		i = 0;
++		while (v->cmd.cmd_args[i] != 0)
++		{
++			new[i] = ft_strdup(v->cmd.cmd_args[i]);
++			i++;
++		}
++		new[i] = ft_strdup(src);
++		new[i + 1] = NULL;
++		aux = v->cmd.cmd_args;
++		v->cmd.cmd_args = new;
++		u_free_array_bi(aux);
++}
+diff --git a/srcs/init_cmd_args.c b/srcs/init_cmd_args.c
+new file mode 100644
+index 0000000..f470d0f
+--- /dev/null
++++ b/srcs/init_cmd_args.c
+@@ -0,0 +1,22 @@
++/* ************************************************************************** */
++/*                                                                            */
++/*                                                        :::      ::::::::   */
++/*   init_cmd_args.c                                    :+:      :+:    :+:   */
++/*                                                    +:+ +:+         +:+     */
++/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
++/*                                                +#+#+#+#+#+   +#+           */
++/*   Created: 2021/05/26 01:37:54 by user42            #+#    #+#             */
++/*   Updated: 2021/05/26 01:46:12 by user42           ###   ########.fr       */
++/*                                                                            */
++/* ************************************************************************** */
++
++#include "minishell.h"
++
++void	init_cmd_args(t_v *v)
++{
++	v->cmd = (t_cmd){0};
++	v->cmd.cmd_args = (char **)safe_malloc((0 + 1) * sizeof(char *));
++	//v->cmd.cmd_args[0] = ft_strdup("paulo");
++	//v->cmd.cmd_args[1] = ft_strdup("cunha");
++	v->cmd.cmd_args[0] = NULL;
++}
+diff --git a/srcs/init_struct_cmd.c b/srcs/init_struct_cmd.c
+index 9a8f18a..fc740b7 100644
+--- a/srcs/init_struct_cmd.c
++++ b/srcs/init_struct_cmd.c
+@@ -6,7 +6,7 @@
+ /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+ /*                                                +#+#+#+#+#+   +#+           */
+ /*   Created: 2021/04/10 18:10:38 by user42            #+#    #+#             */
+-/*   Updated: 2021/05/06 02:19:08 by user42           ###   ########.fr       */
++/*   Updated: 2021/05/26 01:23:58 by user42           ###   ########.fr       */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -15,7 +15,7 @@
+ void	init_struct_cmd(t_v *v)
+ {
+ 	v->cmd.filename = 0;
+-	v->cmd.cmd_args = 0;
++	//v->cmd.cmd_args = 0;
+ 	v->cmd.fd_in_red = -1;
+ 	v->cmd.fd_out_red = -1;
+ 	v->cmd.fd_in = -1;
+diff --git a/srcs/main.c b/srcs/main.c
+index 5be022a..eb96408 100644
+--- a/srcs/main.c
++++ b/srcs/main.c
+@@ -43,6 +43,8 @@ int	main(void)
+ 	create_prompt(&v);
+ 	write_prompt(&v);
+ 
++
++
+ 	while (1)
+ 	{
+ 		ft_bzero(v.ret,2048);
+diff --git a/srcs/parse_cmd_args.c b/srcs/parse_cmd_args.c
+index 1e3bd88..9ce1c6d 100644
+--- a/srcs/parse_cmd_args.c
++++ b/srcs/parse_cmd_args.c
+@@ -6,7 +6,7 @@
+ /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+ /*                                                +#+#+#+#+#+   +#+           */
+ /*   Created: 2021/04/09 23:06:16 by user42            #+#    #+#             */
+-/*   Updated: 2021/04/30 00:06:03 by user42           ###   ########.fr       */
++/*   Updated: 2021/05/26 02:03:42 by user42           ###   ########.fr       */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -14,14 +14,25 @@
+ 
+ void	parse_cmd_args(t_v *v, int *k)
+ {
+-	char *cmdeargs;
+-	char aux[MIL];
++	char	*cmdeargs;
++	char	aux[MIL];
++	char	**temp;
++	int		i;
+ 
+ 	ft_bzero(aux, MIL);
+-	copy_until(aux, v->expanded, "<>", k);
++	copy_until(aux, v->expanded, "\"\'<>", k);
+ 	cmdeargs = ft_strtrim(aux, " ");
+-	v->cmd.cmd_args = ft_split3(cmdeargs, ' ');
++	//v->cmd.cmd_args = ft_split3(cmdeargs, ' ');
++	temp = ft_split3(cmdeargs, ' ');
++	// trocar linha acima por um loop onde acrescenta cada linha na matriz existente
++	i = 0;
++	while(temp[i])
++	{
++		add_line_to_cmd_args(v, temp[i]);
++		i++;
++	}
+ 		//u_print_array_bi(v, v->cmd.cmd_args);
+ 	v->cmd.filename = ft_strdup(v->cmd.cmd_args[0]);
+ 	free(cmdeargs);
++	u_free_array_bi(temp);
+ }
+diff --git a/srcs/parse_cmd_lines.c b/srcs/parse_cmd_lines.c
+index 922824b..b916fd2 100644
+--- a/srcs/parse_cmd_lines.c
++++ b/srcs/parse_cmd_lines.c
+@@ -6,7 +6,7 @@
+ /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+ /*                                                +#+#+#+#+#+   +#+           */
+ /*   Created: 2021/04/08 00:41:53 by user42            #+#    #+#             */
+-/*   Updated: 2021/05/23 15:44:33 by cpereira         ###   ########.fr       */
++/*   Updated: 2021/05/26 01:46:15 by user42           ###   ########.fr       */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -22,7 +22,7 @@ int	parse_cmd_lines(t_v *v, char *linha)
+ 	int		z;
+ 	pid_t	pidf;
+ 
+-	v->cmd = (t_cmd){0};
++	init_cmd_args(v);
+ 	aux = ft_split3(linha, ';');
+ 	n = ft_count_lines(aux);
+ 	//v->cmd_lines = (char **)malloc(sizeof(char *) * (n + 1));
+diff --git a/srcs/parse_pipelines.c b/srcs/parse_pipelines.c
+index 87437ec..88e2d20 100644
+--- a/srcs/parse_pipelines.c
++++ b/srcs/parse_pipelines.c
+@@ -6,7 +6,7 @@
+ /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+ /*                                                +#+#+#+#+#+   +#+           */
+ /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
+-/*   Updated: 2021/05/23 16:19:49 by cpereira         ###   ########.fr       */
++/*   Updated: 2021/05/26 01:47:01 by user42           ###   ########.fr       */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -59,7 +59,7 @@ int	parse_pipelines(t_v *v, char *linha)
+ 		dup2(v->cmd.save_in, STDIN_FILENO);
+ 		dup2(v->cmd.save_out, STDOUT_FILENO);
+ 		//printf("Apos restaura fds\n");
+-		//u_print_struct_cmd(v);
++		u_print_struct_cmd(v);
+ 		// FIM LOOP
+ 		// frees
+ 		free(v->cmd.filename);
+diff --git a/srcs/parse_quote_in_redirect.c b/srcs/parse_quote_in_redirect.c
+new file mode 100644
+index 0000000..2add3df
+--- /dev/null
++++ b/srcs/parse_quote_in_redirect.c
+@@ -0,0 +1,24 @@
++/* ************************************************************************** */
++/*                                                                            */
++/*                                                        :::      ::::::::   */
++/*   parse_quote_in_redirect.c                          :+:      :+:    :+:   */
++/*                                                    +:+ +:+         +:+     */
++/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
++/*                                                +#+#+#+#+#+   +#+           */
++/*   Created: 2021/05/26 00:26:49 by user42            #+#    #+#             */
++/*   Updated: 2021/05/26 00:49:35 by user42           ###   ########.fr       */
++/*                                                                            */
++/* ************************************************************************** */
++
++#include "minishell.h"
++
++void	parse_quote_in_redirect(t_v *v, int *k, char *c)
++{	
++
++	char aux[MIL];
++
++	ft_bzero(aux, MIL);
++	ff(v->expanded, k);
++	copy_until(aux, v->expanded, c, k);
++	add_line_to_cmd_args(v, aux);
++}
+diff --git a/srcs/parse_quote_state.c b/srcs/parse_quote_state.c
+new file mode 100644
+index 0000000..a3f8525
+--- /dev/null
++++ b/srcs/parse_quote_state.c
+@@ -0,0 +1,31 @@
++/* ************************************************************************** */
++/*                                                                            */
++/*                                                        :::      ::::::::   */
++/*   parse_quote_state.c                                :+:      :+:    :+:   */
++/*                                                    +:+ +:+         +:+     */
++/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
++/*                                                +#+#+#+#+#+   +#+           */
++/*   Created: 2021/05/25 03:06:54 by user42            #+#    #+#             */
++/*   Updated: 2021/05/25 04:11:27 by user42           ###   ########.fr       */
++/*                                                                            */
++/* ************************************************************************** */
++
++#include "minishell.h"
++
++t_state_parse_s	parse_quote_state(char *s, int k)
++{
++	int	i;
++	t_state_parse_s	state;
++
++	state = NORMAL;
++	i = 0;
++	while(i <= k)
++	{
++		parse_dq(s[i], &k, &state);
++		parse_sq(s[i], &k, &state);
++		i++;
++	}
++	printf("k %d i %d c; %c state: %d\n",k ,i-1, s[i-1], state);
++	printf("saiu\n");
++	return (state);
++}
+diff --git a/srcs/redirect_handler.c b/srcs/redirect_handler.c
+index 3d2f7ac..474a78a 100644
+--- a/srcs/redirect_handler.c
++++ b/srcs/redirect_handler.c
+@@ -6,7 +6,7 @@
+ /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+ /*                                                +#+#+#+#+#+   +#+           */
+ /*   Created: 2021/04/22 01:52:30 by user42            #+#    #+#             */
+-/*   Updated: 2021/04/30 01:38:28 by user42           ###   ########.fr       */
++/*   Updated: 2021/05/26 00:49:51 by user42           ###   ########.fr       */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -19,14 +19,22 @@ void	redirect_handler(t_v *v, int i, int n)
+ 	k = 0;
+ 	while (v->expanded[k] != 0)
+ 	{
+-		if (v->expanded[k] == '<')
++		printf("v->expanded: |%s|\n", v->expanded);
++		if (v->expanded[k] == '\"')
++			parse_quote_in_redirect(v, &k, "\"");
++		else if (v->expanded[k] == '\'')
++			parse_quote_in_redirect(v, &k, "\'");
++		else if (v->expanded[k] == '<') 
+ 			parse_in_red(v, &k, v->cmd.fd_in);
+ 		else if (v->expanded[k] == '>')
+ 			parse_out_red(v, &k, v->cmd.fd_out);
+ 		else if (v->expanded[k] == SPC)
+ 			ff(v->expanded, &k);
+ 		else
++		{
++			printf("parse_cmd_args\n");
+ 			parse_cmd_args(v, &k);
++			}
+ 	}
+ 	if (i == 0 && v->cmd.fd_in_red == -1)
+ 		v->cmd.fd_in = STDIN_FILENO;
+diff --git a/srcs/setup.c b/srcs/setup.c
+index 6861839..ceb7f07 100644
+--- a/srcs/setup.c
++++ b/srcs/setup.c
+@@ -6,7 +6,7 @@
+ /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+ /*                                                +#+#+#+#+#+   +#+           */
+ /*   Created: 2021/04/06 17:26:45 by cpereira          #+#    #+#             */
+-/*   Updated: 2021/05/23 15:30:40 by cpereira         ###   ########.fr       */
++/*   Updated: 2021/05/25 03:58:15 by user42           ###   ########.fr       */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -52,4 +52,5 @@ void add_samples(t_v *v)
+ 	add_hist(v, "echo -n -n ola mundo");
+ 	add_hist(v, "echo -n ola mundo");
+ 	add_hist(v, "ls;la;ls");
++	add_hist(v, "echo \"a > b\"");
+ }
