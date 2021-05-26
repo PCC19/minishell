@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/23 16:24:40 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/26 01:38:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,10 @@ void	*safe_malloc(size_t size);
 
 void	add_hist2(t_v *v, char *ret);
 void	init_hist(t_v *v, char *envp);
+t_state_parse_s	parse_quote_state(char *s, int k);
+void	add_line_to_cmd_args(t_v *v, char *src);
+void	parse_quote_in_redirect(t_v *v, int *k, char *c);
+void	init_cmd_args(t_v *v);
+
 
 #endif

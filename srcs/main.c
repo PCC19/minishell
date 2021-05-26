@@ -43,6 +43,8 @@ int	main(void)
 	create_prompt(&v);
 	write_prompt(&v);
 
+
+
 	while (1)
 	{
 		ft_bzero(v.ret,2048);

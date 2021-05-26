@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct_cmd.c                                  :+:      :+:    :+:   */
+/*   parse_quote_in_redirect.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/10 18:10:38 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 01:23:58 by user42           ###   ########.fr       */
+/*   Created: 2021/05/26 00:26:49 by user42            #+#    #+#             */
+/*   Updated: 2021/05/26 00:49:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_struct_cmd(t_v *v)
-{
-	v->cmd.filename = 0;
-	//v->cmd.cmd_args = 0;
-	v->cmd.fd_in_red = -1;
-	v->cmd.fd_out_red = -1;
-	v->cmd.fd_in = -1;
-	v->cmd.fd_out = -1;
-	//v->cmd.ret_status = EXIT_SUCCESS;
+void	parse_quote_in_redirect(t_v *v, int *k, char *c)
+{	
+
+	char aux[MIL];
+
+	ft_bzero(aux, MIL);
+	ff(v->expanded, k);
+	copy_until(aux, v->expanded, c, k);
+	add_line_to_cmd_args(v, aux);
 }

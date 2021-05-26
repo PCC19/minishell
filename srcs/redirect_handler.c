@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 01:52:30 by user42            #+#    #+#             */
-/*   Updated: 2021/05/25 02:23:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/26 00:49:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,22 @@ void	redirect_handler(t_v *v, int i, int n)
 	k = 0;
 	while (v->expanded[k] != 0)
 	{
-		// dado um k, olhar para tras no string e saber em que estado esta
-			// fazer um loop e ir usando logicas de parse_dq e parse_sq
-			// para calcular estado e retorna-lo
-		if (v->expanded[k] == '<')
+		printf("v->expanded: |%s|\n", v->expanded);
+		if (v->expanded[k] == '\"')
+			parse_quote_in_redirect(v, &k, "\"");
+		else if (v->expanded[k] == '\'')
+			parse_quote_in_redirect(v, &k, "\'");
+		else if (v->expanded[k] == '<') 
 			parse_in_red(v, &k, v->cmd.fd_in);
 		else if (v->expanded[k] == '>')
 			parse_out_red(v, &k, v->cmd.fd_out);
 		else if (v->expanded[k] == SPC)
 			ff(v->expanded, &k);
 		else
+		{
+			printf("parse_cmd_args\n");
 			parse_cmd_args(v, &k);
+			}
 	}
 	if (i == 0 && v->cmd.fd_in_red == -1)
 		v->cmd.fd_in = STDIN_FILENO;

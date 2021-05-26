@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct_cmd.c                                  :+:      :+:    :+:   */
+/*   init_cmd_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/10 18:10:38 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 01:23:58 by user42           ###   ########.fr       */
+/*   Created: 2021/05/26 01:37:54 by user42            #+#    #+#             */
+/*   Updated: 2021/05/26 01:46:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_struct_cmd(t_v *v)
+void	init_cmd_args(t_v *v)
 {
-	v->cmd.filename = 0;
-	//v->cmd.cmd_args = 0;
-	v->cmd.fd_in_red = -1;
-	v->cmd.fd_out_red = -1;
-	v->cmd.fd_in = -1;
-	v->cmd.fd_out = -1;
-	//v->cmd.ret_status = EXIT_SUCCESS;
+	v->cmd = (t_cmd){0};
+	v->cmd.cmd_args = (char **)safe_malloc((0 + 1) * sizeof(char *));
+	//v->cmd.cmd_args[0] = ft_strdup("paulo");
+	//v->cmd.cmd_args[1] = ft_strdup("cunha");
+	v->cmd.cmd_args[0] = NULL;
 }
