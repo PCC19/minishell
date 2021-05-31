@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/05/23 16:24:40 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/28 19:56:56 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ typedef struct	s_v{
 	char	*aux;
 	char	*path_cur;
 	pid_t	pid;
+	pid_t	pidc;
 	char	*curr_comand;
 	int		ret_last;
+	int		size;
 }				t_v;
-
 
 void	u_print_list(t_list *list);
 void	u_print_dlist(t_dlist *list);
@@ -97,7 +98,7 @@ void	prints(void *s);
 void	u_free_list(t_list *list);
 void	u_free_dlist(t_dlist *list);
 void	prints(void *s);
-int		parse_cmd_lines(t_v *v, char *linha);
+int		parse_cmd_lines(t_v *v, char *linha, int p);
 int		free_matrizes(char **s);
 int		ft_count_lines(char **s);
 void	u_free_array_bi(char **s);
@@ -118,6 +119,8 @@ void	parse_dq(char c, int *i, t_state_parse_s *state);
 void	parse_sq(char c, int *i, t_state_parse_s *state);
 int		fd_handler(int fd_in, int fd_out);
 void	redirect_handler(t_v *v, int i, int n);
+void	parse_quote_in_redirect(t_v *v, int *k, char *c);
+void	add_line_to_cmd_args(t_v *v, char *src);
 void	u_print_fd(void);
 char	**ft_split3(char s[], char c);
 int		get_pwd (t_v *v);
@@ -141,14 +144,14 @@ void	reseta_flags(t_v *all);
 void 	config_term(t_v *all);
 int		my_termprint(int c);
 void	add_hist(t_v *all, char *ret);
-int		verify_term(t_v *all, char *ret);
 void	reset_flags(t_v *all);
 void	update_folder(t_v *all);
 int		count_split(char	**ret);
 void	free_array(void **array);
 void	check_n_free(void *ptr);
+void	kill_pid(t_v *v);
 
-int		verify_term(t_v *v, char *ret);
+int		verify_term(t_v *v, char *ret, int out);
 int		my_termprint(int c);
 void	sighandler(int signum);
 void	config_term(t_v *v);
