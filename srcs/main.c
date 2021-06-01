@@ -86,3 +86,8 @@ int	main(void)
 	return (0);
 }
 
+/* /bin/ls: nao esta encontrando
+
+
+*/
+
