@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:33:13 by user42            #+#    #+#             */
-/*   Updated: 2021/06/01 18:11:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/01 21:17:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	parse_s(t_v *v, char *linha)
 			expand(v, &linha[i], &i, &j);
 		else
 		{
-			ft_memcpy(&v->expanded[j], &linha[i], 2);
+			ft_memcpy(&v->expanded[j], &linha[i], 1);
 			j++;
 		}
 		i++;
