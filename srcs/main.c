@@ -49,7 +49,8 @@ int	main(void)
 	while (1)
 	{
 		ft_bzero(v.ret,2048);
-		read (0,v.ret,100);
+		//read (STDIN_FILENO,v.ret,100);
+		read (0, v.ret,100);
 		if (!verify_term(&v,v.ret,0))
 		{
 			if (!ft_strncmp("\n",v.ret,1))
@@ -62,7 +63,10 @@ int	main(void)
 				v.flag_exit = 0;
 				ft_putstr_fd("\n",1);
 				if (ft_strlen(v.ret2) > 1 && v.ret2[0] != '>' && v.ret2[0] != '<')
+				{
+					dprintf(1,"v.ret2: %s\n",v.ret2); ////
 					parse_cmd_lines(&v, v.ret2, 0);
+				}
 				if (v.flag_exit == 1)
 					bye(&v);
 				write_prompt(&v);
