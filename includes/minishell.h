@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/06/02 17:42:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/03 21:20:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,8 @@ void	*safe_malloc(size_t size);
 void	add_hist2(t_v *v, char *ret);
 void	init_hist(t_v *v, char *envp);
 void	init_cmd_args(t_v *v);
+void	check_n_free(void *ptr);
+
 
 
 

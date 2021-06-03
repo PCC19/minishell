@@ -43,7 +43,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)term_caps.c\
 		$(SDIR)utilits.c\
 		$(SDIR)set_return_status.c\
-		$(SDIR)init_cmd_args.c
+		$(SDIR)init_cmd_args.c\
+		$(SDIR)check_n_free.c
 
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))

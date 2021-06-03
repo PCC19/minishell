@@ -45,6 +45,7 @@ int	main(void)
 		add_samples(&v);
 	create_prompt(&v);
 	write_prompt(&v);
+	init_struct_cmd(&v);
 
 	while (1)
 	{
@@ -64,7 +65,6 @@ int	main(void)
 				ft_putstr_fd("\n",1);
 				if (ft_strlen(v.ret2) > 1 && v.ret2[0] != '>' && v.ret2[0] != '<')
 				{
-					dprintf(1,"v.ret2: %s\n",v.ret2); ////
 					parse_cmd_lines(&v, v.ret2, 0);
 				}
 				if (v.flag_exit == 1)
@@ -87,6 +87,7 @@ int	main(void)
 			}
 		}
 	}
+	u_free_array_bi(v.cmd.cmd_args);
 	return (0);
 }
 
