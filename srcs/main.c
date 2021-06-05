@@ -46,6 +46,7 @@ int	main(void)
 	create_prompt(&v);
 	write_prompt(&v);
 	init_struct_cmd(&v);
+	v.flag_perm_denied = 0;
 
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/06/03 21:20:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/05 17:46:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct	s_v{
 	char	*curr_comand;
 	int		ret_last;
 	int		size;
+	int		flag_perm_denied;
 }				t_v;
 
 void	u_print_list(t_list *list);

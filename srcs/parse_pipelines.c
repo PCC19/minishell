@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/06/04 03:57:12 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/05 17:49:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,13 @@ int	parse_pipelines(t_v *v, char *linha)
 		parse_s(v, v->pipelines[i]);
 		pipe(v->cmd.pipe);
 		v->cmd.fd_out = v->cmd.pipe[PIPE_IN];
+			u_print_struct_cmd(v);
 		redirect_handler(v, i, n);
 		fd_handler(v->cmd.fd_in, v->cmd.fd_out);
-		execute_command(v);
+			u_print_struct_cmd(v);
+		if (v->flag_perm_denied == 0)
+			execute_command(v);
+		v->flag_perm_denied = 0;
 		close(v->cmd.fd_out);
 		if (v->cmd.fd_in != 0)
 			close(v->cmd.fd_in);
@@ -93,12 +97,7 @@ int	parse_pipelines(t_v *v, char *linha)
 		u_free_array_bi(v->cmd.cmd_args);
 		i++;
 	}
-	//close_fds(v, i);
-		close(v->cmd.save_in);
-	close(v->cmd.save_out);
-	close(v->cmd.pipe[0]);
-	close(v->cmd.pipe[1]);
-	v->pipelines[i] = 0;
-u_free_array_bi(aux);
+	close_fds(v, i);
+	u_free_array_bi(aux);
 	return (0);
 }
