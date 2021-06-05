@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/06/05 17:49:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/05 18:17:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int	parse_pipelines(t_v *v, char *linha)
 		parse_s(v, v->pipelines[i]);
 		pipe(v->cmd.pipe);
 		v->cmd.fd_out = v->cmd.pipe[PIPE_IN];
-			u_print_struct_cmd(v);
 		redirect_handler(v, i, n);
 		fd_handler(v->cmd.fd_in, v->cmd.fd_out);
+			printf("antes\n");
 			u_print_struct_cmd(v);
 		if (v->flag_perm_denied == 0)
 			execute_command(v);
