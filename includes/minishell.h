@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/06/05 17:46:54 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/06 07:55:24 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void	kill_pid(t_v *v);
 int		verify_term(t_v *v, char *ret, int out);
 int		my_termprint(int c);
 void	sighandler(int signum);
+void	sighandlerchild(int signum);
 void	config_term(t_v *v);
 void	add_samples(t_v *v);
 void	write_error(t_v *v);
@@ -167,10 +168,6 @@ void	*safe_malloc(size_t size);
 
 void	add_hist2(t_v *v, char *ret);
 void	init_hist(t_v *v, char *envp);
-void	init_cmd_args(t_v *v);
-void	check_n_free(void *ptr);
-
-
-
+char	*get_last_path(char *ret);
 
 #endif

@@ -20,8 +20,6 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)parse_dq.c\
 		$(SDIR)u_free_list.c\
 		$(SDIR)u_free_array_bi.c\
-		$(SDIR)u_print_struct_cmd.c\
-		$(SDIR)u_print_array_bi.c\
 		$(SDIR)initialize.c\
 		$(SDIR)expand.c\
 		$(SDIR)ff.c\
@@ -42,9 +40,7 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)setup.c\
 		$(SDIR)term_caps.c\
 		$(SDIR)utilits.c\
-		$(SDIR)set_return_status.c\
-		$(SDIR)init_cmd_args.c\
-		$(SDIR)check_n_free.c
+		$(SDIR)set_return_status.c
 
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))

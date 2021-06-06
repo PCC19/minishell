@@ -11,7 +11,6 @@ void write_error(t_v *v)
 {
 	ft_putstr_fd("bash *: ",1);
 	ft_putstr_fd(v->curr_comand,1);
-	//g_ret =
 	v->cmd.ret_status = 127;
 	v->flag_exit = 1;
 	ft_putstr_fd(" : command not found\n",1);
@@ -45,14 +44,14 @@ int	main(void)
 		add_samples(&v);
 	create_prompt(&v);
 	write_prompt(&v);
-	init_struct_cmd(&v);
 	v.flag_perm_denied = 0;
 
 	while (1)
 	{
+		signal(SIGINT, sighandler);
+		signal(SIGQUIT, sighandler);
 		ft_bzero(v.ret,2048);
-		//read (STDIN_FILENO,v.ret,100);
-		read (0, v.ret,100);
+		read (0,v.ret,100);
 		if (!verify_term(&v,v.ret,0))
 		{
 			if (!ft_strncmp("\n",v.ret,1))
@@ -65,9 +64,7 @@ int	main(void)
 				v.flag_exit = 0;
 				ft_putstr_fd("\n",1);
 				if (ft_strlen(v.ret2) > 1 && v.ret2[0] != '>' && v.ret2[0] != '<')
-				{
 					parse_cmd_lines(&v, v.ret2, 0);
-				}
 				if (v.flag_exit == 1)
 					bye(&v);
 				write_prompt(&v);
@@ -88,12 +85,6 @@ int	main(void)
 			}
 		}
 	}
-	u_free_array_bi(v.cmd.cmd_args);
 	return (0);
 }
-
-/* /bin/ls: nao esta encontrando
-
-
-*/
 
