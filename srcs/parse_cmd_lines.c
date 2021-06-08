@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 00:41:53 by user42            #+#    #+#             */
-/*   Updated: 2021/05/27 19:47:58 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/06/08 17:16:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	parse_cmd_lines(t_v *v, char *linha, int p)
 	//init_cmd_args(v);
 	aux = ft_split3(linha, ';');
 	n = ft_count_lines(aux);
-	//v->cmd_lines = (char **)malloc(sizeof(char *) * (n + 1));
 	v->cmd_lines = (char **)safe_malloc(sizeof(char *) * (n + 1));
 	i = 0;
 	p = 0;

@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/06/06 07:59:06 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/06/08 17:17:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	parse_pipelines(t_v *v, char *linha)
 		if (v->flag_perm_denied == 0)
 			execute_command(v);
 		v->flag_perm_denied = 0;
-		//execute_command(v);
+		execute_command(v);
 		close(v->cmd.fd_out);
 		if (v->cmd.fd_in != 0)
 			close(v->cmd.fd_in);
