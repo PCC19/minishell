@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 01:11:30 by user42            #+#    #+#             */
-/*   Updated: 2021/06/06 08:28:52 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/06/09 00:27:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,14 @@ int	exec_com(t_v *v)
 		if (v->cmd.cmd_args[1][0] == '~' && v->cmd.cmd_args[1][1] != '~')
 			v->cmd.cmd_args[1] = (ft_strjoin(loc_var("HOME",v),&v->cmd.cmd_args[1][1]));
 
-	v->cmd.cmd_args[0] = get_last_path(v->cmd.cmd_args[0]);
+//		printf("cmd_args[0]: |%s|\n", v->cmd.cmd_args[0]);
+//		printf("cmd_args[1]: |%s|\n", v->cmd.cmd_args[1]);
+
+	//v->cmd.cmd_args[0] = get_last_path(v->cmd.cmd_args[0]);
+	v->cmd.cmd_args[0] = get_last_path2(v->cmd.cmd_args[0]);
+
+//		printf("cmd_args[0]: |%s|\n", v->cmd.cmd_args[0]);
+//		printf("cmd_args[1]: |%s|\n", v->cmd.cmd_args[1]);
 
 	while (v->path[i] != NULL)
 	{
@@ -107,10 +114,15 @@ int	exec_com(t_v *v)
 		free(aux);
 		aux = command;
 		command = ft_strjoin(aux, v->cmd.cmd_args[0]);
+			printf("command: |%s|\n", command);
+			printf("cmd_args[0]: |%s|\n", v->cmd.cmd_args[0]);
+			printf("cmd_args[1]: |%s|\n", v->cmd.cmd_args[1]);
 		r = execve(command, &v->cmd.cmd_args[0], v->env);
+			printf("r: %d\n", r);
 		free(aux);
 		free(command);
 		i++;
 	}
+	printf("r: %d\n", r);
 	return (r);
 }
