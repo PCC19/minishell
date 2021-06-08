@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/06/08 19:46:45 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/08 20:30:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	parse_pipelines(t_v *v, char *linha)
 	int		n;
 	int		i;
 	char	*s;
+	pid_t	pidf;
 
 	aux = ft_split3(linha, '|');
 	i = 1;
@@ -78,6 +79,7 @@ int	parse_pipelines(t_v *v, char *linha)
 		redirect_handler(v, i, n);
 		fd_handler(v->cmd.fd_in, v->cmd.fd_out);
 //			u_print_struct_cmd(v); // LINHA DE DEBUG
+		v->curr_comand = ft_strdup(v->cmd.filename);
 		if (v->flag_perm_denied == 0)
 			execute_command(v);
 		v->flag_perm_denied = 0;
@@ -95,6 +97,14 @@ int	parse_pipelines(t_v *v, char *linha)
 		s = NULL;
 		u_free_array_bi(v->cmd.cmd_args);
 		i++;
+		if (v->cmd.ret_status == -1)
+		{
+			write_error(v);
+			free(v->curr_comand);
+			ft_bzero(v->ret,2048);
+			pidf = getpid();
+			kill(pidf, SIGKILL);
+		}
 	}
 	close_fds(v, i);
 	u_free_array_bi(aux);
