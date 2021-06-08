@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 01:11:30 by user42            #+#    #+#             */
-/*   Updated: 2021/06/09 00:27:56 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/09 01:16:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ void	exc_var(t_v *v)
 		new[k] = NULL;
 		aux = v->env;
 		v->env = new;
+		// se variavel a ser excluia eh path, reseta path na struct
+		if (ft_strncmp(var, "PATH",4) == 0)
+			reset_vpath(v, var);
 		u_free_array_bi(aux);
 		free(var);
 		free_array((void*)v->path);

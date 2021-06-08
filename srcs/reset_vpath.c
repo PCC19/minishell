@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_last_path2.c                                   :+:      :+:    :+:   */
+/*   reset_vpath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 00:15:46 by user42            #+#    #+#             */
-/*   Updated: 2021/06/09 00:46:39 by user42           ###   ########.fr       */
+/*   Created: 2021/06/09 01:14:24 by user42            #+#    #+#             */
+/*   Updated: 2021/06/09 01:31:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *get_last_path2(char *str)
+void	reset_vpath(t_v *v)
 {
-	char	**split_str;
-	int		i;
-
-	split_str = ft_split3(str, '/');
-	i = 0;
-	while (split_str[i])
-		i++;
-	if (i>0)
-		i--;
-
-	free(str);
-	str = ft_strdup(split_str[i]);
-	return (str);
+	free(v->path);
+	v->path = (char **)safe_malloc(sizeof(char *) * 2);
+	v->path[0] = ft_strdup("");
+	v->path[1] = NULL;
 }

@@ -44,7 +44,10 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)u_print_array_bi.c\
 		$(SDIR)u_print_struct_cmd.c\
 		$(SDIR)init_cmd_args.c\
-		$(SDIR)get_last_path2.c
+		$(SDIR)get_last_path2.c\
+		$(SDIR)is_abs_path.c\
+		$(SDIR)reset_vpath.c\
+		$(SDIR)exec_com2.c
 
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))
