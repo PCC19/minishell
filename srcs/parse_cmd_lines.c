@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 00:41:53 by user42            #+#    #+#             */
-/*   Updated: 2021/06/08 17:16:49 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/08 19:45:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ void	exec_parse_cmd(t_v *v, char **aux, int i, int p)
 	kill_pid(v);
 }
 
-void	init_cmd_args(t_v *v)
-{
-	v->cmd = (t_cmd){0};
-	v->cmd.cmd_args = (char **)safe_malloc((0 + 1) * sizeof(char *));
-	//v->cmd.cmd_args[0] = ft_strdup("paulo");
-	//v->cmd.cmd_args[1] = ft_strdup("cunha");
-	v->cmd.cmd_args[0] = NULL;
-}
 
 int	parse_cmd_lines(t_v *v, char *linha, int p)
 {
@@ -57,7 +49,6 @@ int	parse_cmd_lines(t_v *v, char *linha, int p)
 	int		z;
 	pid_t	pidf;
 
-	//init_cmd_args(v);
 	aux = ft_split3(linha, ';');
 	n = ft_count_lines(aux);
 	v->cmd_lines = (char **)safe_malloc(sizeof(char *) * (n + 1));
@@ -66,7 +57,6 @@ int	parse_cmd_lines(t_v *v, char *linha, int p)
 	z = 0;
 	while(aux[i] && v->flag_exit == 0)
 	{
-		init_cmd_args(v);
 		if (ft_strlen(aux[i]) > 0)
 		{
 			check_n_free(v->curr_comand);

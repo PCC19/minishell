@@ -40,7 +40,10 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)setup.c\
 		$(SDIR)term_caps.c\
 		$(SDIR)utilits.c\
-		$(SDIR)set_return_status.c
+		$(SDIR)set_return_status.c\
+		$(SDIR)u_print_array_bi.c\
+		$(SDIR)u_print_struct_cmd.c\
+		$(SDIR)init_cmd_args.c
 
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))
