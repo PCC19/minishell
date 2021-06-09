@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 00:45:53 by user42            #+#    #+#             */
-/*   Updated: 2021/06/09 01:32:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/09 02:33:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	exec_com2(t_v *v)
 		else // se nao existe
 		{
 			//se nao tem path: erro
-			if (ft_strncmp(v->path[0],"",1) == 0)
+			if (v->path[0] == NULL)
 				return (-1);
 			else
 			//se tem path busca no path
@@ -79,3 +79,26 @@ int	exec_com2(t_v *v)
 		}
 	}
 }
+
+
+
+/*
+ls	ok
+/bin/ls	ok
+../../ls	ok
+xxx/ls	ok
+
+/bin/ls -la | /bin/grep mini	ok	
+../../bin/ls -la | ../../bin/grep mini	ok
+
+
+unset:
+/bin/ls	segv
+../../ls	ok
+xxx/ls		ok
+
+/bin/ls -la | /bin/grep mini  ok
+../../bin/ls -la | ../../bin/grep mini	ok
+
+
+*/
