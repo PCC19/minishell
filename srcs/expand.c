@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 00:42:52 by user42            #+#    #+#             */
-/*   Updated: 2021/06/08 20:54:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/09 04:22:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,12 @@ void	expand(t_v *v, char *line, int *i, int *j)
 		while (v->env[++q] != 0)
 			if (!ft_strncmp(line, v->env[q], k))
 				get_var_content(v, &substr, q);
+		if (substr == NULL)
+		{
+			substr = ft_strdup(" ");
+			aux = 1;
+		}
 	}
-	//write_return(v);
 	ft_memcpy(&v->expanded[(*j)], substr, ft_strlen(substr));
 	(*j) = (*j) + ft_strlen(substr);
 	(*i) = (*i) + k;
