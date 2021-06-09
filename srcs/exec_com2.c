@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 00:45:53 by user42            #+#    #+#             */
-/*   Updated: 2021/06/09 02:33:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/09 02:44:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int	exec_com2(t_v *v)
 					free(aux);
 					aux = command;
 					command = ft_strjoin(aux, v->cmd.cmd_args[0]);
-						printf("command: |%s|\n", command);
-						printf("cmd_args[0]: |%s|\n", v->cmd.cmd_args[0]);
-						printf("cmd_args[1]: |%s|\n", v->cmd.cmd_args[1]);
+//						printf("command: |%s|\n", command);
+//						printf("cmd_args[0]: |%s|\n", v->cmd.cmd_args[0]);
+//						printf("cmd_args[1]: |%s|\n", v->cmd.cmd_args[1]);
 					r = execve(command, &v->cmd.cmd_args[0], v->env);
-						printf("r: %d\n", r);
+//						printf("r: %d\n", r);
 					free(aux);
 					free(command);
 					i++;

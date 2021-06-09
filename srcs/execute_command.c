@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 01:11:30 by user42            #+#    #+#             */
-/*   Updated: 2021/06/09 01:16:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/09 03:27:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	execute_command(t_v *v)
 		&& ft_strlen(v->cmd.filename) == 5)
 		exc_var(v);
 	else if (ft_strncmp(v->cmd.filename, "env", 3) == 0
-		&& ft_strlen(v->cmd.filename) == 6)
+		&& ft_strlen(v->cmd.filename) == 3)
 		get_env(v);
 	else if (ft_strncmp(v->cmd.filename, "exit", 4) == 0
 		&& ft_strlen(v->cmd.filename) == 4)
@@ -77,7 +77,7 @@ void	exc_var(t_v *v)
 		v->env = new;
 		// se variavel a ser excluia eh path, reseta path na struct
 		if (ft_strncmp(var, "PATH",4) == 0)
-			reset_vpath(v, var);
+			reset_vpath(v);
 		u_free_array_bi(aux);
 		free(var);
 		free_array((void*)v->path);
