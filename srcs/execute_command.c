@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 01:11:30 by user42            #+#    #+#             */
-/*   Updated: 2021/06/10 21:36:41 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 01:01:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	execute_command(t_v *v)
 	else
 		if (v->ret_last == 0)
 			v->cmd.ret_status = fork_process(v);
+//			v->cmd.ret_status = fork_process2(v);
 	printf("d: %d\n", v->cmd.ret_status);
 }
 

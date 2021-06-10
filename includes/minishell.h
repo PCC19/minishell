@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/06/09 01:31:40 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 00:51:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,8 @@ char	*get_last_path2(char *str);
 int		is_abs_path(char *str);
 void	reset_vpath(t_v *v);
 int		exec_com2(t_v *v);
+
+int		fork_process2(t_v *v);
+int		exec_cmd3(char *path, char **args, t_v *v);
 
 #endif

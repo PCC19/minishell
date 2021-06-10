@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_last_path2.c                                   :+:      :+:    :+:   */
+/*   exec_cmd3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 00:15:46 by user42            #+#    #+#             */
-/*   Updated: 2021/06/10 23:57:22 by user42           ###   ########.fr       */
+/*   Created: 2021/06/11 00:33:21 by user42            #+#    #+#             */
+/*   Updated: 2021/06/11 01:00:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *get_last_path2(char *str)
+int    exec_cmd3(char *path, char **args, t_v *v)
 {
-	char	**split_str;
-	int		i;
+    pid_t    pid;
+    int        ret;
 
-	split_str = ft_split3(str, '/');
-	i = 0;
-	while (split_str[i])
-		i++;
-	if (i>0)
-		i--;
-
-	free(str);
-	str = ft_strdup(split_str[i]);
-	u_free_array_bi(split_str);
-	return (str);
+    ret = 0;
+    pid = fork();
+    if (pid == 0)
+    {
+        ret = execve(path, args, v->env);
+        exit(ret);
+    }
+    else if (pid < 0)
+    {
+//        free(path);
+        ft_putendl_fd("minishell: failed to create a new process.", 1);
+    }
+    waitpid(pid, &ret, 0);
+//    if (path)
+//        free(path);
+    return (ret);
 }
