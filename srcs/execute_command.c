@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 01:11:30 by user42            #+#    #+#             */
-/*   Updated: 2021/06/09 04:44:10 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/10 21:36:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	execute_command(t_v *v)
 {
+	printf("a: %d\n", v->cmd.ret_status);
 	if (ft_strncmp(v->cmd.filename, "pwd", 3) == 0
 		&& ft_strlen(v->cmd.filename) == 3)
 		get_pwd(v);
@@ -38,6 +39,7 @@ void	execute_command(t_v *v)
 	else
 		if (v->ret_last == 0)
 			v->cmd.ret_status = fork_process(v);
+	printf("d: %d\n", v->cmd.ret_status);
 }
 
 char	**alocate_new(t_v *v)
