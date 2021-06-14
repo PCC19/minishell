@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 00:41:53 by user42            #+#    #+#             */
-/*   Updated: 2021/06/08 20:41:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/15 00:47:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	parse_cmd_lines(t_v *v, char *linha, int p)
 			//check_n_free(v->curr_comand);
 			//v->curr_comand = ft_strdup(aux[i]);
 			s = ft_strdup(aux[i]);
-			v->cmd_lines[i] = ft_strtrim(s, " ");
+			v->cmd_lines[p] = ft_strtrim(s, " ");
 			parse_pipelines(v, v->cmd_lines[p]);
 			u_free_array_bi(v->pipelines);
 			free(s);

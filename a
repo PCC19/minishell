@@ -1,0 +1,36 @@
+|ls -la > a|a: 256
+0 , /home/user42/goinfre/miniconda39/bin	r: -1
+1 , /Users/paulocunha/.rvm/rubies/ruby-2.7.0/bin	r: -1
+2 , /Users/dev	r: -1
+3 , /Users/paulocunha/goinfre/miniconda3/bin	r: -1
+4 , /usr/local/bin	r: -1
+5 , /usr/bin	r: -1
+total 1932
+-rwxrwx--- 1 root vboxsf  133792 juin   8 17:17 ~
+drwxrwx--- 1 root vboxsf     864 juin  15 00:46 .
+drwxr-xr-x 8 root root      4096 juin   1 19:58 ..
+-rwxrwx--- 1 root vboxsf     237 juin  15 00:46 a
+drwxrwx--- 1 root vboxsf     160 juin   6 21:21 cezat
+-rwxrwx--- 1 root vboxsf   10244 juin  11 03:47 .DS_Store
+-rwxrwx--- 1 root vboxsf      83 mai   31 17:45 gg
+-rwxrwx--- 1 root vboxsf      88 mai   24 18:39 gi
+drwxrwx--- 1 root vboxsf     448 juin  11 03:52 .git
+-rwxrwx--- 1 root vboxsf     472 févr. 19 22:09 .gitignore
+-rwxrwx--- 1 root vboxsf     243 mars  31 05:11 gramatica
+drwxrwx--- 1 root vboxsf     160 juin  11 03:47 includes
+-rwxrwx--- 1 root vboxsf      69 juin   8 20:17 kk
+drwxrwx--- 1 root vboxsf    4160 juin  11 02:30 libft
+-rwxrwx--- 1 root vboxsf    1987 juin  11 03:47 Makefile
+-rwxrwx--- 1 root vboxsf   12288 juin  11 03:47 .Makefile.swm
+-rwxrwx--- 1 root vboxsf   12288 mai   18 01:10 .Makefile.swn
+-rwxrwx--- 1 root vboxsf   12288 mai   10 18:52 .Makefile.swo
+-rwxrwx--- 1 root vboxsf   12288 mai    8 18:19 .Makefile.swp
+-rwxrwx--- 1 root vboxsf 1703872 juin  15 00:46 minishell
+drwxrwx--- 1 root vboxsf    1376 juin  15 00:46 objs
+-rwxrwx--- 1 root vboxsf      32 avril 22 19:37 p
+-rwxrwx--- 1 root vboxsf   16876 juin   9 01:05 path
+-rwxrwx--- 1 root vboxsf    1523 avril 11 18:09 RASCUNHO
+-rwxrwx--- 1 root vboxsf   12288 avril  8 22:32 .RASCUNHO.swp
+drwxrwx--- 1 root vboxsf    1664 juin  15 00:46 srcs
+-rwxrwx--- 1 root vboxsf     651 avril 21 16:14 .vimrc
+d: 0
