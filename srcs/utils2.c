@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_termprint.c                                     :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/10 17:24:02 by user42            #+#    #+#             */
-/*   Updated: 2021/05/10 17:32:48 by user42           ###   ########.fr       */
+/*   Created: 2021/06/24 17:09:36 by cpereira          #+#    #+#             */
+/*   Updated: 2021/06/24 17:09:57 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_termprint(int c)
+void	erase_bksp(t_v *all, int posic)
 {
-	return (write(1, &c, 1));
+	int	i;
+
+	i = 0;
+	posic = posic - 2;
+	while (all->ret2[i] != 0)
+	{
+		if (i > posic)
+			all->ret2[i] = all->ret2[i + 1];
+		else
+			all->ret2[i] = all->ret2[i];
+		i++;
+	}
+	all->ret2[i + 1] = 0;
 }
