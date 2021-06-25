@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 00:45:53 by user42            #+#    #+#             */
-/*   Updated: 2021/06/11 00:14:23 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/19 00:23:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ int	exec_com2(t_v *v)
 
 				while (v->path[i] != NULL)
 				{
-					printf("%d , %s\t",i,v->path[i]);
+					//printf("%d , %s\t",i,v->path[i]);
 					aux = ft_strdup(v->path[i]);
 					command = ft_strjoin(aux, "/");
 					free(aux);
 					aux = command;
 					command = ft_strjoin(aux, v->cmd.cmd_args[0]);
-//						printf("command: |%s|\n", command);
+						printf("command: |%s|\n", command);
 //						printf("cmd_args[0]: |%s|\n", v->cmd.cmd_args[0]);
 //						printf("cmd_args[1]: |%s|\n", v->cmd.cmd_args[1]);
 					r = execve(command, &v->cmd.cmd_args[0], v->env);

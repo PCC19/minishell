@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 00:08:16 by user42            #+#    #+#             */
-/*   Updated: 2021/06/11 03:48:12 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/18 23:39:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	fork_process(t_v *v)
 		//return (exec_com(v));
 		//return (exec_com2(v));
 		status = exec_com2(v);
-		exit(status);
+	//	exit(status);
 	}
 	else
 		waitpid(pid, &status, 0);
