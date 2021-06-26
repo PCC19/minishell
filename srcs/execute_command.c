@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 01:11:30 by user42            #+#    #+#             */
-/*   Updated: 2021/06/26 12:15:27 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/06/27 00:21:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	execute_command(t_v *v)
 
 void	get_env(t_v *v)
 {
+	u_print_array_bi(v, v->env);
 	set_return_status(v, EXIT_SUCCESS);
 }
 
