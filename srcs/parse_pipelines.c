@@ -6,37 +6,21 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/06/28 00:45:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/28 01:03:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_parse(t_v *v, char *aux, int i, int n)
+void	prepare_for_execution(t_v *v, int i, int n)
 {
-	char	*s;
-
-	s = ft_strdup(aux);
-	v->pipelines[i] = ft_strtrim(s, " ");
 	parse_s(v, v->pipelines[i]);
-	pipe(v->cmd.pipe);
-	v->cmd.fd_out = v->cmd.pipe[PIPE_IN];
 	redirect_handler(v, i, n);
+	if (v->cmd.fn == NULL && v->cmd.cmd_args[0] != NULL)
+		v->cmd.fn = ft_strdup(v->cmd.cmd_args[0]);
 	fd_handler(v->cmd.fd_in, v->cmd.fd_out);
-	execute_command(v);
-	close(v->cmd.fd_out);
-	if (v->cmd.fd_in != 0)
-		close(v->cmd.fd_in);
-	v->cmd.fd_in = v->cmd.pipe[PIPE_OUT];
-	dup2(v->cmd.save_in, STDIN_FILENO);
-	dup2(v->cmd.save_out, STDOUT_FILENO);
-	free(v->cmd.fn);
-	v->cmd.fn = NULL;
-	free(v->expanded);
-	v->expanded = NULL;
-	free(s);
-	s = NULL;
-	u_free_array_bi(v->cmd.cmd_args);
+	check_n_free(v->curr_comand);
+	v->curr_comand = ft_strdup(v->cmd.fn);
 }
 
 int	parse_pipelines(t_v *v, char *linha, int i, int n)
@@ -53,14 +37,7 @@ int	parse_pipelines(t_v *v, char *linha, int i, int n)
 		init_cmd_args(v);
 		s = ft_strdup(aux[i]);
 		v->pipelines[i] = ft_strtrim(s, " ");
-		parse_s(v, v->pipelines[i]);
-		redirect_handler(v, i, n);
-		if(v->cmd.fn == NULL && v->cmd.cmd_args[0] != NULL)
-			v->cmd.fn = ft_strdup(v->cmd.cmd_args[0]);
-		fd_handler(v->cmd.fd_in, v->cmd.fd_out);
-		check_n_free(v->curr_comand);
-		v->curr_comand = ft_strdup(v->cmd.fn);
-			u_print_struct_cmd(v);
+		prepare_for_execution(v, i, n);
 		if (v->flag_perm_denied == 0)
 			execute_command(v);
 		dups_clear(v, s);
