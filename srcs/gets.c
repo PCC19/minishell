@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 18:44:49 by cpereira          #+#    #+#             */
-/*   Updated: 2021/06/27 13:47:57 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:14:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	get_echo_cont(t_v *v, int flag)
 	set_return_status(v, EXIT_SUCCESS);
 }
 
-void	get_echo(t_v *v, int i, int flag, int cont)
+void	get_echo2(t_v *v, int i, int flag, int cont)
 {
 	int	k;
 

@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/06/27 16:53:33 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:18:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	update_env_var(t_v *v, char *var);
 char	*loc_var (char *var, t_v *v);
 void	create_prompt(t_v *v);
 void	get_echo(t_v *v, int i, int flag, int cont);
+void	get_echo2(t_v *v, int i, int flag, int cont);
 void	export_var(t_v *v, int len_arr, int i);
 char	*get_var(t_v *v);
 void	exc_var(t_v *v, int i, int k);

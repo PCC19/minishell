@@ -33,6 +33,7 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)create_prompt.c\
 		$(SDIR)export_var.c\
 		$(SDIR)gets.c\
+		$(SDIR)get_echo.c\
 		$(SDIR)exit_msh.c\
 		$(SDIR)fork_process.c\
 		$(SDIR)safe_malloc.c\
