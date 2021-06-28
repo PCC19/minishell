@@ -48,8 +48,7 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)reset_vpath.c\
 		$(SDIR)verify_keys.c\
 		$(SDIR)writers.c\
-		$(SDIR)exec_com2.c\
-		$(SDIR)u_print_struct_cmd.c
+		$(SDIR)exec_com2.c
 
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))

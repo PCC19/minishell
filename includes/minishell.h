@@ -6,12 +6,13 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/06/28 01:00:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/27 16:53:33 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 # include <stdlib.h>
 # include <fcntl.h>
 # include <string.h>
@@ -24,16 +25,14 @@
 # include <term.h>
 
 # include "libft.h"
-# include "get_next_line.h"
 # include <string.h>
 # include <unistd.h>
 # include <sys/types.h>
-# include "dbg.h"
 # include <errno.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# define MIL 1000
+# define MIL 10000
 # define SPC ' '
 # define PIPE_IN 1
 # define PIPE_OUT 0
@@ -70,7 +69,7 @@ typedef struct s_v{
 	struct termios	intterm;
 	struct termios	term;
 	struct termios	old;
-	char			*hist[50];
+	char			*hist[5000];
 	int				qtd_hist;
 	int				posic_hist;
 	char			*ret2;
@@ -163,6 +162,8 @@ char	*get_last_path2(char *str);
 int		is_abs_path(char *str);
 void	reset_vpath(t_v *v);
 int		exec_com2(t_v *v);
+int		ft_count_words(char const *s, char c);
+void	check_return(t_v *v);
 void	u_print_struct_cmd(t_v *v);
 void	prepare_for_execution(t_v *v, int i, int n);
 
