@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 18:44:49 by cpereira          #+#    #+#             */
-/*   Updated: 2021/06/28 17:14:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/28 20:51:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	get_cd (t_v *v)
 
 static void	get_echo_cont(t_v *v, int flag)
 {
-	if (flag)
-		ft_putchar('%');
-	ft_putchar('\n');
+	(void)flag;
+	if (ft_strncmp(v->cmd.cmd_args[1], "-n", 2))
+		ft_putchar('\n');
 	set_return_status(v, EXIT_SUCCESS);
 }
 
