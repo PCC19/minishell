@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/06/28 17:18:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/07 17:00:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,6 @@ int		ft_count_words(char const *s, char c);
 void	check_return(t_v *v);
 void	u_print_struct_cmd(t_v *v);
 void	prepare_for_execution(t_v *v, int i, int n);
+void	parse_block(t_v *v);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/06/28 20:47:39 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/07 17:38:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void	prepare_for_execution(t_v *v, int i, int n)
 	fd_handler(v->cmd.fd_in, v->cmd.fd_out);
 	check_n_free(v->curr_comand);
 	v->curr_comand = ft_strdup(v->cmd.fn);
+	// print heredoc no fd in
+		// cria um pipe
+		// printa na entrada deste pipe
+		// mapeia a saida deste pipe como fd in do comando
+
+		// executa comando
+
+		// close pipe novo
 }
 
 int	parse_pipelines(t_v *v, char *linha, int i, int n)
@@ -38,6 +46,7 @@ int	parse_pipelines(t_v *v, char *linha, int i, int n)
 		s = ft_strdup(aux[i]);
 		v->pipelines[i] = ft_strtrim(s, " ");
 		prepare_for_execution(v, i, n);
+			u_print_struct_cmd(v);
 		if (v->flag_perm_denied == 0)
 			execute_command(v);
 		dups_clear(v, s);

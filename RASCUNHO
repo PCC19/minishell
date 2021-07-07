@@ -82,3 +82,21 @@ loop por caracter
 			se ja houver filename: erro !
 
 
+----------------------------------------------------------------------
+Pula linha e printa >
+le o que for digitado na linha (com backspace)
+Se for difernte de [word]
+	acrescenta num array_bi
+	segue loop
+Apos terminar leitura -> array_bi vira input do comando
+	(fazer um printf para o fd de entrada ?)
+
+parse:
+	fazer parse normal
+	se tiver <<
+		executa rotina
+
+
+
+
+

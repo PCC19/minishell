@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 23:06:16 by user42            #+#    #+#             */
-/*   Updated: 2021/06/26 17:46:12 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/07/07 19:52:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	parse_quote_in_redirect(t_v *v, int *k, char *c)
 	ft_bzero(aux, MIL);
 	ff(v->expanded, k);
 	copy_until(aux, v->expanded, c, k);
-	(*k)++;
+	while (v->expanded[*k] != *c && v->expanded[*k] != 0)
+		(*k)++;
 	add_line_to_cmd_args(v, aux);
 }
 
