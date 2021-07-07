@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 23:58:59 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 17:26:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/07 20:08:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	parse_in_red(t_v *v, int *k, int in)
 		dup2(v->cmd.fd_in_red, in);
 		close(v->cmd.fd_in_red);
 	}
+	ff_until_char(v->expanded, k, " <>\"\'");
 }

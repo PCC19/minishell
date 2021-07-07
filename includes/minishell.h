@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 17:00:14 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/07 20:07:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,5 +168,7 @@ void	check_return(t_v *v);
 void	u_print_struct_cmd(t_v *v);
 void	prepare_for_execution(t_v *v, int i, int n);
 void	parse_block(t_v *v);
+void	ff_until_char(char *str, int *k, char *delimiters);
+
 
 #endif

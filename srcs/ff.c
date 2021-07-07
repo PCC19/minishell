@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 18:15:35 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 15:35:56 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/07/07 20:07:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,11 @@ void	ff(char *str, int *k)
 {
 	(*k)++;
 	while (str[*k] == SPC && str[*k] != 0)
+		(*k)++;
+}
+
+void	ff_until_char(char *str, int *k, char *delimiters)
+{
+	while (!ft_is_in(str[*k], delimiters) && str[*k] != 0)
 		(*k)++;
 }

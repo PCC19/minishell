@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:58:13 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 18:28:01 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/07 20:31:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_block(t_v *v)
 			parse_in_red(v, &k, v->cmd.fd_in);
 		else if (v->expanded[k] == '>')
 			parse_out_red(v, &k, v->cmd.fd_out);
-		else if (v->expanded[k] == SPC)
+		else if (v->expanded[k] == ' ')
 			ff(v->expanded, &k);
 		else
 			parse_cmd_args(v, &k);
