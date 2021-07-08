@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:58:13 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 17:38:24 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/08 18:23:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ ok1) REFATORAR PASE: Mudar parse (andamento do cursor etc)
 		NOTA: hardcode no main de > < no primeiro char
 
 2) HEREDOC
-	2a) Alterar parse existente
+	ok2a) Alterar parse existente
 		seta flag
 		pega string de eof
 
@@ -77,6 +77,8 @@ ok1) REFATORAR PASE: Mudar parse (andamento do cursor etc)
 		cria pipe
 		faz redirect do pipe temporario
 		printa no pipe temp
+
+		printa apenas a saida
 
 	2c) Apos comando
 		fechar pipe temporario

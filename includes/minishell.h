@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 17:54:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/08 18:21:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_v{
 	int				k;
 	int				q;
 	int				ax2;
-	char			*eof;
+	char			eof[MIL];
 	int				flag_heredoc;
 }				t_v;
 
