@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:14:09 by user42            #+#    #+#             */
-/*   Updated: 2021/06/23 17:29:45 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/07/08 17:51:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ void	configs(t_v *v, char **envp)
 	create_prompt(v);
 	write_prompt(v);
 	v->flag_perm_denied = 0;
+	v->flag_heredoc = 0;
+	v->eof = NULL;
 }

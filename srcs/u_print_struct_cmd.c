@@ -6,11 +6,28 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:52:20 by user42            #+#    #+#             */
-/*   Updated: 2021/06/28 20:46:56 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/08 17:26:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	u_print_array_bi2(t_v *v, char **s)
+{
+	int	i;
+
+	(void) v;
+	if (s != NULL)
+	{
+		i = 0;
+		while (s[i] != 0)
+		{
+//			printf("%s\n", (s[i]));
+			dprintf(v->cmd.save_out, "%s\n", (s[i]));
+			i++;
+		}
+	}
+}
 
 void	u_print_struct_cmd(t_v *v)
 {
@@ -21,7 +38,7 @@ void	u_print_struct_cmd(t_v *v)
 	else
 		dprintf(v->cmd.save_out, "filename:\t\t|vazio|\n");
 	dprintf(v->cmd.save_out, "cmd_args:\n");
-	u_print_array_bi(v, v->cmd.cmd_args);
+	u_print_array_bi2(v, v->cmd.cmd_args);
 	dprintf(v->cmd.save_out, "fd_in_red: %d\t\t fd_out_red: %d\n",
 		v->cmd.fd_in_red, v->cmd.fd_out_red);
 	dprintf(v->cmd.save_out, "pipe[in]: %d\t\t pipe[out]: %d\n",

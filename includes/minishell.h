@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 20:07:19 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/08 17:54:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,15 @@ typedef struct s_v{
 	int				k;
 	int				q;
 	int				ax2;
+	char			*eof;
+	int				flag_heredoc;
 }				t_v;
 
 int		parse_cmd_lines(t_v *v, char *linha, int p);
 int		ft_count_lines(char **s);
 void	u_free_array_bi(char **s);
 void	u_print_array_bi(t_v *v, char **s);
+void	u_print_array_bi2(t_v *v, char **s);
 int		parse_pipelines(t_v *v, char *linha, int i, int n);
 int		parse_s(t_v *v, char *linha);
 void	init_env(t_v *v, char **envp);
@@ -169,6 +172,8 @@ void	u_print_struct_cmd(t_v *v);
 void	prepare_for_execution(t_v *v, int i, int n);
 void	parse_block(t_v *v);
 void	ff_until_char(char *str, int *k, char *delimiters);
+void	handle_heredoc(t_v *v);
+
 
 
 #endif

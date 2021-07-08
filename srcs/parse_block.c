@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:58:13 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 20:31:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/08 17:38:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	parse_block(t_v *v)
 	k = 0;
 	while (v->expanded[k] != 0)
 	{
-		if (v->expanded[k] == '\"')
+		if (v->expanded[k] == ' ')
+			ff(v->expanded, &k);
+		else if (v->expanded[k] == '\"')
 			parse_quote_in_redirect(v, &k, "\"");
 		else if (v->expanded[k] == '\'')
 			parse_quote_in_redirect(v, &k, "\'");
@@ -27,8 +29,6 @@ void	parse_block(t_v *v)
 			parse_in_red(v, &k, v->cmd.fd_in);
 		else if (v->expanded[k] == '>')
 			parse_out_red(v, &k, v->cmd.fd_out);
-		else if (v->expanded[k] == ' ')
-			ff(v->expanded, &k);
 		else
 			parse_cmd_args(v, &k);
 	}
@@ -63,19 +63,22 @@ se for char
 		deixa cursor no prox char (inc + ff)
 	
 =====================================
-1) REFATORAR PASE: Mudar parse (andamento do cursor etc)
+ok1) REFATORAR PASE: Mudar parse (andamento do cursor etc)
 	usar rotina de acionar ao array_bi
+		DEBUGAR: printar char de saida de cada parse
+		NOTA: hardcode no main de > < no primeiro char
 
 2) HEREDOC
-	Alterar parse existente
+	2a) Alterar parse existente
 		seta flag
+		pega string de eof
 
-	Rotina do readline
+	2b) Rotina do readline
 		cria pipe
 		faz redirect do pipe temporario
 		printa no pipe temp
 
-	Apos comando
+	2c) Apos comando
 		fechar pipe temporario
 	
 Restauracao dos fds segue normal

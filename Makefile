@@ -51,7 +51,8 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)writers.c\
 		$(SDIR)exec_com2.c\
 		$(SDIR)u_print_struct_cmd.c\
-		$(SDIR)parse_block.c
+		$(SDIR)parse_block.c\
+		$(SDIR)handle_heredoc.c
 
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))

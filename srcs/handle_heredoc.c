@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ff.c                                               :+:      :+:    :+:   */
+/*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/11 18:15:35 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 16:57:40 by user42           ###   ########.fr       */
+/*   Created: 2021/07/08 17:40:43 by user42            #+#    #+#             */
+/*   Updated: 2021/07/08 17:55:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ff(char *str, int *k)
+void	handle_heredoc(t_v *v)
 {
-	(*k)++;
-	while (str[*k] == SPC && str[*k] != 0)
-		(*k)++;
-}
+	// pega string eof
+	printf("flag_heredoc: %d\n", v->flag_heredoc);
+	printf("eof: |%s|\n", v->eof);
 
-void	ff_until_char(char *str, int *k, char *delimiters)
-{
-	while (!ft_is_in(str[*k], delimiters) && str[*k] != 0)
-		(*k)++;
+
+
 
 }
