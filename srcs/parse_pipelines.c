@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 17:38:53 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 20:49:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	prepare_for_execution(t_v *v, int i, int n)
 	// print heredoc no fd in
 		// cria um pipe
 		// printa na entrada deste pipe
+		u_print_array_bi(v, v->cmd.heredoc);
 		// mapeia a saida deste pipe como fd in do comando
 
 		// executa comando
@@ -79,6 +80,7 @@ void	cleaning(t_v *v, char *s)
 	free(s);
 	s = NULL;
 	u_free_array_bi(v->cmd.cmd_args);
+	u_free_array_bi(v->cmd.heredoc);
 }
 
 void	verify_ret(t_v *v)

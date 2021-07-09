@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 19:49:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 20:46:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_cmd{
 	int		save_out;
 	int		fd_in;
 	int		fd_out;
+	char	**heredoc;
 }				t_cmd;
 
 typedef struct s_v{
@@ -175,6 +176,8 @@ void	prepare_for_execution(t_v *v, int i, int n);
 void	parse_block(t_v *v);
 void	ff_until_char(char *str, int *k, char *delimiters);
 void	handle_heredoc(t_v *v);
+void	add_line_to_array_bi(t_v *v, char *src);
+
 
 
 

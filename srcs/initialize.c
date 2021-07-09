@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 01:08:00 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 19:59:26 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:29:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	init_struct_cmd(t_v *v)
 	v->cmd.save_in = dup(STDIN_FILENO);
 	v->cmd.save_out = dup(STDOUT_FILENO);
 	v->cmd.fd_in = STDIN_FILENO;
+	v->cmd.heredoc = (char **)safe_malloc((0 + 1) * sizeof(char *));
+	v->cmd.heredoc[0] = NULL;
 }
 
 void	init_cmd_args(t_v *v)

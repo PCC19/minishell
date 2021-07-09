@@ -52,13 +52,14 @@ SRCS =	$(SDIR)main.c\
 		$(SDIR)exec_com2.c\
 		$(SDIR)u_print_struct_cmd.c\
 		$(SDIR)parse_block.c\
-		$(SDIR)handle_heredoc.c
+		$(SDIR)handle_heredoc.c\
+		$(SDIR)add_line_to_array_bi.c
 
 
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))
 
 CC = clang
-HEADERS = -I./$(HEADER_DIR) -I./$(LIBFT_DIR) -I/home/user42/goinfre/miniconda39/include/
+HEADERS = -I./$(HEADER_DIR) -I./$(LIBFT_DIR)
 C_FLAGS = -Wall -Werror -Wextra -g
 C_SANIT = -fsanitize=address
 L_FLAGS = -L ./libft -lft -lncurses -lreadline
