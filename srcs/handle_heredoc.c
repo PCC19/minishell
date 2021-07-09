@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:40:43 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 20:45:52 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 21:49:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ void	handle_heredoc(t_v *v)
 //		printf("flag_heredoc: %d\n", v->flag_heredoc);
 //		printf("eof: |%s|\n", v->eof);
 		// Cria pipe
-		// Faz redirects
-//		v->cmd.fd_in_red = open(file_redir, O_RDONLY | O_CREAT);
-//		dup2(v->cmd.fd_in_red, in);
-//		close(v->cmd.fd_in_red);
 		// Primeira linha
 	line = readline(">");
 	printf("%s\n", line);

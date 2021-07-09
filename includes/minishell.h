@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 20:46:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 20:53:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int		parse_cmd_lines(t_v *v, char *linha, int p);
 int		ft_count_lines(char **s);
 void	u_free_array_bi(char **s);
 void	u_print_array_bi(t_v *v, char **s);
-void	u_print_array_bi2(t_v *v, char **s);
+void	u_print_array_bi_fd(t_v *v, char **s, int fd);
 int		parse_pipelines(t_v *v, char *linha, int i, int n);
 int		parse_s(t_v *v, char *linha);
 void	init_env(t_v *v, char **envp);
