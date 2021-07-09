@@ -58,11 +58,10 @@ SRCS =	$(SDIR)main.c\
 OBJS =	$(patsubst $(SDIR)%.c, $(ODIR)%.o, $(SRCS))
 
 CC = clang
-HEADERS = -I./$(HEADER_DIR) -I./$(LIBFT_DIR)
+HEADERS = -I./$(HEADER_DIR) -I./$(LIBFT_DIR) -I/home/user42/goinfre/miniconda39/include/
 C_FLAGS = -Wall -Werror -Wextra -g
 C_SANIT = -fsanitize=address
-L_FLAGS = -L ./libft -lft -lncurses
-
+L_FLAGS = -L ./libft -lft -lncurses -lreadline
 
 $(NAME):	$(OBJS) $(LIBFT)
 	$(CC) $(OBJS) $(C_FLAGS) $(C_SANIT) $(HEADERS) $(L_FLAGS) -o $@

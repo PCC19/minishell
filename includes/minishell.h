@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 18:21:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 19:49:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # include <errno.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define MIL 10000
 # define SPC ' '
