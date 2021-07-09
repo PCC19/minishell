@@ -6,13 +6,13 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 18:44:49 by cpereira          #+#    #+#             */
-/*   Updated: 2021/06/28 20:51:02 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 23:37:49 by pcunha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	get_cd (t_v *v)
+void	get_cd(t_v *v)
 {
 	char	*ptr;
 	char	*aux;
@@ -96,7 +96,7 @@ char	*get_var(t_v *v)
 	return (var);
 }
 
-int	get_pwd (t_v *v)
+int	get_pwd(t_v *v)
 {
 	long	size;
 	char	*buf;

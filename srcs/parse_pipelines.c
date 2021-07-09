@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 21:57:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 23:35:48 by pcunha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,13 @@
 
 void	prepare_for_execution(t_v *v, int i, int n)
 {
-	int pipe_aux[2];
-
 	parse_s(v, v->pipelines[i]);
 	redirect_handler(v, i, n);
 	if (v->cmd.fn == NULL && v->cmd.cmd_args[0] != NULL)
 		v->cmd.fn = ft_strdup(v->cmd.cmd_args[0]);
-	// print heredoc no fd in
-		// cria um pipe
-		// printa na entrada deste pipe
-		// Faz redirects
-		pipe(pipe_aux);
-//		dup2(pipe_aux[PIPE_OUT], v->cmd.fd_out);
-		v->cmd.fd_in_red = pipe_aux[PIPE_OUT];
-		dup2(v->cmd.fd_in_red, v->cmd.fd_in);
-		close(v->cmd.fd_in_red);
 	fd_handler(v->cmd.fd_in, v->cmd.fd_out);
-		u_print_array_bi_fd(v, v->cmd.heredoc, 0);
-		//ft_putstr_fd(v->cmd.heredoc[0],pipe_aux[PIPE_IN]);
 	check_n_free(v->curr_comand);
 	v->curr_comand = ft_strdup(v->cmd.fn);
-		// mapeia a saida deste pipe como fd in do comando
-
-		// executa comando
-
-		// close pipe novo
 }
 
 int	parse_pipelines(t_v *v, char *linha, int i, int n)
@@ -56,10 +38,11 @@ int	parse_pipelines(t_v *v, char *linha, int i, int n)
 		s = ft_strdup(aux[i]);
 		v->pipelines[i] = ft_strtrim(s, " ");
 		prepare_for_execution(v, i, n);
-			u_print_struct_cmd(v);
+//			u_print_struct_cmd(v);
 		if (v->flag_perm_denied == 0)
 			execute_command(v);
 		dups_clear(v, s);
+		rm_file();
 		i++;
 	}
 	close_fds(v, i);

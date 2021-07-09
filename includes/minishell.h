@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 20:53:22 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 22:55:31 by pcunha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,8 +175,10 @@ void	u_print_struct_cmd(t_v *v);
 void	prepare_for_execution(t_v *v, int i, int n);
 void	parse_block(t_v *v);
 void	ff_until_char(char *str, int *k, char *delimiters);
-void	handle_heredoc(t_v *v);
+void	handle_heredoc(t_v *v, int fd_temp);
 void	add_line_to_array_bi(t_v *v, char *src);
+void	rm_file(void);
+
 
 
 
