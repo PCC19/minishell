@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 21:48:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/09 21:57:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	prepare_for_execution(t_v *v, int i, int n)
 		// Faz redirects
 		pipe(pipe_aux);
 //		dup2(pipe_aux[PIPE_OUT], v->cmd.fd_out);
-		v->cmd.fd_in_red = pipe_aux[PIPE_IN];
+		v->cmd.fd_in_red = pipe_aux[PIPE_OUT];
 		dup2(v->cmd.fd_in_red, v->cmd.fd_in);
 		close(v->cmd.fd_in_red);
 	fd_handler(v->cmd.fd_in, v->cmd.fd_out);
-		u_print_array_bi_fd(v, v->cmd.heredoc, pipe_aux[PIPE_OUT]);
+		u_print_array_bi_fd(v, v->cmd.heredoc, 0);
 		//ft_putstr_fd(v->cmd.heredoc[0],pipe_aux[PIPE_IN]);
 	check_n_free(v->curr_comand);
 	v->curr_comand = ft_strdup(v->cmd.fn);
