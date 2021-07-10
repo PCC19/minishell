@@ -43,6 +43,10 @@ int	verify_line(char *line)
 int	main(void)
 {
 	t_v	v;
+//	char *line;
+//	line =readline(">>>>");
+//	free(line);
+//	return (0);
 
 	configs(&v, __environ);
 	while (1)
