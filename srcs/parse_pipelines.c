@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 03:47:00 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 23:35:48 by pcunha           ###   ########.fr       */
+/*   Updated: 2021/07/10 18:39:52 by pcunha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	parse_pipelines(t_v *v, char *linha, int i, int n)
 	}
 	close_fds(v, i);
 	u_free_array_bi(aux);
+	free(v->cmd.fn);
 	return (0);
 }
 
