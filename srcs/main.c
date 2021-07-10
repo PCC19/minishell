@@ -51,6 +51,13 @@ int	main(void)
 	configs(&v, __environ);
 	while (1)
 	{
+		char	*line;
+
+		v->ret2 = readline("> ");
+		add_history(v->ret2);
+		processing(&v);
+
+	//=============================================================
 		signal(SIGINT, sighandler);
 		signal(SIGQUIT, sighandler);
 		tcsetattr(0, TCSAFLUSH, &v.term);
