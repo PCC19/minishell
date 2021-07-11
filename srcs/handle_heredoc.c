@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:40:43 by user42            #+#    #+#             */
-/*   Updated: 2021/07/10 17:23:46 by pcunha           ###   ########.fr       */
+/*   Updated: 2021/07/11 23:30:51 by pcunha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	handle_heredoc(t_v *v, int fd_temp)
 {
 	char	*line;
 
+	tcsetattr(0, TCSAFLUSH, &v->old);
 	line = readline("> ");
-	ft_putstr_fd(line, 1);
-	ft_putstr_fd("\n", 1);
 	if (ft_strncmp(line, v->eof, ft_strlen(v->eof)))
 	{
 		ft_putstr_fd(line, fd_temp);
@@ -28,8 +27,6 @@ void	handle_heredoc(t_v *v, int fd_temp)
 	{
 		free(line);
 		line = readline("> ");
-		ft_putstr_fd(line, 1);
-		ft_putstr_fd("\n", 1);
 		if (ft_strncmp(line, v->eof, ft_strlen(v->eof)))
 		{
 			ft_putstr_fd(line, fd_temp);

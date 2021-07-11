@@ -43,10 +43,6 @@ int	verify_line(char *line)
 int	main(void)
 {
 	t_v	v;
-//	char *line;
-//	line =readline(">>>>");
-//	free(line);
-//	return (0);
 
 	configs(&v, __environ);
 	while (1)
@@ -92,7 +88,6 @@ void	processing(t_v *v)
 		add_hist(v, v->ret2);
 	v->flag_exit = 0;
 	ft_putstr_fd("\n", 1);
-//	if (ft_strlen(v->ret2) > 1 && v->ret2[0] != '>' && v->ret2[0] != '<' && verify_line(v->ret2))
 	if (1)
 		parse_cmd_lines(v, v->ret2, 0);
 	if (v->flag_exit == 1)
