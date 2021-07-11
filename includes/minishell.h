@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/09 22:55:31 by pcunha           ###   ########.fr       */
+/*   Updated: 2021/07/12 01:06:48 by pcunha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,11 @@ void	redirect_handler(t_v *v, int i, int n);
 void	parse_quote_in_redirect(t_v *v, int *k, char *c);
 void	add_line_to_cmd_args(t_v *v, char *src);
 char	**ft_split3(char s[], char c);
-int		get_pwd (t_v *v);
+int		get_pwd(t_v *v);
 void	execute_command(t_v *v);
-void	get_cd (t_v *v);
+void	get_cd(t_v *v);
 void	update_env_var(t_v *v, char *var);
-char	*loc_var (char *var, t_v *v);
+char	*loc_var(char *var, t_v *v);
 void	create_prompt(t_v *v);
 void	get_echo(t_v *v, int i, int flag, int cont);
 void	get_echo2(t_v *v, int i, int flag, int cont);
@@ -178,9 +178,4 @@ void	ff_until_char(char *str, int *k, char *delimiters);
 void	handle_heredoc(t_v *v, int fd_temp);
 void	add_line_to_array_bi(t_v *v, char *src);
 void	rm_file(void);
-
-
-
-
-
 #endif

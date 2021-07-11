@@ -72,8 +72,6 @@ $(NAME):	$(OBJS) $(LIBFT)
 	#valgrind --leak-check=full --track-origins=yes ,/minishell
 	clear
 
-
-
 $(ODIR)%.o: $(SDIR)%.c
 		mkdir -p $(ODIR)
 		$(CC) $(C_FLAGS) $(HEADERS) -c $< -o $@
@@ -103,3 +101,6 @@ val:	$(OBJS) $(LIBFT)
 	echo CONCLUIDO
 	#./minishell
 	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./minishell
+
+readline:
+	sudo apt-get install libreadline-dev
