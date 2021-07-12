@@ -6,7 +6,7 @@
 /*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:19:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/12 01:06:48 by pcunha           ###   ########.fr       */
+/*   Updated: 2021/07/11 16:35:52 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,4 +178,5 @@ void	ff_until_char(char *str, int *k, char *delimiters);
 void	handle_heredoc(t_v *v, int fd_temp);
 void	add_line_to_array_bi(t_v *v, char *src);
 void	rm_file(void);
+
 #endif

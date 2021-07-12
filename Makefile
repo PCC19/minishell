@@ -65,7 +65,7 @@ C_SANIT = -fsanitize=address
 L_FLAGS = -L ./libft -lft -lncurses -lreadline
 
 $(NAME):	$(OBJS) $(LIBFT)
-	$(CC) $(OBJS) $(C_FLAGS) $(C_SANIT) $(HEADERS) $(L_FLAGS) -o $@
+	$(CC) $(OBJS) $(C_FLAGS) $(HEADERS) $(L_FLAGS) -o $@
 
 	echo CONCLUIDO
 	#./minishell
@@ -102,5 +102,5 @@ val:	$(OBJS) $(LIBFT)
 	#./minishell
 	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./minishell
 
-readline:
+install_readline:
 	sudo apt-get install libreadline-dev
